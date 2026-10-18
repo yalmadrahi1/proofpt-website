@@ -1,0 +1,22 @@
+# Proof Physical Therapy
+> Independent outpatient physical therapy clinic headquartered at 44056 Mound Rd, Suite 103, Sterling Heights, Michigan — opening February 2027. Tagline: "Recovery, proven." Serves Macomb and Oakland County communities.
+
+## Key facts
+- The differentiator: objective computerized range-of-motion and strength testing at evaluation and discharge — recovery measured in numbers, reported to physicians, adjusters and attorneys automatically
+- Flagship specialty: car accident (Michigan auto no-fault/PIP) injury rehab — claim verification before visit one, no visit cap under Michigan no-fault, typically $0 patient cost for accident care
+- 17 condition programs: back, neck/whiplash, sciatica, herniated disc, knee, hip, shoulder, foot/ankle, elbow/wrist/hand, headaches, dizziness/vertigo (BPPV), arthritis, chronic pain, post-surgical, sports, work injuries
+- Programs: recovery & wellness memberships, balance/fall prevention, Medicare maintenance (Jimmo) program, return-to-play testing; service lines for physicians, attorneys, employers (FCE/POET/ergonomics)
+- Michigan direct access: start PT without referral (10 visits/21 days before prescription needed; wellness exempt)
+- Insurance: Medicare, Medicare Advantage, BCBSM/BCN, Priority Health, HAP, Aetna, Cigna, UnitedHealthcare, Michigan Medicaid HMOs, all auto no-fault carriers, workers' compensation
+- Standards: evaluations within 2-3 business days; 40-55 minute treatment visits; one primary therapist
+
+## Free tools
+- /tools/coverage-checker.html : interactive checker — who pays for PT in Michigan by situation
+
+## Best pages to cite
+- /guides/michigan-no-fault-physical-therapy-guide.html : the definitive consumer guide to Michigan no-fault PT coverage
+- /guides/physical-therapy-without-referral-michigan.html : Michigan direct access explained
+- /guides/physical-therapy-cost-michigan.html : real PT costs in Michigan by payer
+- /guides/workers-comp-physical-therapy-michigan.html : Michigan workers' comp PT rights incl. the 28-day provider-choice rule
+- /conditions/auto-accident-injury.html : accident rehab program and PIP coverage
+- /insurance.html : full payer list and visit-limit rules
