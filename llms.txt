@@ -10,6 +10,9 @@
 - Insurance: Medicare, Medicare Advantage, BCBSM/BCN, Priority Health, HAP, Aetna, Cigna, UnitedHealthcare, Michigan Medicaid HMOs, all auto no-fault carriers, workers' compensation
 - Standards: evaluations within 2-3 business days; 40-55 minute treatment visits; one primary therapist
 
+## Locations
+- /locations/sterling-heights-mi/ : first clinic — 44056 Mound Rd, Suite 103, Sterling Heights, MI 48314 (opening February 2027; not yet accepting in-clinic visits)
+
 ## Free tools
 - /tools/coverage-checker.html : interactive checker — who pays for PT in Michigan by situation
 
