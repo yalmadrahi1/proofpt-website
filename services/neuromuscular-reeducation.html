@@ -171,44 +171,47 @@ a.pill:hover{background:#D7E3FB}
 <style>.statuschip{display:inline-block;font-weight:700;font-size:13px;border-radius:999px;padding:5px 14px}.st-coming_soon{background:var(--sand,#FDF6E3);color:#6B5417;border:1px solid #F3DFAE}</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "MedicalWebPage", "name": "Neuromuscular Re-education", "url": "https://www.proofphysicaltherapy.com/services/neuromuscular-reeducation.html", "description": "Retraining the connection between brain and muscle \u2014 timing, control, and confidence.", "about": {"@type": "MedicalTherapy", "name": "Neuromuscular Re-education"}, "provider": {"@type": "PhysicalTherapy", "name": "Proof Physical Therapy", "address": {"@type": "PostalAddress", "addressLocality": "Sterling Heights", "addressRegion": "MI"}}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why won't my muscle fire after surgery?", "acceptedAnswer": {"@type": "Answer", "text": "Arthrogenic inhibition \u2014 the joint's swelling and pain reflexively shutting down its muscles \u2014 is normal and expected, quadriceps after knee surgery being the classic case. Specific activation work restores it faster than waiting."}}, {"@type": "Question", "name": "My ankle keeps re-spraining. Can this help?", "acceptedAnswer": {"@type": "Answer", "text": "Recurrent sprains usually trace to proprioceptive deficits left over from the first one. Balance and perturbation training is one of the better-proven re-injury prevention tools in sports medicine."}}, {"@type": "Question", "name": "Is this covered like regular PT?", "acceptedAnswer": {"@type": "Answer", "text": "Yes \u2014 neuromuscular re-education is a standard component of skilled physical therapy, billed and covered within your plan's normal PT benefits."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.proofphysicaltherapy.com/"}, {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.proofphysicaltherapy.com/services/"}, {"@type": "ListItem", "position": 3, "name": "Neuromuscular Re-education", "item": "https://www.proofphysicaltherapy.com/services/neuromuscular-reeducation.html"}]}]}</script>
 <style>
-.hwrap{display:flex;align-items:center;gap:22px;position:relative}
-.hwrap .logo{flex-shrink:0}
+/* ID-level specificity throughout: the base stylesheet's nav.main / nav.main a /
+   header.site .wrap rules outrank bare classes, which left the mobile menu
+   permanently expanded (display:flex) and the toggle visually dead. */
+header.site .hwrap{display:flex;align-items:center;justify-content:flex-start;gap:22px;position:relative}
+header.site .hwrap .logo{flex-shrink:0}
 .navtoggle{display:none}
-.nav2{display:flex;align-items:center;gap:4px;flex:1;min-width:0;flex-wrap:wrap}
-.nav2>a,.nav2 .navbtn{padding:10px 12px;border-radius:10px;font-weight:600;font-size:15px;color:var(--navy);text-decoration:none;background:none;border:none;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:6px;line-height:1.2}
-.nav2>a:hover,.nav2 .navbtn:hover{background:var(--wash,#EEF2FA)}
-.nav2>a:focus-visible,.navbtn:focus-visible,.navtoggle:focus-visible,.megalinks a:focus-visible,.megaall:focus-visible{outline:2.5px solid var(--blue);outline-offset:2px;border-radius:8px}
-.navbtn .chev{transition:none}
-.navbtn[aria-expanded="true"] .chev{transform:rotate(180deg)}
-.navitem{position:relative}
-.mega{position:absolute;top:calc(100% + 10px);left:0;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 50px rgba(12,36,87,.14);padding:22px 24px;z-index:60;min-width:660px}
-.meganarrow{min-width:240px}
-.megacols{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-.megahead{font-family:var(--disp);font-weight:700;font-size:13.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mut);margin:0 0 8px}
-.megalinks{display:flex;flex-direction:column}
-.megalinks a{padding:7px 8px;border-radius:8px;font-size:14.5px;color:var(--navy);text-decoration:none;font-weight:500}
-.megalinks a:hover{background:var(--wash,#EEF2FA)}
-.megaall{display:inline-block;margin-top:14px;font-weight:700;font-size:14.5px;color:var(--blue);text-decoration:none;padding:6px 8px}
-.nav2 .navcta{display:none}
-@media(prefers-reduced-motion:no-preference){.mega{animation:megain .14s ease}.ntb span{transition:transform .15s ease,opacity .15s ease}@keyframes megain{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}}
+#sitenav{display:flex;align-items:center;gap:4px;flex:1;min-width:0;flex-wrap:wrap}
+#sitenav>a,#sitenav .navbtn{padding:10px 12px;border-radius:10px;font-weight:600;font-size:15px;color:var(--navy);text-decoration:none;background:none;border:none;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:6px;line-height:1.2}
+#sitenav>a:hover,#sitenav .navbtn:hover{background:var(--wash,#EEF2FA);color:var(--navy)}
+#sitenav>a:focus-visible,#sitenav .navbtn:focus-visible,.navtoggle:focus-visible,#sitenav .megalinks a:focus-visible,#sitenav .megaall:focus-visible{outline:2.5px solid var(--blue);outline-offset:2px;border-radius:8px}
+#sitenav .navbtn .chev{transition:none}
+#sitenav .navbtn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+#sitenav .navitem{position:relative}
+#sitenav .mega{position:absolute;top:calc(100% + 10px);left:0;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 50px rgba(12,36,87,.14);padding:22px 24px;z-index:60;min-width:660px}
+#sitenav .meganarrow{min-width:240px}
+#sitenav .megacols{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+#sitenav .megahead{font-family:var(--disp);font-weight:700;font-size:13.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mut);margin:0 0 8px}
+#sitenav .megalinks{display:flex;flex-direction:column}
+#sitenav .megalinks a{padding:7px 8px;border-radius:8px;font-size:14.5px;color:var(--navy);text-decoration:none;font-weight:500;display:block}
+#sitenav .megalinks a:hover{background:var(--wash,#EEF2FA);color:var(--navy)}
+#sitenav .megaall{display:inline-block;margin-top:14px;font-weight:700;font-size:14.5px;color:var(--blue);text-decoration:none;padding:6px 8px}
+#sitenav .navcta{display:none}
+@media(prefers-reduced-motion:no-preference){#sitenav .mega{animation:megain .14s ease}.navtoggle .ntb span{transition:transform .15s ease,opacity .15s ease}@keyframes megain{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}}
 @media(max-width:1060px){
- .hwrap{flex-wrap:wrap;gap:12px}
- .hdrcta{display:none}
+ header.site .hwrap{flex-wrap:wrap;gap:12px;justify-content:space-between}
+ header.site .hdrcta{display:none}
  .navtoggle{display:inline-flex;align-items:center;gap:9px;margin-left:auto;background:none;border:1.5px solid var(--line);border-radius:12px;padding:11px 16px;font:inherit;font-weight:700;font-size:15px;color:var(--navy);cursor:pointer;min-height:48px}
- .ntb{display:inline-flex;flex-direction:column;gap:4px;width:18px}
- .ntb span{display:block;height:2px;background:var(--navy);border-radius:2px}
+ .navtoggle .ntb{display:inline-flex;flex-direction:column;gap:4px;width:18px}
+ .navtoggle .ntb span{display:block;height:2px;background:var(--navy);border-radius:2px}
  .navtoggle[aria-expanded="true"] .ntb span:nth-child(1){transform:translateY(6px) rotate(45deg)}
  .navtoggle[aria-expanded="true"] .ntb span:nth-child(2){opacity:0}
  .navtoggle[aria-expanded="true"] .ntb span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
- .nav2{display:none;flex-direction:column;align-items:stretch;width:100%;flex-basis:100%;gap:0;padding:6px 0 14px;border-top:1px solid var(--line);margin-top:10px}
- .nav2.open{display:flex}
- .nav2>a,.nav2 .navbtn{width:100%;min-height:48px;padding:13px 10px;font-size:16.5px;border-radius:10px;justify-content:flex-start}
- .nav2 .navbtn{justify-content:space-between}
- .navitem{position:static;width:100%}
- .mega{position:static;min-width:0;border:none;box-shadow:none;border-radius:0;padding:2px 0 10px 14px;animation:none}
- .megacols{grid-template-columns:1fr;gap:16px}
- .megalinks a{min-height:44px;display:flex;align-items:center;font-size:15.5px}
- .nav2 .navcta{display:block;text-align:center;margin-top:12px}
+ #sitenav{display:none;flex-direction:column;align-items:stretch;width:100%;flex-basis:100%;gap:0;padding:6px 0 14px;border-top:1px solid var(--line);margin-top:10px}
+ #sitenav.open{display:flex}
+ #sitenav>a,#sitenav .navbtn{width:100%;min-height:48px;padding:13px 10px;font-size:16.5px;border-radius:10px;justify-content:flex-start}
+ #sitenav .navbtn{justify-content:space-between}
+ #sitenav .navitem{position:static;width:100%}
+ #sitenav .mega{position:static;min-width:0;border:none;box-shadow:none;border-radius:0;padding:2px 0 10px 14px;animation:none}
+ #sitenav .megacols{grid-template-columns:1fr;gap:16px}
+ #sitenav .megalinks a{min-height:44px;display:flex;align-items:center;font-size:15.5px}
+ #sitenav .navcta{display:block;text-align:center;margin-top:12px}
 }
 </style>
 </head>
