@@ -10,6 +10,27 @@
 - Insurance: Medicare, Medicare Advantage, BCBSM/BCN, Priority Health, HAP, Aetna, Cigna, UnitedHealthcare, Michigan Medicaid HMOs, all auto no-fault carriers, workers' compensation
 - Standards: evaluations within 2-3 business days; 40-55 minute treatment visits; one primary therapist
 
+## Services
+- /services/ : all services directory
+- /services/orthopedic-physical-therapy.html : Orthopedic Physical Therapy
+- /services/back-neck-rehabilitation.html : Back & Neck Rehabilitation
+- /services/post-surgical-rehabilitation.html : Post-Surgical Rehabilitation
+- /services/sports-injury-rehabilitation.html : Sports Injury Rehabilitation
+- /services/joint-replacement-rehabilitation.html : Joint Replacement Rehabilitation
+- /services/neurological-rehabilitation.html : Neurological Rehabilitation
+- /services/geriatric-physical-therapy.html : Geriatric Physical Therapy
+- /services/balance-fall-prevention-therapy.html : Balance & Fall Prevention Therapy
+- /services/chronic-pain-rehabilitation.html : Chronic Pain Rehabilitation
+- /services/work-injury-rehabilitation.html : Work Injury Rehabilitation
+- /services/manual-therapy.html : Manual Therapy
+- /services/therapeutic-exercise.html : Therapeutic Exercise
+- /services/neuromuscular-reeducation.html : Neuromuscular Re-education
+- /services/gait-training.html : Gait & Mobility Training
+- /services/myofascial-release.html : Myofascial Release
+- /services/kinesiology-taping.html : Kinesiology Taping
+- /services/instrument-assisted-soft-tissue.html : Instrument-Assisted Soft Tissue Mobilization
+- /services/cupping-therapy.html : Cupping Therapy
+
 ## Locations
 - /locations/sterling-heights-mi/ : first clinic — 44056 Mound Rd, Suite 103, Sterling Heights, MI 48314 (opening February 2027; not yet accepting in-clinic visits)
 

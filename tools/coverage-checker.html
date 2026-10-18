@@ -168,23 +168,80 @@ a.pill:hover{background:#D7E3FB}
 .phero h1{max-width:24ch}
 .qstep .cta-btn{white-space:normal;border-radius:16px;line-height:1.4;text-align:left}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Who pays for physical therapy after a car accident in Michigan?", "acceptedAnswer": {"@type": "Answer", "text": "Your own auto insurer, through no-fault PIP benefits — regardless of fault, with no set visit cap and typically no out-of-pocket cost for reasonably necessary accident care."}}, {"@type": "Question", "name": "Does insurance limit how many physical therapy visits I can have?", "acceptedAnswer": {"@type": "Answer", "text": "Commercial plans commonly allow 20–60 visits per benefit year; Medicare has no hard cap (a documentation threshold applies); Michigan auto no-fault and workers' comp have no set visit caps — necessity governs."}}, {"@type": "Question", "name": "Can I start physical therapy without a referral in Michigan?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — Michigan direct access allows evaluation and treatment without a prescription for up to 10 visits or 21 days (wellness services exempt). Some insurance plans still require a referral for payment, which the clinic verifies and obtains."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.proofphysicaltherapy.com/"}, {"@type": "ListItem", "position": 2, "name": "Coverage Checker", "item": "https://www.proofphysicaltherapy.com/tools/coverage-checker.html"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Who pays for physical therapy after a car accident in Michigan?", "acceptedAnswer": {"@type": "Answer", "text": "Your own auto insurer, through no-fault PIP benefits — regardless of fault, with no preset visit limit for reasonably necessary accident care — out-of-pocket cost depends on the policy's elected PIP medical level and deductible."}}, {"@type": "Question", "name": "Does insurance limit how many physical therapy visits I can have?", "acceptedAnswer": {"@type": "Answer", "text": "Commercial plans commonly allow 20–60 visits per benefit year; Medicare has no hard cap (a documentation threshold applies); Michigan auto no-fault and workers' comp set no preset visit counts — medical necessity (and, for auto, the policy's PIP level) governs."}}, {"@type": "Question", "name": "Can I start physical therapy without a referral in Michigan?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — Michigan direct access allows evaluation and treatment without a prescription for up to 10 visits or 21 days (wellness services exempt). Some insurance plans still require a referral for payment, which the clinic verifies and obtains."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.proofphysicaltherapy.com/"}, {"@type": "ListItem", "position": 2, "name": "Coverage Checker", "item": "https://www.proofphysicaltherapy.com/tools/coverage-checker.html"}]}]}</script>
+<style>
+.hwrap{display:flex;align-items:center;gap:22px;position:relative}
+.hwrap .logo{flex-shrink:0}
+.navtoggle{display:none}
+.nav2{display:flex;align-items:center;gap:4px;flex:1;min-width:0;flex-wrap:wrap}
+.nav2>a,.nav2 .navbtn{padding:10px 12px;border-radius:10px;font-weight:600;font-size:15px;color:var(--navy);text-decoration:none;background:none;border:none;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:6px;line-height:1.2}
+.nav2>a:hover,.nav2 .navbtn:hover{background:var(--wash,#EEF2FA)}
+.nav2>a:focus-visible,.navbtn:focus-visible,.navtoggle:focus-visible,.megalinks a:focus-visible,.megaall:focus-visible{outline:2.5px solid var(--blue);outline-offset:2px;border-radius:8px}
+.navbtn .chev{transition:none}
+.navbtn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.navitem{position:relative}
+.mega{position:absolute;top:calc(100% + 10px);left:0;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 50px rgba(12,36,87,.14);padding:22px 24px;z-index:60;min-width:660px}
+.meganarrow{min-width:240px}
+.megacols{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.megahead{font-family:var(--disp);font-weight:700;font-size:13.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mut);margin:0 0 8px}
+.megalinks{display:flex;flex-direction:column}
+.megalinks a{padding:7px 8px;border-radius:8px;font-size:14.5px;color:var(--navy);text-decoration:none;font-weight:500}
+.megalinks a:hover{background:var(--wash,#EEF2FA)}
+.megaall{display:inline-block;margin-top:14px;font-weight:700;font-size:14.5px;color:var(--blue);text-decoration:none;padding:6px 8px}
+.nav2 .navcta{display:none}
+@media(prefers-reduced-motion:no-preference){.mega{animation:megain .14s ease}.ntb span{transition:transform .15s ease,opacity .15s ease}@keyframes megain{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}}
+@media(max-width:1060px){
+ .hwrap{flex-wrap:wrap;gap:12px}
+ .hdrcta{display:none}
+ .navtoggle{display:inline-flex;align-items:center;gap:9px;margin-left:auto;background:none;border:1.5px solid var(--line);border-radius:12px;padding:11px 16px;font:inherit;font-weight:700;font-size:15px;color:var(--navy);cursor:pointer;min-height:48px}
+ .ntb{display:inline-flex;flex-direction:column;gap:4px;width:18px}
+ .ntb span{display:block;height:2px;background:var(--navy);border-radius:2px}
+ .navtoggle[aria-expanded="true"] .ntb span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+ .navtoggle[aria-expanded="true"] .ntb span:nth-child(2){opacity:0}
+ .navtoggle[aria-expanded="true"] .ntb span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+ .nav2{display:none;flex-direction:column;align-items:stretch;width:100%;flex-basis:100%;gap:0;padding:6px 0 14px;border-top:1px solid var(--line);margin-top:10px}
+ .nav2.open{display:flex}
+ .nav2>a,.nav2 .navbtn{width:100%;min-height:48px;padding:13px 10px;font-size:16.5px;border-radius:10px;justify-content:flex-start}
+ .nav2 .navbtn{justify-content:space-between}
+ .navitem{position:static;width:100%}
+ .mega{position:static;min-width:0;border:none;box-shadow:none;border-radius:0;padding:2px 0 10px 14px;animation:none}
+ .megacols{grid-template-columns:1fr;gap:16px}
+ .megalinks a{min-height:44px;display:flex;align-items:center;font-size:15.5px}
+ .nav2 .navcta{display:block;text-align:center;margin-top:12px}
+}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="prelaunch"><div class="wrap">Opening February 2027 · Mound Rd, Sterling Heights · <a href="../contact.html" style="color:inherit">Join the opening waitlist</a></div></div>
-<header class="site"><div class="wrap">
+<header class="site"><div class="wrap hwrap">
 <a class="logo" href="../index.html">Proof<span class="dot">.</span><span class="lsub">Physical Therapy</span></a>
-<nav class="main" aria-label="Main">
-<a href="../conditions/auto-accident-injury.html">Auto Injury</a>
+<button type="button" class="navtoggle" aria-expanded="false" aria-controls="sitenav"><span class="ntb" aria-hidden="true"><span></span><span></span><span></span></span>Menu</button>
+<nav class="main nav2" id="sitenav" aria-label="Main">
+<div class="navitem">
+<button type="button" class="navbtn" aria-expanded="false" aria-controls="menu-services">Services <svg class="chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<div class="mega" id="menu-services" hidden>
+<div class="megacols">
+<div class="megacol"><p class="megahead" id="mh-core">Core Physical Therapy</p><div class="megalinks" role="group" aria-labelledby="mh-core"><a href="../services/orthopedic-physical-therapy.html">Orthopedic Physical Therapy</a><a href="../services/back-neck-rehabilitation.html">Back &amp; Neck Rehabilitation</a><a href="../services/post-surgical-rehabilitation.html">Post-Surgical Rehabilitation</a><a href="../services/sports-injury-rehabilitation.html">Sports Injury Rehabilitation</a><a href="../services/joint-replacement-rehabilitation.html">Joint Replacement Rehabilitation</a><a href="../services/neurological-rehabilitation.html">Neurological Rehabilitation</a><a href="../services/geriatric-physical-therapy.html">Geriatric Physical Therapy</a><a href="../services/balance-fall-prevention-therapy.html">Balance &amp; Fall Prevention</a><a href="../services/chronic-pain-rehabilitation.html">Chronic Pain Rehabilitation</a><a href="../services/work-injury-rehabilitation.html">Work Injury Rehabilitation</a></div></div>
+<div class="megacol"><p class="megahead" id="mh-tech">Advanced Techniques</p><div class="megalinks" role="group" aria-labelledby="mh-tech"><a href="../services/manual-therapy.html">Manual Therapy</a><a href="../services/therapeutic-exercise.html">Therapeutic Exercise</a><a href="../services/neuromuscular-reeducation.html">Neuromuscular Re-education</a><a href="../services/gait-training.html">Gait &amp; Mobility Training</a><a href="../services/myofascial-release.html">Myofascial Release</a><a href="../services/kinesiology-taping.html">Kinesiology Taping</a><a href="../services/instrument-assisted-soft-tissue.html">Instrument-Assisted Soft Tissue (IASTM)</a><a href="../services/cupping-therapy.html">Cupping Therapy</a></div></div>
+<div class="megacol"><p class="megahead" id="mh-prog">Patient Programs</p><div class="megalinks" role="group" aria-labelledby="mh-prog"><a href="../conditions/auto-accident-injury.html">Auto Accident Rehabilitation</a><a href="../services/work-injury-rehabilitation.html">Workers' Comp Rehabilitation</a><a href="../programs/balance-fall-prevention.html">Balance &amp; Fall Prevention Program</a><a href="../programs/senior-maintenance.html">Medicare Maintenance Program</a><a href="../programs/sports-performance.html">Sports Performance &amp; Return-to-Play</a><a href="../programs/recovery-wellness.html">Recovery &amp; Wellness Lounge</a><a href="../programs/index.html">All programs</a></div></div>
+</div>
+<a class="megaall" href="../services/index.html">View all services →</a>
+</div>
+</div>
 <a href="../conditions/index.html">Conditions</a>
-<a href="../programs/index.html">Programs</a>
 <a href="../locations/index.html">Locations</a>
+<a href="../conditions/auto-accident-injury.html">Auto Injury</a>
 <a href="../insurance.html">Insurance</a>
-<a href="../guides/index.html">Guides</a>
-<a href="../faq.html">FAQ</a>
+<div class="navitem">
+<button type="button" class="navbtn" aria-expanded="false" aria-controls="menu-resources">Resources <svg class="chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<div class="mega meganarrow" id="menu-resources" hidden>
+<div class="megalinks"><a href="../guides/index.html">Patient Guides</a><a href="../faq.html">FAQ</a><a href="../what-to-expect.html">What to Expect</a><a href="../tools/coverage-checker.html">Coverage Checker</a><a href="../programs/for-physicians.html">For Physicians</a><a href="../programs/for-employers.html">For Employers</a><a href="../programs/for-attorneys.html">For Attorneys</a><a href="../about.html">About Us</a><a href="../careers.html">Careers</a><a href="../contact.html">Contact &amp; Waitlist</a><a href="../accessibility.html">Accessibility</a></div>
+</div>
+</div>
+<a class="cta-btn navcta" href="../request-appointment.html">Request an Evaluation</a>
 </nav>
-<a class="cta-btn" href="../request-appointment.html">Request an Evaluation</a>
+<a class="cta-btn hdrcta" href="../request-appointment.html">Request an Evaluation</a>
 </div></header>
 <main id="main">
 
@@ -226,7 +283,7 @@ a.pill:hover{background:#D7E3FB}
 </div>
 
 <h2 style="margin-top:28px">The three questions behind the tool</h2>
-<details><summary>Who pays for physical therapy after a car accident in Michigan?</summary><div class="a"><p>Your own auto insurer, through no-fault PIP benefits — regardless of fault, with no set visit cap and typically no out-of-pocket cost for reasonably necessary accident care.</p></div></details><details><summary>Does insurance limit how many physical therapy visits I can have?</summary><div class="a"><p>Commercial plans commonly allow 20–60 visits per benefit year; Medicare has no hard cap (a documentation threshold applies); Michigan auto no-fault and workers' comp have no set visit caps — necessity governs.</p></div></details><details><summary>Can I start physical therapy without a referral in Michigan?</summary><div class="a"><p>Yes — Michigan direct access allows evaluation and treatment without a prescription for up to 10 visits or 21 days (wellness services exempt). Some insurance plans still require a referral for payment, which the clinic verifies and obtains.</p></div></details>
+<details><summary>Who pays for physical therapy after a car accident in Michigan?</summary><div class="a"><p>Your own auto insurer, through no-fault PIP benefits — regardless of fault, with no preset visit limit for reasonably necessary accident care — out-of-pocket cost depends on the policy's elected PIP medical level and deductible.</p></div></details><details><summary>Does insurance limit how many physical therapy visits I can have?</summary><div class="a"><p>Commercial plans commonly allow 20–60 visits per benefit year; Medicare has no hard cap (a documentation threshold applies); Michigan auto no-fault and workers' comp set no preset visit counts — medical necessity (and, for auto, the policy's PIP level) governs.</p></div></details><details><summary>Can I start physical therapy without a referral in Michigan?</summary><div class="a"><p>Yes — Michigan direct access allows evaluation and treatment without a prescription for up to 10 visits or 21 days (wellness services exempt). Some insurance plans still require a referral for payment, which the clinic verifies and obtains.</p></div></details>
 <div class="notice">Attorneys, physicians, employers: you're welcome to link to or share this tool with clients and patients — that's what it's for.</div>
 </section>
 <script>
@@ -234,8 +291,8 @@ const LANES = {
  auto: {title:"Auto No-Fault (PIP) — your richest coverage lane",
   body:`<ul class="checks">
 <li><b>Who pays:</b> your own auto insurer (or the household/assigned policy), regardless of fault</li>
-<li><b>Visit limit:</b> none — the standard is 'reasonably necessary' accident care</li>
-<li><b>Your typical cost:</b> $0 for covered care under the Michigan fee schedule</li>
+<li><b>Visit limit:</b> no preset count — up to your policy's elected PIP level, and the standard is 'reasonably necessary' accident care</li>
+<li><b>Your typical cost:</b> often $0 for covered care under the Michigan fee schedule — a PIP deductible, if your policy has one, applies</li>
 <li><b>Referral needed:</b> no prescription required to start; one strengthens the file</li>
 <li><b>Bring:</b> claim number (or crash date + insurer), photo ID</li>
 <li><b>Clock to know:</b> report the claim within 1 year; providers must bill within 1 year of each service</li></ul>
@@ -248,9 +305,9 @@ const LANES = {
 <li><b>Bring:</b> claim number, adjuster contact if you have it, injury report date</li>
 <li><b>We handle:</b> authorization, work-status reports, and FCE testing if the claim needs objective answers</li></ul>
 <p style="font-size:13.5px">Read next: <a href="../guides/workers-comp-physical-therapy-michigan.html">Your workers' comp PT rights in Michigan</a></p>`},
- medicare: {title:"Medicare Part B — covered, no hard visit cap",
+ medicare: {title:"Medicare Part B — planned participation, no hard visit cap",
   body:`<ul class="checks">
-<li><b>Coverage:</b> medically necessary outpatient PT — no visit cap (hard caps ended in 2018)</li>
+<li><b>Coverage:</b> medically necessary outpatient PT — no hard visit cap (statutory caps ended in 2018; an annual documentation threshold applies)</li>
 <li><b>Your typical cost:</b> 20% after the Part B deductible; supplements usually cover it</li>
 <li><b>Referral:</b> your plan of care needs physician certification — we obtain the signature; you don't need an appointment first</li>
 <li><b>Worth knowing:</b> maintenance therapy for progressive conditions (Parkinson's, MS, arthritis) is covered under the Jimmo standard — ask about our maintenance program</li></ul>
@@ -262,11 +319,11 @@ const LANES = {
 <li><b>Your cost:</b> copay ($20–60 typical) or coinsurance until deductible is met</li>
 <li><b>Referral:</b> plan-dependent — we check and obtain it when required</li></ul>
 <p style="font-size:13.5px">Read next: <a href="../guides/physical-therapy-cost-michigan.html">What PT actually costs in Michigan</a> · <a href="../guides/insurance-visits-reset-january.html">Your benefits reset January 1</a></p>`},
- medicaid: {title:"Michigan Medicaid / Medicaid HMO — accepted here",
+ medicaid: {title:"Michigan Medicaid / Medicaid HMO — planned participation",
   body:`<ul class="checks">
-<li><b>Coverage:</b> Meridian, Molina, McLaren and other Michigan Medicaid plans accepted</li>
+<li><b>Coverage:</b> Meridian, Molina, McLaren and other Michigan Medicaid plans — credentialing underway for opening</li>
 <li><b>How it works:</b> prior authorization in treatment blocks — our desk handles the paperwork</li>
-<li><b>Your cost:</b> typically $0 for authorized visits</li>
+<li><b>Your cost:</b> usually $0 — Michigan Medicaid requires little or no cost-sharing for authorized PT</li>
 <li><b>Referral/script:</b> usually required — we coordinate it with your doctor</li></ul>
 <p style="font-size:13.5px">Complicated situation? That's normal — <a href="../contact.html">ask us</a>; sorting it is our job.</p>`},
  cash: {title:"Self-pay / no insurance — simpler than you'd think",
@@ -304,10 +361,41 @@ function restart(){show('step-1');}
 <div><h2 class="fh">Proof Physical Therapy</h2>
 <p style="color:#A9BCE4;font-size:13.5px">44056 Mound Rd, Suite 103, Sterling Heights, MI 48314<br>Phone line opens January 2027<br>Opening February 2027 · Mon–Fri 7a–7p · Sat 8a–1p (planned)</p>
 <a href="../about.html">About us</a><a href="../careers.html">Careers</a><a href="../what-to-expect.html">Your first visit</a><a href="../contact.html">Contact &amp; waitlist</a><a href="../request-appointment.html">Request an evaluation</a><a href="../accessibility.html">Accessibility</a></div>
+<div><h2 class="fh">Services</h2><a href="../services/orthopedic-physical-therapy.html">Orthopedic Physical Therapy</a><a href="../services/back-neck-rehabilitation.html">Back &amp; Neck Rehabilitation</a><a href="../services/post-surgical-rehabilitation.html">Post-Surgical Rehabilitation</a><a href="../services/sports-injury-rehabilitation.html">Sports Injury Rehabilitation</a><a href="../services/joint-replacement-rehabilitation.html">Joint Replacement Rehabilitation</a><a href="../services/neurological-rehabilitation.html">Neurological Rehabilitation</a><a href="../services/index.html">All services →</a></div>
 <div><h2 class="fh">Conditions</h2><a href="../conditions/back-pain.html">Back Pain</a><a href="../conditions/neck-pain.html">Neck Pain & Whiplash</a><a href="../conditions/sciatica.html">Sciatica</a><a href="../conditions/knee-pain.html">Knee Pain</a><a href="../conditions/shoulder-pain.html">Shoulder Pain</a><a href="../conditions/post-surgical-rehab.html">Post-Surgical Rehab</a><a href="../conditions/sports-injury.html">Sports Injury</a><a href="../conditions/work-injury.html">Work Injury Rehab</a><a href="../conditions/index.html">All conditions</a></div>
 <div><h2 class="fh">Programs</h2><a href="../programs/recovery-wellness.html">Recovery & Wellness Lounge</a><a href="../programs/balance-fall-prevention.html">Balance & Fall Prevention</a><a href="../programs/senior-maintenance.html">Medicare Maintenance Program</a><a href="../programs/sports-performance.html">Return-to-Play & Performance Testing</a><a href="../programs/for-physicians.html">For Referring Physicians</a><a href="../programs/for-attorneys.html">For Attorneys</a><a href="../programs/for-employers.html">For Employers</a><a href="../guides/index.html">Patient guides</a></div>
 
 <div class="legal">© 2026 Proof Physical Therapy (clinic in pre-opening development). This website provides general information and is not medical advice; it does not create a provider–patient relationship. Individual results vary. In an emergency, call 911.</div>
 </div></footer><div class="mcta"><a class="p" href="../request-appointment.html">Request Appointment</a><a class="s" href="../conditions/auto-accident-injury.html">Car Accident?</a></div>
+<script>
+(function(){
+ var toggle=document.querySelector('.navtoggle'),nav=document.getElementById('sitenav');
+ function closeAll(except){document.querySelectorAll('.navbtn[aria-expanded="true"]').forEach(function(b){if(b!==except){b.setAttribute('aria-expanded','false');var p=document.getElementById(b.getAttribute('aria-controls'));if(p)p.hidden=true;}});}
+ document.querySelectorAll('.navbtn').forEach(function(btn){
+  var panel=document.getElementById(btn.getAttribute('aria-controls'));
+  btn.addEventListener('click',function(){
+   var open=btn.getAttribute('aria-expanded')==='true';
+   closeAll(btn);
+   btn.setAttribute('aria-expanded',String(!open));
+   panel.hidden=open;
+  });
+ });
+ if(toggle){toggle.addEventListener('click',function(){
+  var open=toggle.getAttribute('aria-expanded')==='true';
+  toggle.setAttribute('aria-expanded',String(!open));
+  nav.classList.toggle('open',!open);
+  if(open)closeAll(null);
+ });}
+ document.addEventListener('keydown',function(e){
+  if(e.key!=='Escape')return;
+  var openBtn=document.querySelector('.navbtn[aria-expanded="true"]');
+  if(openBtn){closeAll(null);openBtn.focus();return;}
+  if(toggle&&toggle.getAttribute('aria-expanded')==='true'){toggle.setAttribute('aria-expanded','false');nav.classList.remove('open');toggle.focus();}
+ });
+ document.addEventListener('click',function(e){
+  if(!e.target.closest('.navitem')&&!e.target.closest('.navtoggle'))closeAll(null);
+ });
+})();
+</script>
 </body>
 </html>
