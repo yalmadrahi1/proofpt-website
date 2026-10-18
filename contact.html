@@ -288,9 +288,9 @@ header.site .hwrap .logo{flex-shrink:0}
 document.getElementById('waitlist').addEventListener('submit',function(e){
   e.preventDefault();
   try{
-    var list=JSON.parse(localStorage.getItem('assembly_waitlist')||'[]');
+    var list=JSON.parse(localStorage.getItem('proof_waitlist')||'[]');
     list.push({n:document.getElementById('wname').value,c:document.getElementById('wphone').value,w:document.getElementById('wneed').value,t:new Date().toISOString()});
-    localStorage.setItem('assembly_waitlist',JSON.stringify(list));
+    localStorage.setItem('proof_waitlist',JSON.stringify(list));
   }catch(err){}
   document.getElementById('wmsg').hidden=false;
   this.querySelector('button').disabled=true;
