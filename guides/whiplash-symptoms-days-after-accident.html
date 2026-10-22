@@ -215,6 +215,14 @@ header.site .hwrap .logo{flex-shrink:0}
  #sitenav .navcta{display:block;text-align:center;margin-top:12px}
 }
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3KG2Y4Z9V"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-D3KG2Y4Z9V');
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -321,6 +329,21 @@ header.site .hwrap .logo{flex-shrink:0}
  document.addEventListener('click',function(e){
   if(!e.target.closest('.navitem')&&!e.target.closest('.navtoggle'))closeAll(null);
  });
+})();
+</script>
+<script>
+/* Conversion events — names only, never form values or personal data */
+(function(){
+ if (typeof gtag !== 'function') return;
+ document.addEventListener('submit', function(e){
+  var id = e.target && e.target.id;
+  if (id === 'appt') gtag('event', 'request_submitted');
+  if (id === 'waitlist') gtag('event', 'waitlist_saved');
+ }, true);
+ document.addEventListener('click', function(e){
+  var a = e.target && e.target.closest && e.target.closest('a[href^="tel:"]');
+  if (a) gtag('event', 'tel_click');
+ }, true);
 })();
 </script>
 </body>
