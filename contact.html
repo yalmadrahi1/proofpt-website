@@ -269,16 +269,17 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <div class="grid g2">
 <div class="card">
 <h3>Join the waitlist</h3>
-<p style="margin-bottom:10px">Leave your name and the best way to reach you — a real person follows up within one business day.</p>
+<p style="margin-bottom:10px">Leave your name and the best way to reach you. Need an answer sooner? Call or text <a href="tel:+15868008488">(586) 800-8488</a>.</p>
 <form id="waitlist" autocomplete="on">
 <label for="wname" style="font-weight:700;font-size:13.5px">Name</label>
-<input id="wname" name="name" required style="width:100%;padding:10px;border:1px solid var(--line);border-radius:7px;margin:4px 0 12px;font:inherit">
+<input id="wname" name="name" required style="width:100%;padding:10px;border:1px solid var(--line);border-radius:7px;margin:4px 0 12px;font:inherit" aria-required="true">
 <label for="wphone" style="font-weight:700;font-size:13.5px">Phone or email</label>
-<input id="wphone" name="contact" required style="width:100%;padding:10px;border:1px solid var(--line);border-radius:7px;margin:4px 0 12px;font:inherit">
+<input id="wphone" name="contact" required style="width:100%;padding:10px;border:1px solid var(--line);border-radius:7px;margin:4px 0 12px;font:inherit" aria-required="true">
 <label for="wneed" style="font-weight:700;font-size:13.5px">What brings you in? (optional)</label>
 <input id="wneed" name="need" placeholder="e.g., post-surgery rehab, auto accident recovery, balance" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:7px;margin:4px 0 14px;font:inherit">
 <button class="cta-btn" type="submit" style="border:none;cursor:pointer;font:inherit;font-weight:700">Add me to the waitlist</button>
-<p id="wmsg" role="status" aria-live="polite" hidden style="margin-top:10px;font-weight:700;color:var(--teal-deep)">Saved in this browser only — online submissions aren&#x27;t being received yet. When our booking line opens ahead of the February 2027 launch, this page will update with live signup and your saved details will be ready to send in one tap. Need us sooner? Call or text (586) 800-8488.</p>
+<div class="hp" aria-hidden="true" style="position:absolute;left:-9999px"><label for="wwebsite">Leave this field empty</label><input id="wwebsite" name="website" tabindex="-1" autocomplete="off"></div>
+<p id="wmsg" role="status" aria-live="polite" hidden style="margin-top:10px;font-weight:600"></p>
 </form>
 <p style="font-size:12px;color:var(--mut);margin-top:10px">Please don't include medical details beyond a few words — this form isn't for urgent needs. Emergencies: call 911.</p>
 </div>
@@ -288,21 +289,36 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <p><b>Phone:</b> <a href="tel:+15868008488" style="color:inherit">(586) 800-8488</a></p>
 <p><b>Planned hours:</b> Mon–Fri 7:00a–7:00p · Sat 8:00a–1:00p</p>
 <p><b>Opening:</b> February 2027</p>
-<p style="font-size:13.5px;color:var(--mut)">Accessible entrance and treatment spaces · parking at the door · private treatment suite available on request.</p>
+<p style="font-size:13.5px;color:var(--mut)">Designed for accessibility — step-free entrance, parking at the door, and a private treatment suite planned; details confirmed as the buildout completes.</p>
 </div>
 </div>
 </section>
 <script>
-document.getElementById('waitlist').addEventListener('submit',function(e){
+(function(){
+var f=document.getElementById('waitlist');if(!f)return;
+var btn=f.querySelector('button[type=submit],button');
+var t0=Date.now(),sent=false;
+function say(t,c){var m=document.getElementById('wmsg');m.hidden=false;m.textContent=t;m.className=c||'';}
+function v(id){var el=document.getElementById(id);return el?el.value.trim():'';}
+f.addEventListener('submit',function(e){
   e.preventDefault();
-  try{
-    var list=JSON.parse(localStorage.getItem('proof_waitlist')||'[]');
-    list.push({n:document.getElementById('wname').value,c:document.getElementById('wphone').value,w:document.getElementById('wneed').value,t:new Date().toISOString()});
-    localStorage.setItem('proof_waitlist',JSON.stringify(list));
-  }catch(err){}
-  document.getElementById('wmsg').hidden=false;
-  this.querySelector('button').disabled=true;
+  var hp=f.querySelector('.hp input, input[name=website]');
+  if(hp&&hp.value)return; /* honeypot */
+  if(Date.now()-t0<3000){say('That was quick — please take a second to review your details, then submit again.','');return;}
+
+  var ok=true;
+  [['wname', 'row-wname'], ['wphone', 'row-wphone']].forEach(function(p){
+    var el=document.getElementById(p[0]);
+    var row=p[1]?document.getElementById(p[1]):null;
+    var bad=!el.value.trim();
+    if(row){row.classList.toggle('invalid',bad);}
+    if(bad){el.setAttribute('aria-invalid','true');ok=false;}
+    else{el.removeAttribute('aria-invalid');}
+  });
+  if(!ok){say('Please fill in the highlighted fields above, then submit again.','');return;}
+  say("Online submissions aren't open yet, so nothing was sent — and nothing was stored. The fastest route today: call or text (586) 800-8488 and a real person will help. Direct online submission opens before our February 2027 launch.",'');
 });
+})();
 </script>
 </main>
 <footer><div class="wrap">
@@ -349,11 +365,20 @@ document.getElementById('waitlist').addEventListener('submit',function(e){
 /* Conversion events — names only, never form values or personal data */
 (function(){
  if (typeof gtag !== 'function') return;
- document.addEventListener('submit', function(e){
-  var id = e.target && e.target.id;
+ /* form_start: first interaction with a form, once per form per page view */
+ var started = {};
+ document.addEventListener('focusin', function(e){
+  var f = e.target && e.target.form;
+  if (f && f.id && !started[f.id] && (f.id === 'appt' || f.id === 'waitlist')) {
+   started[f.id] = true; gtag('event', 'form_start');
+  }
+ }, true);
+ /* accepted submissions only — dispatched by the form script after the server accepts */
+ document.addEventListener('proof:accepted', function(e){
+  var id = e.detail && e.detail.form;
   if (id === 'appt') gtag('event', 'request_submitted');
   if (id === 'waitlist') gtag('event', 'waitlist_saved');
- }, true);
+ });
  document.addEventListener('click', function(e){
   var a = e.target && e.target.closest && e.target.closest('a[href^="tel:"]');
   if (a) gtag('event', 'tel_click');

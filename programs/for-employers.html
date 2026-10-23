@@ -324,11 +324,20 @@ gtag('config', 'G-D3KG2Y4Z9V');
 /* Conversion events — names only, never form values or personal data */
 (function(){
  if (typeof gtag !== 'function') return;
- document.addEventListener('submit', function(e){
-  var id = e.target && e.target.id;
+ /* form_start: first interaction with a form, once per form per page view */
+ var started = {};
+ document.addEventListener('focusin', function(e){
+  var f = e.target && e.target.form;
+  if (f && f.id && !started[f.id] && (f.id === 'appt' || f.id === 'waitlist')) {
+   started[f.id] = true; gtag('event', 'form_start');
+  }
+ }, true);
+ /* accepted submissions only — dispatched by the form script after the server accepts */
+ document.addEventListener('proof:accepted', function(e){
+  var id = e.detail && e.detail.form;
   if (id === 'appt') gtag('event', 'request_submitted');
   if (id === 'waitlist') gtag('event', 'waitlist_saved');
- }, true);
+ });
  document.addEventListener('click', function(e){
   var a = e.target && e.target.closest && e.target.closest('a[href^="tel:"]');
   if (a) gtag('event', 'tel_click');

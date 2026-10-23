@@ -300,7 +300,7 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <h2>Physical accessibility</h2>
 <p>Our Sterling Heights clinic is being built with an accessible entrance, accessible parking, fully accessible treatment spaces, and a private treatment suite available on request.</p>
 <h2>Found a barrier? Tell us</h2>
-<p>If any part of this site is hard to use with your assistive technology, we want to know. Use our <a href="contact.html">contact form</a> and mention "accessibility" — a real person reads every message and responds within one business day. When our phone line opens in January 2027, you'll be able to reach us by phone as well.</p>
+<p>If any part of this site is hard to use with your assistive technology, we want to know. Use our <a href="contact.html">contact form</a> and mention "accessibility" — a real person reviews every message. You can also call or text us at <a href="tel:+15868008488">(586) 800-8488</a>.</p>
 <p class="meta">This statement was prepared on October 18, 2026 and is reviewed with every major site release. WCAG conformance is our engineering target; this statement is not a legal certification.</p>
 </section>
 </main>
@@ -348,11 +348,20 @@ gtag('config', 'G-D3KG2Y4Z9V');
 /* Conversion events — names only, never form values or personal data */
 (function(){
  if (typeof gtag !== 'function') return;
- document.addEventListener('submit', function(e){
-  var id = e.target && e.target.id;
+ /* form_start: first interaction with a form, once per form per page view */
+ var started = {};
+ document.addEventListener('focusin', function(e){
+  var f = e.target && e.target.form;
+  if (f && f.id && !started[f.id] && (f.id === 'appt' || f.id === 'waitlist')) {
+   started[f.id] = true; gtag('event', 'form_start');
+  }
+ }, true);
+ /* accepted submissions only — dispatched by the form script after the server accepts */
+ document.addEventListener('proof:accepted', function(e){
+  var id = e.detail && e.detail.form;
   if (id === 'appt') gtag('event', 'request_submitted');
   if (id === 'waitlist') gtag('event', 'waitlist_saved');
- }, true);
+ });
  document.addEventListener('click', function(e){
   var a = e.target && e.target.closest && e.target.closest('a[href^="tel:"]');
   if (a) gtag('event', 'tel_click');

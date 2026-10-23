@@ -34,6 +34,8 @@
 - /services/laser-therapy.html : Therapeutic Laser
 - /services/functional-capacity-evaluation.html : Functional Capacity Evaluations
 
+- /guides/first-visit-checklist.html : First visit checklist and what to expect
+
 ## Locations
 - /locations/sterling-heights-mi/ : first clinic — 44056 Mound Rd, Suite 103, Sterling Heights, MI 48314 (opening February 2027; not yet accepting in-clinic visits)
 

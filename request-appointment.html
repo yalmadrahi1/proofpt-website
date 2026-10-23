@@ -285,7 +285,7 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <section class="wrap" style="padding-top:20px">
 <div class="grid g2">
 <div class="card">
-<aside role="note" style="background:#FDF6E3;border:1px solid #E8D9A8;border-radius:12px;padding:14px 18px;margin:0 0 18px;font-size:14px;line-height:1.5"><strong>Heads up:</strong> online requests are not being received yet — our booking system opens ahead of the February 2027 launch. You can save a draft below — or call or text us now at <a href="tel:+15868008488">(586) 800-8488</a>.</aside><form id="appt" novalidate>
+<aside role="note" style="background:#FDF6E3;border:1px solid #E8D9A8;border-radius:12px;padding:14px 18px;margin:0 0 18px;font-size:14px;line-height:1.5"><strong>Heads up:</strong> online requests are not being delivered yet — direct submission opens ahead of the February 2027 launch, and this form sends nothing until then. The fastest route today: call or text us at <a href="tel:+15868008488">(586) 800-8488</a>.</aside><form id="appt" novalidate>
 <div class="form-row" id="row-name">
 <label for="aname">Your name <span aria-hidden="true" style="color:#B3261E">*</span></label>
 <input id="aname" name="name" autocomplete="name" required aria-required="true" aria-describedby="err-name">
@@ -315,7 +315,7 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <div class="card" style="margin-bottom:16px">
 <h3>What happens next</h3>
 <ul class="checks" style="margin-top:10px">
-<li>A real person confirms your request within one business day</li>
+<li>Once online requests open: a real person confirms within one business day</li>
 <li>We verify your insurance — including auto no-fault claims — before you ever walk in</li>
 <li>You get first pick of opening-week evaluation slots in February 2027</li>
 <li>Intake paperwork arrives by text or email, finishable from your phone</li>
@@ -323,7 +323,7 @@ gtag('config', 'G-D3KG2Y4Z9V');
 </div>
 <div class="card">
 <h3>Rather talk it through?</h3>
-<p>Our phone line opens January 2027. Until then, this form is the fastest route — or <a href="contact.html">send a question</a> and ask anything.</p>
+<p>Prefer to talk? Call or text <a href="tel:+15868008488">(586) 800-8488</a> — this form works too, or <a href="contact.html">send a question</a> and ask anything.</p>
 <p style="font-size:12.5px;color:var(--mut);margin-top:8px">This form isn't for urgent needs. If you're experiencing an emergency, call 911.</p>
 </div>
 </div>
@@ -331,26 +331,28 @@ gtag('config', 'G-D3KG2Y4Z9V');
 </section>
 <script>
 (function(){
-var f=document.getElementById('appt');
+var f=document.getElementById('appt');if(!f)return;
+var btn=f.querySelector('button[type=submit],button');
+var t0=Date.now(),sent=false;
+function say(t,c){var m=document.getElementById('amsg');m.hidden=false;m.textContent=t;m.className=c||'';}
+function v(id){var el=document.getElementById(id);return el?el.value.trim():'';}
 f.addEventListener('submit',function(e){
   e.preventDefault();
-  if(document.getElementById('awebsite').value) return; /* honeypot */
+  var hp=f.querySelector('.hp input, input[name=website]');
+  if(hp&&hp.value)return; /* honeypot */
+  if(Date.now()-t0<3000){say('That was quick — please take a second to review your details, then submit again.','');return;}
+
   var ok=true;
-  [['aname','row-name'],['acontact','row-contact']].forEach(function(pair){
-    var el=document.getElementById(pair[0]),row=document.getElementById(pair[1]);
-    if(!el.value.trim()){row.classList.add('invalid');el.setAttribute('aria-invalid','true');ok=false;}
-    else{row.classList.remove('invalid');el.removeAttribute('aria-invalid');}
+  [['aname', 'row-name'], ['acontact', 'row-contact']].forEach(function(p){
+    var el=document.getElementById(p[0]);
+    var row=p[1]?document.getElementById(p[1]):null;
+    var bad=!el.value.trim();
+    if(row){row.classList.toggle('invalid',bad);}
+    if(bad){el.setAttribute('aria-invalid','true');ok=false;}
+    else{el.removeAttribute('aria-invalid');}
   });
-  var msg=document.getElementById('amsg');
-  if(!ok){msg.textContent='Please fill in the highlighted fields above, then submit again.';msg.className='';document.getElementById('aname').focus();return;}
-  try{
-    var list=JSON.parse(localStorage.getItem('proof_appt')||'[]');
-    list.push({n:document.getElementById('aname').value,c:document.getElementById('acontact').value,l:document.getElementById('aloc').value,w:document.getElementById('aneed').value,t:new Date().toISOString()});
-    localStorage.setItem('proof_appt',JSON.stringify(list));
-  }catch(err){}
-  msg.textContent='Request saved in this browser. Online booking is not live yet, so this has not been sent to us — when scheduling opens ahead of the February 2027 launch, this page will update with direct booking and your saved details will be ready to submit in one tap. Need us sooner? Call (586) 800-8488.';
-  msg.className='confirm';
-  f.querySelector('button').disabled=true;
+  if(!ok){say('Please fill in the highlighted fields above, then submit again.','');return;}
+  say("Online submissions aren't open yet, so nothing was sent — and nothing was stored. The fastest route today: call or text (586) 800-8488 and a real person will help. Direct online submission opens before our February 2027 launch.",'');
 });
 })();
 </script>
@@ -399,11 +401,20 @@ f.addEventListener('submit',function(e){
 /* Conversion events — names only, never form values or personal data */
 (function(){
  if (typeof gtag !== 'function') return;
- document.addEventListener('submit', function(e){
-  var id = e.target && e.target.id;
+ /* form_start: first interaction with a form, once per form per page view */
+ var started = {};
+ document.addEventListener('focusin', function(e){
+  var f = e.target && e.target.form;
+  if (f && f.id && !started[f.id] && (f.id === 'appt' || f.id === 'waitlist')) {
+   started[f.id] = true; gtag('event', 'form_start');
+  }
+ }, true);
+ /* accepted submissions only — dispatched by the form script after the server accepts */
+ document.addEventListener('proof:accepted', function(e){
+  var id = e.detail && e.detail.form;
   if (id === 'appt') gtag('event', 'request_submitted');
   if (id === 'waitlist') gtag('event', 'waitlist_saved');
- }, true);
+ });
  document.addEventListener('click', function(e){
   var a = e.target && e.target.closest && e.target.closest('a[href^="tel:"]');
   if (a) gtag('event', 'tel_click');

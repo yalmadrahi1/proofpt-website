@@ -293,7 +293,7 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <div class="mintband"><h2 id="res-title" style="font-size:20px"></h2><div id="res-body"></div>
 <p style="margin-top:10px"><a class="cta-btn" href="../contact.html" style="display:inline-block">Verify my exact benefits</a>
 &nbsp; <a href="#step-1" onclick="restart();return false;" style="font-size:13.5px">start over</a></p></div>
-<p class="note">This tool explains Michigan's general rules — your specific plan governs. We verify every patient's exact benefits before the first visit, free.</p>
+<p class="note">This tool explains Michigan's general rules — it cannot determine your individual eligibility or guarantee payment; your specific plan governs. We verify every patient's exact benefits before the first visit, free.</p>
 </div>
 
 <h2 style="margin-top:28px">The three questions behind the tool</h2>
@@ -415,11 +415,20 @@ function restart(){show('step-1');}
 /* Conversion events — names only, never form values or personal data */
 (function(){
  if (typeof gtag !== 'function') return;
- document.addEventListener('submit', function(e){
-  var id = e.target && e.target.id;
+ /* form_start: first interaction with a form, once per form per page view */
+ var started = {};
+ document.addEventListener('focusin', function(e){
+  var f = e.target && e.target.form;
+  if (f && f.id && !started[f.id] && (f.id === 'appt' || f.id === 'waitlist')) {
+   started[f.id] = true; gtag('event', 'form_start');
+  }
+ }, true);
+ /* accepted submissions only — dispatched by the form script after the server accepts */
+ document.addEventListener('proof:accepted', function(e){
+  var id = e.detail && e.detail.form;
   if (id === 'appt') gtag('event', 'request_submitted');
   if (id === 'waitlist') gtag('event', 'waitlist_saved');
- }, true);
+ });
  document.addEventListener('click', function(e){
   var a = e.target && e.target.closest && e.target.closest('a[href^="tel:"]');
   if (a) gtag('event', 'tel_click');
