@@ -270,7 +270,7 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <div class="card">
 <h3>Join the waitlist</h3>
 <p style="margin-bottom:10px">Leave your name and the best way to reach you. Need an answer sooner? Call or text <a href="tel:+15868008488">(586) 800-8488</a>.</p>
-<aside role="note" style="background:#FDF6E3;border:1px solid #E8D9A8;border-radius:10px;padding:12px 16px;margin:0 0 14px;font-size:13.5px;line-height:1.5"><strong>Heads up:</strong> the online waitlist isn't delivering yet — this form sends nothing until it opens ahead of launch. To get on the list today, call <a href="tel:+15868008488">(586) 800-8488</a> or <a href="sms:+15868008488">text the same number</a>.</aside><form id="waitlist" autocomplete="on">
+<aside role="note" style="background:#FDF6E3;border:1px solid #E8D9A8;border-radius:10px;padding:12px 16px;margin:0 0 14px;font-size:13.5px;line-height:1.5"><strong>Online signup is open</strong> — a real person confirms within one business day.</aside><form id="waitlist" autocomplete="on">
 <label for="wname" style="font-weight:700;font-size:13.5px">Name</label>
 <input id="wname" name="name" required style="width:100%;padding:10px;border:1px solid var(--line);border-radius:7px;margin:4px 0 12px;font:inherit" aria-required="true">
 <label for="wphone" style="font-weight:700;font-size:13.5px">Phone or email</label>
@@ -316,7 +316,23 @@ f.addEventListener('submit',function(e){
     else{el.removeAttribute('aria-invalid');}
   });
   if(!ok){say('Please fill in the highlighted fields above, then submit again.','');return;}
-  say("Online submissions aren't open yet, so nothing was sent — and nothing was stored. The fastest route today: call or text (586) 800-8488 and a real person will help. Direct online submission opens before our February 2027 launch.",'');
+  if(sent){say('Your request was already received — no need to submit again. Questions? Call or text (586) 800-8488.','confirm');return;}
+  btn.disabled=true;var old=btn.textContent;btn.textContent='Sending…';say('Sending your request…','');
+  var ctrl=new AbortController();var tm=setTimeout(function(){ctrl.abort();},15000);
+  fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},signal:ctrl.signal,
+    body:JSON.stringify({access_key:'897f8f52-d2f5-40ad-978b-d091e9fc8290',subject:'Opening waitlist signup — proofphysicaltherapy.com',from_page:location.pathname,name: v('wname'), contact: v('wphone'), note: v('wneed')})})
+  .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d};});})
+  .then(function(res){
+    clearTimeout(tm);
+    if(res.ok&&res.d&&res.d.success){sent=true;f.reset();btn.textContent=old;btn.disabled=true;
+      document.dispatchEvent(new CustomEvent('proof:accepted',{detail:{form:'waitlist'}}));
+      say("You're on the opening waitlist — we'll confirm by your preferred contact method within one business day. Questions now? Call or text (586) 800-8488.",'confirm');}
+    else{throw new Error('rejected');}
+  })
+  .catch(function(){
+    clearTimeout(tm);btn.disabled=false;btn.textContent=old;
+    say("That didn't go through — nothing was lost, your details are still in the form. Please try again in a moment, or call or text (586) 800-8488.",'');
+  });
 });
 })();
 </script>
