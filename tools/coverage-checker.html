@@ -356,11 +356,28 @@ const LANES = {
 const Q2 = {
  life: {q:"What insurance do you have?",opts:[["Medicare / Medicare Advantage","medicare"],["Employer or marketplace plan (BCBSM, Priority, HAP, Aetna, Cigna, UHC…)","commercial"],["Michigan Medicaid / Medicaid HMO","medicaid"],["None / prefer to self-pay","cash"]]},
 };
+const QBANK = {
+ auto:{ins:["Is a PIP medical claim open for this accident, and what coverage level is on the policy?","Do you require a physician referral or pre-authorization for physical therapy on this claim?","Where do I send provider progress documentation?"],clinic:["Do you bill under the Michigan no-fault fee schedule?","How will my functional limitations be documented for the claim file?","What happens to my plan if my PIP level is exhausted?"]},
+ work:{ins:["Is my claim accepted, and who is the assigned case manager?","Is physical therapy authorized — for how many visits before re-review?","Do you need a job description from my employer for return-to-work planning?"],clinic:["How do you coordinate with workers' comp case managers and treating physicians?","Can you perform a functional capacity evaluation if one is ordered?","How are work restrictions documented and updated?"]},
+ medicare:{ins:["Is this clinic in-network for my specific plan (Original Medicare vs my Advantage plan)?","What is my therapy cost-share per visit this year?","Does my plan require prior authorization for outpatient therapy?"],clinic:["Do you handle Medicare plan-of-care certification with my doctor?","What happens when my progress plateaus — how does maintenance care work?","What will I owe per visit after Medicare pays its share?"]},
+ commercial:{ins:["Is this clinic in-network, and what is my copay or coinsurance for outpatient PT?","Do I have a visit limit or authorization requirement, and where does it reset?","Has my deductible been met this year?"],clinic:["Will you verify my benefits in writing before my first visit?","What is the typical billed range per visit for my situation?","If a claim is denied, who handles the appeal?"]},
+ medicaid:{ins:["Which Medicaid plan am I enrolled in, and does it require a PCP referral for therapy?","Is prior authorization required, and who requests it?","Is transportation assistance available for appointments?"],clinic:["Are you credentialed with my specific Medicaid plan, or when will you be?","What should I bring to confirm my eligibility?","Is there any cost to me?"]},
+ cash:{ins:[],clinic:["What is the self-pay price per evaluation and per visit, in writing, before I start?","Is there a package or frequency that changes the per-visit price?","Can I switch to insurance billing later if my coverage changes?"]},
+ surgery:{ins:["Does my plan require pre-authorization for post-surgical therapy?","How many visits are covered, and does my surgeon's protocol affect that?","Is 'prehab' before surgery covered?"],clinic:["How do you follow my surgeon's specific protocol?","What milestones will you measure and report back to my surgeon?","When should I schedule my first post-op visit — before or after surgery?"]}
+};
+function qblock(lane){
+ const Q=QBANK[lane];if(!Q)return"";
+ let h='<div style="margin-top:18px;border-top:2px solid var(--line);padding-top:14px"><h3 style="font-size:16px;margin:0 0 8px">Your conversation kit — copy these questions</h3>';
+ if(Q.ins.length){h+='<p style="font-weight:700;font-size:14px;margin:8px 0 4px">Ask your insurer / adjuster:</p><ul style="margin:0;padding-left:20px;font-size:14px;line-height:1.55">'+Q.ins.map(q=>"<li>"+q+"</li>").join("")+"</ul>";}
+ h+='<p style="font-weight:700;font-size:14px;margin:10px 0 4px">Ask the clinic (any clinic):</p><ul style="margin:0;padding-left:20px;font-size:14px;line-height:1.55">'+Q.clinic.map(q=>"<li>"+q+"</li>").join("")+"</ul>";
+ h+='<p style="font-size:12.5px;color:var(--mut);margin:10px 0 0">These questions explain possibilities — only your insurer can confirm your actual coverage. Never share policy numbers through this page; it doesn\u2019t ask for them and doesn\u2019t send anything anywhere.</p></div>';
+ return h;
+}
 function show(id){document.querySelectorAll('.qstep').forEach(e=>e.hidden=true);const el=document.getElementById(id);if(el)el.hidden=false;}
 function pick(lane){
  const L=LANES[lane];
  document.getElementById('res-title').textContent=L.title;
- document.getElementById('res-body').innerHTML=L.body;
+ document.getElementById('res-body').innerHTML=L.body+qblock(lane);
  show('result');
  try{document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});}catch(e){}
 }
