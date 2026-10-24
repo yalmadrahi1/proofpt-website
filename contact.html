@@ -275,8 +275,17 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <input id="wname" name="name" required style="width:100%;padding:10px;border:1px solid var(--line);border-radius:7px;margin:4px 0 12px;font:inherit" aria-required="true">
 <label for="wphone" style="font-weight:700;font-size:13.5px">Phone or email</label>
 <input id="wphone" name="contact" required style="width:100%;padding:10px;border:1px solid var(--line);border-radius:7px;margin:4px 0 0;font:inherit" aria-required="true"><p id="sms-consent-w" style="font-size:12px;color:var(--mut);margin:4px 0 12px">If you provide a phone number, you agree we may call or text you about your request (frequency varies; msg &amp; data rates may apply; STOP to opt out, HELP for help). We never share your number for marketing — <a href="privacy.html">privacy notice</a>.</p>
-<label for="wneed" style="font-weight:700;font-size:13.5px">What brings you in? (optional)</label><p id="hint-wneed" style="font-size:12.5px;color:var(--mut);margin:5px 0 0">No medical details needed here — we&#x27;ll cover specifics when we reach you.</p>
-<input id="wneed" name="need" placeholder="e.g., post-surgery rehab, auto accident recovery, balance" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:7px;margin:4px 0 14px;font:inherit">
+<label for="wneed" style="font-weight:700;font-size:13.5px">What brings you in? (optional)</label>
+<select id="wneed" name="need" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:7px;margin:4px 0 14px;font:inherit;background:#fff">
+<option value="">Choose one (optional)</option>
+<option>General pain or injury</option>
+<option>Post-surgery rehabilitation</option>
+<option>Car accident recovery</option>
+<option>Work injury / workers&#x27; comp</option>
+<option>Balance or dizziness</option>
+<option>Work-capacity evaluation (FCE)</option>
+<option>Something else</option>
+</select>
 <button class="cta-btn" type="submit" style="border:none;cursor:pointer;font:inherit;font-weight:700">Add me to the waitlist</button>
 <div class="hp" aria-hidden="true" style="position:absolute;left:-9999px"><label for="wwebsite">Leave this field empty</label><input id="wwebsite" name="website" tabindex="-1" autocomplete="off"></div>
 <p id="wmsg" role="status" aria-live="polite" hidden style="margin-top:10px;font-weight:600"></p>
@@ -346,7 +355,7 @@ f.addEventListener('submit',function(e){
 <div><h2 class="fh">Programs</h2><a href="programs/recovery-wellness.html">Recovery & Wellness Lounge</a><a href="programs/balance-fall-prevention.html">Balance & Fall Prevention</a><a href="programs/senior-maintenance.html">Medicare Maintenance Program</a><a href="programs/sports-performance.html">Return-to-Play & Performance Testing</a><a href="programs/for-physicians.html">For Referring Physicians</a><a href="programs/for-attorneys.html">For Attorneys</a><a href="programs/for-employers.html">For Employers</a><a href="guides/">Patient guides</a></div>
 
 <div class="legal">© 2026 Proof Physical Therapy (clinic in pre-opening development). This website provides general information and is not medical advice; it does not create a provider–patient relationship. Individual results vary. In an emergency, call 911.</div>
-</div></footer><div class="mcta"><a class="p" href="request-appointment.html">Request Appointment</a><a class="s" href="conditions/auto-accident-injury.html">Car Accident?</a></div>
+</div></footer><div class="mcta"><a class="p" href="request-appointment.html">Talk With Our Team</a><a class="s" href="conditions/auto-accident-injury.html">Car Accident?</a></div>
 <script>
 (function(){
  var toggle=document.querySelector('.navtoggle'),nav=document.getElementById('sitenav');
