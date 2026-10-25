@@ -323,6 +323,7 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <p id="vbe-math" style="margin:0 0 12px;color:#334766"></p>
 <h3 style="font-size:15.5px;margin:12px 0 6px">This estimate assumes</h3>
 <ul id="vbe-assume" style="margin:0;padding-left:20px;font-size:14px;line-height:1.55"></ul>
+<div id="vbe-q-ins">
 <h3 style="font-size:15.5px;margin:14px 0 6px">Turn it into a real answer — ask your insurer</h3>
 <ul style="margin:0;padding-left:20px;font-size:14px;line-height:1.55">
 <li>Is this clinic in-network, and what is my cost-share for outpatient PT (CPT-coded therapy visits)?</li>
@@ -330,6 +331,16 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <li>Is there a visit limit or prior-authorization requirement for therapy?</li>
 <li>What is the allowed amount for a typical PT visit under my plan?</li>
 </ul>
+</div>
+<div id="vbe-q-sp" hidden>
+<h3 style="font-size:15.5px;margin:14px 0 6px">Turn it into a real answer — self-pay questions</h3>
+<ul style="margin:0;padding-left:20px;font-size:14px;line-height:1.55">
+<li>Is the evaluation priced differently from follow-up visits, and what does each visit include?</li>
+<li>Ask for a written estimate of expected charges before you start (a &quot;Good Faith Estimate&quot;)</li>
+<li>Is there a package or prompt-pay option, in writing?</li>
+<li>If I later use insurance, how does what I've paid get handled?</li>
+</ul>
+</div>
 <h3 style="font-size:15.5px;margin:14px 0 6px">And ask the clinic — any clinic</h3>
 <ul style="margin:0;padding-left:20px;font-size:14px;line-height:1.55">
 <li>Will you verify my benefits in writing before my first visit?</li>
@@ -362,7 +373,9 @@ gtag('config', 'G-D3KG2Y4Z9V');
  var $=function(id){return document.getElementById(id);};
  var modes={selfpay:$('f-selfpay'),copay:$('f-copay'),dedcoins:$('f-dedcoins')};
  function mode(){var r=document.querySelector('input[name="mode"]:checked');return r?r.value:'selfpay';}
- function showMode(){var m=mode();for(var k in modes){modes[k].hidden=(k!==m);}hideOut();}
+ function showMode(){var m=mode();for(var k in modes){modes[k].hidden=(k!==m);}
+  var qi=$('vbe-q-ins'),qs=$('vbe-q-sp');if(qi&&qs){qi.hidden=(m==='selfpay');qs.hidden=(m!=='selfpay');}
+  hideOut();}
  document.querySelectorAll('input[name="mode"]').forEach(function(r){r.addEventListener('change',showMode);});
  function num(id){var v=$(id).value.trim();if(v==='')return NaN;return Number(v);}
  function money(x){return '$'+(Math.round(x*100)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
