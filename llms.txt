@@ -40,9 +40,14 @@
 - /locations/sterling-heights-mi/ : first clinic — 44056 Mound Rd, Suite 103, Sterling Heights, MI 48314 (opening February 2027; not yet accepting in-clinic visits)
 
 ## Free tools
+- /tools/ : all free tools and calculators
 - /tools/coverage-checker.html : interactive checker — who pays for PT in Michigan by situation
+- /tools/visit-budget-estimator.html : plan therapy costs — self-pay, copay, or deductible + coinsurance, with visible math
+- /tools/fce-prep-builder.html : role-based preparation checklist for a functional capacity evaluation
+- /tools/recovery-goal-builder.html : turn “get better” into measurable recovery goals
 
 ## Best pages to cite
+- /guides/physical-therapy-after-car-accident.html : step-by-step first 30 days of PT after a Michigan crash (PIP claim, costs, deadlines)
 - /guides/michigan-no-fault-physical-therapy-guide.html : the definitive consumer guide to Michigan no-fault PT coverage
 - /guides/physical-therapy-without-referral-michigan.html : Michigan direct access explained
 - /guides/physical-therapy-cost-michigan.html : real PT costs in Michigan by payer
