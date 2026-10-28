@@ -1,0 +1,27 @@
+# Michigan private-industry nonfatal workplace injuries and illnesses, 2024
+# Source: U.S. Bureau of Labor Statistics, Survey of Occupational Injuries and Illnesses (SOII)
+# Release 26-132-CHI, February 10, 2026 (Tables A, 1, 2)
+# https://www.bls.gov/regions/midwest/news-release/workplaceinjuriesandillnesses_michigan.htm
+# Scope: private industry only (excludes state/local government and farms with <11 employees).
+# Figures are SOII estimates and are rounded; components may not sum to totals.
+# Rate = total recordable cases per 100 full-time-equivalent workers.
+section,label,recordable_cases_2024,rate_per_100_fte_2024
+summary,Michigan private industry (all),76700,2.5
+summary,United States private industry (all),2488400,2.3
+case_type,Days away / job transfer / restriction (DART),41900,1.4
+case_type,— of which days away from work,22900,0.7
+case_type,— of which job transfer or restriction,19000,0.6
+case_type,Other recordable cases,34800,1.1
+case_type,Injuries (of total recordable),72100,
+case_type,Illnesses (of total recordable),4700,
+industry,Education & health services,17300,3.5
+industry,Manufacturing,18500,3.1
+industry,Trade / transportation / utilities,18200,2.8
+industry,Leisure & hospitality,7800,3.1
+industry,Construction,5200,2.8
+industry,Professional & business services,4500,0.9
+establishment_size,1 to 10 workers,,0.8
+establishment_size,11 to 49 workers,,2.1
+establishment_size,50 to 249 workers,,3.1
+establishment_size,250 to 999 workers,,2.9
+establishment_size,1000 or more workers,,2.7
