@@ -372,7 +372,7 @@ function qblock(lane){
  let h='<div style="margin-top:18px;border-top:2px solid var(--line);padding-top:14px"><h3 style="font-size:16px;margin:0 0 8px">Your conversation kit — copy these questions</h3>';
  if(Q.ins.length){h+='<p style="font-weight:700;font-size:14px;margin:8px 0 4px">Ask your insurer / adjuster:</p><ul style="margin:0;padding-left:20px;font-size:14px;line-height:1.55">'+Q.ins.map(q=>"<li>"+q+"</li>").join("")+"</ul>";}
  h+='<p style="font-weight:700;font-size:14px;margin:10px 0 4px">Ask the clinic (any clinic):</p><ul style="margin:0;padding-left:20px;font-size:14px;line-height:1.55">'+Q.clinic.map(q=>"<li>"+q+"</li>").join("")+"</ul>";
- h+='<p style="font-size:12.5px;color:var(--mut);margin:10px 0 0">These questions explain possibilities — only your insurer can confirm your actual coverage. Never share policy numbers through this page; it doesn\u2019t ask for them and doesn\u2019t send anything anywhere.</p></div>';
+ h+='<p style="font-size:12.5px;color:var(--mut);margin:10px 0 0">These questions explain possibilities — only your insurer can confirm your actual coverage. Never share policy numbers through this page; it doesn\u2019t ask for them and doesn\u2019t send what you enter anywhere.</p></div>';
  return h;
 }
 function show(id){document.querySelectorAll('.qstep').forEach(e=>e.hidden=true);const el=document.getElementById(id);if(el)el.hidden=false;}
