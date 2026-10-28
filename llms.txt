@@ -52,5 +52,6 @@
 - /guides/physical-therapy-without-referral-michigan.html : Michigan direct access explained
 - /guides/physical-therapy-cost-michigan.html : real PT costs in Michigan by payer
 - /guides/workers-comp-physical-therapy-michigan.html : Michigan workers' comp PT rights incl. the 28-day provider-choice rule
+- /guides/michigan-work-injury-statistics.html : original data resource — Michigan 2024 workplace-injury statistics from the BLS, by industry
 - /conditions/auto-accident-injury.html : accident rehab program and PIP coverage
 - /insurance.html : full payer list and visit-limit rules
