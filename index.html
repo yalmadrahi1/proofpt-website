@@ -168,6 +168,44 @@ a.pill:hover{background:#D7E3FB}
 .artcard p{font-size:13.5px;color:var(--mut);margin:0}
 .phero h1{max-width:24ch}
 .qstep .cta-btn{white-space:normal;border-radius:16px;line-height:1.4;text-align:left}
+
+/* homepage v2 components (Oct 30 rework) */
+.availnote{background:var(--sand);border:1px solid #F3DFAE;border-radius:12px;padding:12px 15px;margin-top:14px;max-width:60ch}
+.availnote p{margin:0;font-size:13.5px;color:#6B5417;line-height:1.5}
+.availnote a{color:#8A6400;font-weight:700}
+.reportcard{margin:0;background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:0 18px 40px -22px rgba(12,36,87,.28);align-self:center;width:100%;max-width:440px;justify-self:center}
+.rc-top{margin-bottom:8px}
+.rc-tag{display:inline-block;background:var(--sand);color:#7A5200;font-size:11px;font-weight:700;border-radius:999px;padding:3px 10px}
+.rc-title{font-family:var(--disp);font-weight:800;font-size:18px;color:var(--navy);margin:0 0 12px}
+.rc-table{width:100%;border-collapse:collapse;font-size:13.5px;margin:0;background:#fff}
+.rc-table th[scope=col]{background:var(--navy);color:#fff;text-align:right;padding:7px 9px;font-size:11.5px;font-weight:700}
+.rc-table th[scope=col]:first-child{text-align:left}
+.rc-table th[scope=row]{text-align:left;font-weight:600;color:var(--ink);padding:7px 9px;border-bottom:1px solid var(--line);background:#fff}
+.rc-table td{text-align:right;padding:7px 9px;border-bottom:1px solid var(--line);color:var(--mut)}
+.rc-table tbody tr:last-child th,.rc-table tbody tr:last-child td{border-bottom:none}
+.rc-table td b{color:var(--blue)}
+.rc-note{font-size:12.5px;color:var(--mut);margin:12px 0 10px;line-height:1.5}
+.rc-link{font-size:13.5px;font-weight:700;color:var(--blue);text-decoration:none}
+.referrer-line{margin-top:16px;font-size:14.5px;color:#35477A;background:var(--ice);border-left:4px solid var(--sky);border-radius:0 12px 12px 0;padding:12px 16px}
+.referrer-line a{font-weight:700}
+.measuredgrid{display:grid;gap:26px;align-items:start}
+@media(min-width:860px){.measuredgrid{grid-template-columns:1.5fr 1fr}}
+.measuredsteps{list-style:none;counter-reset:ms;display:grid;gap:14px;margin:6px 0 0;padding:0}
+.measuredsteps li{position:relative;padding-left:44px;font-size:15.5px;line-height:1.55;counter-increment:ms}
+.measuredsteps li::before{content:counter(ms);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--navy);font-family:var(--disp);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+.measurednote{font-size:14px;color:var(--mut);margin-top:16px}
+.measuredaside{background:var(--sky);border-radius:16px;padding:22px}
+.measuredaside .ma-h{font-family:var(--disp);font-weight:800;color:var(--navy);font-size:17px;margin:0 0 8px}
+.measuredaside p{font-size:14px;color:#35477A;margin:0 0 14px}
+.measuredaside .cta-btn{display:inline-block}
+.visitgrid{display:grid;gap:20px;margin-top:22px;align-items:center}
+@media(min-width:760px){.visitgrid{grid-template-columns:1.6fr 1fr}}
+.visitinfo h3{font-size:18px;margin-bottom:6px}
+.visitinfo p{font-size:14.5px;line-height:1.6}
+.visitcta{background:var(--navy);border-radius:16px;padding:22px;text-align:center}
+.visitcta .vc-h{font-family:var(--disp);font-weight:800;color:#fff;font-size:17px;margin:0 0 12px}
+.visitcta .cta-btn{display:block;background:var(--gold);color:var(--navy)}
+.visitcta .btn-ghost{display:block;border-color:#4C6AAE;color:#fff}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "MedicalClinic", "name": "Proof Physical Therapy", "url": "https://www.proofphysicaltherapy.com", "email": "hello@proofphysicaltherapy.com", "telephone": "+1-586-800-8488", "description": "Independent outpatient physical therapy clinic in Sterling Heights, Michigan — auto no-fault specialists, same-week evaluations, objective functional testing. Opening February 2027.", "address": {"@type": "PostalAddress", "streetAddress": "44056 Mound Rd, Suite 103", "addressLocality": "Sterling Heights", "addressRegion": "MI", "postalCode": "48314", "addressCountry": "US"}, "areaServed": [{"@type": "AdministrativeArea", "name": "Macomb County, MI"}, {"@type": "AdministrativeArea", "name": "Oakland County, MI"}], "medicalSpecialty": "Physiotherapy", "image": "https://www.proofphysicaltherapy.com/assets/og-card.png", "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Physical therapy services", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Orthopedic Physical Therapy", "url": "https://www.proofphysicaltherapy.com/services/orthopedic-physical-therapy.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Functional Capacity Evaluations (FCE)", "url": "https://www.proofphysicaltherapy.com/services/functional-capacity-evaluation.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Work Injury Rehabilitation", "url": "https://www.proofphysicaltherapy.com/services/work-injury-rehabilitation.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Auto Accident (No-Fault) Rehabilitation", "url": "https://www.proofphysicaltherapy.com/conditions/auto-accident-injury.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Post-Surgical Rehabilitation", "url": "https://www.proofphysicaltherapy.com/services/post-surgical-rehabilitation.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Shockwave Therapy (ESWT)", "url": "https://www.proofphysicaltherapy.com/services/shockwave-therapy.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Sports Injury Rehabilitation", "url": "https://www.proofphysicaltherapy.com/services/sports-injury-rehabilitation.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Balance & Fall Prevention", "url": "https://www.proofphysicaltherapy.com/services/balance-fall-prevention-therapy.html"}}]}}]}</script>
 <style>
@@ -264,28 +302,24 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <div class="hero"><div class="wrap herogrid" style="padding-block:34px 32px">
 <div>
 <div class="eyebrow">Outpatient Physical Therapy &amp; FCE · Sterling Heights, MI</div>
-<h1 style="font-size:clamp(31px,7.4vw,56px);max-width:19ch">Get back to the things pain put on hold<span style="color:var(--gold)">.</span></h1>
-<p class="lead" style="max-width:56ch">Proof opens February 2027 on Mound Rd: your first visit sets a measured baseline, your plan is aimed at the activities you want back, and every re-test shows exactly where you stand.</p>
-<div class="actions"><a class="cta-btn" href="request-appointment.html">Talk With Our Team</a><a class="btn-ghost" href="contact.html">Get Opening Updates</a></div>
-<p style="font-size:13.5px;color:#4E5F82;margin-top:10px"><b>What happens next:</b> A real person follows up within one business day. Prefer direct? <a href="tel:+15868008488">Call</a> or <a href="sms:+15868008488">text</a> (586) 800-8488.</p>
-<p style="font-size:13px;color:#4E5F82;margin-top:6px">Hurt in a car accident? <a href="conditions/auto-accident-injury.html">How Michigan no-fault covers your therapy →</a></p>
+<h1 style="font-size:clamp(31px,7.4vw,56px);max-width:17ch">Physical therapy in Sterling Heights. A clear plan for getting back<span style="color:var(--gold)">.</span></h1>
+<p class="lead" style="max-width:56ch">Proof opens February 2027 on Mound Rd. Your first visit sets an objective baseline, your plan is aimed at the activities you want back, and every re-test shows exactly where you stand — in numbers you keep.</p>
+<div class="actions"><a class="cta-btn" href="request-appointment.html">Talk With Our Team</a><a class="btn-ghost" href="conditions/auto-accident-injury.html">Hurt in a car accident?</a></div>
+<div class="availnote" role="note">
+<p><b>Opening February 2027.</b> You can request an evaluation or ask a question now — a real person replies within one business day — but an inquiry is not yet a booked appointment. <b>Injured and need care now?</b> <a href="tel:+15868008488">Call or text (586) 800-8488</a> and we'll point you to help you can use today.</p>
 </div>
-<figure style="margin:0">
-<svg class="herosvg" viewBox="0 0 400 320" role="img" aria-label="Illustrative example of a recovery progress chart rising from evaluation to discharge. Example only, not patient data.">
-<rect x="8" y="8" width="384" height="304" rx="20" fill="#ffffff" stroke="#DDE5F3"/>
-<g stroke="#EAF0FB"><line x1="40" y1="250" x2="368" y2="250"/><line x1="40" y1="198" x2="368" y2="198"/><line x1="40" y1="146" x2="368" y2="146"/><line x1="40" y1="94" x2="368" y2="94"/></g>
-<text x="32" y="46" font-family="Arial" font-size="14" font-weight="700" fill="#0C2457">Your recovery, measured</text>
-<text x="32" y="64" font-family="Arial" font-size="11" fill="#4E5F82">Range of motion · strength · function</text>
-<line x1="40" y1="94" x2="368" y2="94" stroke="#F7B32B" stroke-width="2" stroke-dasharray="7 7"/>
-<text x="296" y="86" font-family="Arial" font-size="10.5" font-weight="700" fill="#B07708">goal</text>
-<path d="M56 244 L116 226 L176 196 L236 158 L296 128 L344 102" fill="none" stroke="#1948E3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M56 244 L116 226 L176 196 L236 158 L296 128 L344 102 L344 250 L56 250 Z" fill="#1948E3" opacity=".07"/>
-<g fill="#ffffff" stroke="#1948E3" stroke-width="3"><circle cx="56" cy="244" r="5.5"/><circle cx="116" cy="226" r="5.5"/><circle cx="176" cy="196" r="5.5"/><circle cx="296" cy="128" r="5.5"/></g>
-<circle cx="344" cy="102" r="8" fill="#F7B32B" stroke="#ffffff" stroke-width="3"/>
-<text x="44" y="272" font-family="Arial" font-size="10.5" fill="#4E5F82">eval · day 1</text>
-<text x="310" y="272" font-family="Arial" font-size="10.5" fill="#4E5F82">discharge</text>
-</svg>
-<figcaption style="font-size:11.5px;color:#4E5F82;text-align:center;margin-top:6px">Illustrative example of how progress is charted — not patient data.</figcaption>
+</div>
+<figure class="reportcard" aria-labelledby="rc-h">
+<div class="rc-top"><span class="rc-tag">Illustrative example · not patient data</span></div>
+<p id="rc-h" class="rc-title">What "measured care" means here</p>
+<table class="rc-table"><thead><tr><th scope="col">Measure</th><th scope="col">Baseline</th><th scope="col">Goal</th><th scope="col">Re-test</th></tr></thead>
+<tbody>
+<tr><th scope="row">Floor-to-waist lift</th><td>15 lb</td><td>50 lb</td><td><b>45 lb</b></td></tr>
+<tr><th scope="row">Low-back disability score</th><td>42%</td><td>&lt;20%</td><td><b>16%</b></td></tr>
+<tr><th scope="row">Sit-to-stand (30s)</th><td>8</td><td>14</td><td><b>13</b></td></tr>
+</tbody></table>
+<p class="rc-note">Every row has a day-one baseline and a goal tied to real life — here, returning to a warehouse job. Re-tests show what changed, and the discharge decision cites those numbers, not a visit count.</p>
+<a class="rc-link" href="guides/physical-therapy-progress-report-example.html">See the full worked example →</a>
 </figure>
 </div></div>
 
@@ -296,93 +330,101 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <div class="stat"><div class="v">(586) 800-8488</div><div class="l">call or text now — a real person answers</div></div>
 </div></div>
 
+<!-- 2 · CLEAR PATHS (patients + referrers) -->
 <section class="wrap" id="pathways">
-<h2>What brings you in?</h2>
-<p style="max-width:62ch">Start where you are — each path explains what to expect, what we measure, and what happens next.</p>
+<h2>Start where you are</h2>
+<p style="max-width:62ch">Each path explains what to expect, what we measure, and what happens next.</p>
 <div class="grid g3">
 <div class="card"><h3><a href="conditions/" style="color:var(--navy);text-decoration:none">Everyday pain</a></h3><p>Back, neck, shoulder, knee — pain that's changing how you move or sleep.</p><p><a class="more" href="conditions/">Find your condition →</a></p></div>
-<div class="card"><h3><a href="services/joint-replacement-rehabilitation.html" style="color:var(--navy);text-decoration:none">Surgery recovery</a></h3><p>Joint replacement or post-surgical rehab, run to your surgeon's protocol and measured at every milestone.</p><p><a class="more" href="services/post-surgical-rehabilitation.html">How post-op rehab works →</a></p></div>
-<div class="card"><h3><a href="services/sports-injury-rehabilitation.html" style="color:var(--navy);text-decoration:none">Sports injury</a></h3><p>Rehab that ends at tested return-to-play — not just "pain-free at rest."</p><p><a class="more" href="services/sports-injury-rehabilitation.html">Sports rehab →</a></p></div>
 <div class="card"><h3><a href="conditions/auto-accident-injury.html" style="color:var(--navy);text-decoration:none">Car accident injury</a></h3><p>Michigan no-fault rehabilitation with claim verification and the documentation your case file needs.</p><p><a class="more" href="conditions/auto-accident-injury.html">Auto injury program →</a></p></div>
-<div class="card"><h3><a href="services/functional-capacity-evaluation.html" style="color:var(--navy);text-decoration:none">Work injury &amp; FCE</a></h3><p>Workers' comp rehab plus standardized Functional Capacity Evaluations for return-to-work decisions.</p><p><a class="more" href="services/work-injury-rehabilitation.html">Work injury path →</a></p></div>
+<div class="card"><h3><a href="services/functional-capacity-evaluation.html" style="color:var(--navy);text-decoration:none">Work injury &amp; FCE</a></h3><p>Workers' comp rehab plus standardized Functional Capacity Evaluations for return-to-work decisions.</p><p><a class="more" href="services/functional-capacity-evaluation.html">FCE &amp; work injury →</a></p></div>
+<div class="card"><h3><a href="services/post-surgical-rehabilitation.html" style="color:var(--navy);text-decoration:none">Surgery recovery</a></h3><p>Joint replacement or post-surgical rehab, run to your surgeon's protocol and measured at every milestone.</p><p><a class="more" href="services/post-surgical-rehabilitation.html">How post-op rehab works →</a></p></div>
+<div class="card"><h3><a href="services/sports-injury-rehabilitation.html" style="color:var(--navy);text-decoration:none">Sports injury</a></h3><p>Rehab that ends at tested return-to-play — not just "pain-free at rest."</p><p><a class="more" href="services/sports-injury-rehabilitation.html">Sports rehab →</a></p></div>
 <div class="card"><h3><a href="programs/balance-fall-prevention.html" style="color:var(--navy);text-decoration:none">Balance &amp; mobility</a></h3><p>Standardized fall-risk assessment and training that moves the number — for you or a parent.</p><p><a class="more" href="programs/balance-fall-prevention.html">Balance program →</a></p></div>
 </div>
+<p class="referrer-line"><b>Sending us a patient?</b> We give physicians, attorneys, and employers 2–3-business-day access, your protocol on file, and milestone reports without being chased. <a href="#referrers">Jump to referrer details →</a></p>
 </section>
 
-<section class="wrap" id="process">
-<h2>The Proof process — what you actually receive</h2>
-<div class="steps">
-<div class="step"><div class="num">1</div><h3>Tell us what happened</h3><p style="font-size:14px;color:#4E5F82;margin:0">Call, text, or start online. We verify your insurance — including auto no-fault claims — before you ever walk in.</p></div>
-<div class="step"><div class="num">2</div><h3>Get measured, get a written plan</h3><p style="font-size:14px;color:#4E5F82;margin:0">A full evaluation with objective range-of-motion and strength measures, a plain-language explanation, and a written plan with goals, visit count, and timeline — yours to keep.</p></div>
-<div class="step"><div class="num">3</div><h3>Watch the numbers move</h3><p style="font-size:14px;color:#4E5F82;margin:0">One primary therapist, re-measurement at every milestone, and progress reports that reach your physician, adjuster, or surgeon without being chased.</p></div>
+<!-- 3 · MEASURED CARE, MADE INSPECTABLE -->
+<section class="wrap" id="measured">
+<h2>How we hold ourselves to "measured care"</h2>
+<div class="measuredgrid">
+<div>
+<ol class="measuredsteps">
+<li><b>Baseline on day one.</b> A full evaluation with objective range-of-motion, strength, and validated function scores — the day-one numbers everything is measured against.</li>
+<li><b>A goal tied to your life.</b> Your plan targets a specific activity you want back — a job demand, a sport, a stair — not a generic "feel better."</li>
+<li><b>Re-tested at every milestone.</b> We re-measure on a schedule and put the change in writing, so progress is a number you can see, not a feeling.</li>
+<li><b>Discharge on criteria, not a visit count.</b> Care ends when the numbers meet the goal — or we explain plainly why the plan is changing.</li>
+</ol>
+<p class="measurednote">Each guide on this site also states what the evidence supports and what it doesn't. See our <a href="editorial-standards.html">editorial standards</a> for how we decide what to publish.</p>
 </div>
-<p style="font-size:14px;color:#4E5F82;margin-top:10px">What does a measured plan look like? <a href="editorial-standards.html">Read how we hold ourselves to it</a> — and every guide on this site says what the evidence supports and what it doesn't.</p>
+<aside class="measuredaside">
+<p class="ma-h">Make it concrete</p>
+<p>The example in the hero is a fictional illustration of the report format. The full worked example walks through a real-world structure — baseline, activity goal, validated and practical measures, and a criteria-based discharge decision.</p>
+<a class="cta-btn" href="guides/physical-therapy-progress-report-example.html">See a full progress report</a>
+<a class="more" href="tools/recovery-goal-builder.html" style="margin-top:10px;display:inline-block">Turn your goal into questions to ask →</a>
+</aside>
+</div>
 </section>
 
+<!-- 4 · PRIORITY CARE -->
+<section class="wrap" id="care">
+<h2>How we can help</h2>
+<p style="max-width:62ch">Measured care across four lanes. Every service page says what it is, who it helps, and what the evidence does — and doesn't — support.</p>
+<div class="grid g4">
+<div class="card"><h3><a href="services/index.html#core" style="color:var(--navy);text-decoration:none">Core Physical Therapy</a></h3><p>Orthopedic, spine, post-surgical, sports, neurological, and geriatric rehab — the foundation, done to numbers.</p><p><a class="more" href="services/index.html#core">Explore core services →</a></p></div>
+<div class="card"><h3><a href="services/index.html#specialty" style="color:var(--navy);text-decoration:none">Specialty Rehabilitation</a></h3><p>Balance and fall prevention, functional mobility, chronic pain, and movement control — focused lanes built on measurement.</p><p><a class="more" href="services/index.html#specialty">Explore specialty care →</a></p></div>
+<div class="card"><h3><a href="services/index.html#techniques" style="color:var(--navy);text-decoration:none">Advanced Treatments</a></h3><p>Shockwave therapy (ESWT), therapeutic laser, manual therapy, and IASTM — used where they earn their place, never sold as the plan.</p><p><a class="more" href="services/index.html#techniques">Explore treatments →</a></p></div>
+<div class="card"><h3><a href="programs/" style="color:var(--navy);text-decoration:none">Dedicated Programs</a></h3><p>Michigan auto injury, workers' comp, Medicare maintenance, and recovery &amp; wellness — built end-to-end.</p><p><a class="more" href="programs/">Explore programs →</a></p></div>
+</div>
+<p style="margin-top:14px"><a class="more" href="services/"><b>View all services</b></a> &nbsp;·&nbsp; <a class="more" href="conditions/"><b>All 17 conditions we treat</b></a> &nbsp;·&nbsp; <a class="more" href="programs/"><b>All programs</b></a></p>
+</section>
+
+<!-- 5 · PEOPLE / ACCOUNTABILITY -->
 <section class="wrap" id="who">
 <div class="band">
-<h2 style="font-size:22px">Who's building Proof</h2>
-<p>Proof Physical Therapy is independently owned and is being built by a Michigan healthcare operations team with years of experience running outpatient clinics across Metro Detroit. Every treating clinician will be licensed in Michigan, every clinical decision belongs to licensed clinicians alone, and clinician profiles — names, credentials, and specialties — are published here as the team is hired ahead of opening. No stock doctors, no invented reviewers: if a name appears on this site, that person exists and did the work. <a href="editorial-standards.html" style="color:inherit">Our editorial standards</a> · <a href="about.html" style="color:inherit">About Proof</a> · <a href="careers.html" style="color:inherit">Join the team</a></p>
+<h2 style="font-size:22px">Who's building Proof — and who will treat you</h2>
+<p>Proof Physical Therapy is independently owned and built by a Michigan healthcare operations team with years of experience running outpatient clinics across Metro Detroit. Every treating clinician will be licensed in Michigan, every clinical decision belongs to licensed clinicians alone, and clinician profiles — names, credentials, and specialties — are published here as the team is hired ahead of opening. No stock doctors, no invented reviewers: if a name appears on this site, that person exists and did the work. <a href="editorial-standards.html" style="color:inherit">Editorial standards</a> · <a href="about.html" style="color:inherit">About Proof</a> · <a href="careers.html" style="color:inherit">Join the team</a></p>
 </div>
 </section>
 
-<section class="wrap" id="services-home">
-<h2>How we can help</h2>
-<p style="max-width:62ch">Four lanes of care, every one of them measured. Each service page says what it is, who it helps, and what the evidence does — and doesn't — support.</p>
-<div class="grid g4">
-<div class="card"><h3><a href="services/index.html#core" style="color:var(--navy);text-decoration:none">Core Physical Therapy</a></h3><p>Orthopedic, spine, post-surgical, sports, neurological, and geriatric rehab — the foundation, done to numbers.</p><p><a href="services/index.html#core">Explore core services →</a></p></div>
-<div class="card"><h3><a href="services/index.html#specialty" style="color:var(--navy);text-decoration:none">Specialty Rehabilitation</a></h3><p>Balance and fall prevention, functional mobility, chronic pain, and movement control — focused lanes built on measurement.</p><p><a href="services/index.html#specialty">Explore specialty care →</a></p></div>
-<div class="card"><h3><a href="services/index.html#techniques" style="color:var(--navy);text-decoration:none">Advanced Treatments</a></h3><p>Shockwave therapy (ESWT), therapeutic laser, manual therapy, IASTM, and more — used where they earn their place, never sold as the plan.</p><p><a href="services/index.html#techniques">Explore treatments →</a></p></div>
-<div class="card"><h3><a href="services/index.html#programs" style="color:var(--navy);text-decoration:none">Dedicated Programs</a></h3><p>Michigan auto injury, workers' comp, Medicare maintenance, and recovery &amp; wellness — built end-to-end.</p><p><a href="services/index.html#programs">Explore programs →</a></p></div>
-</div>
-<div class="actions" style="margin-top:18px"><a class="cta-btn" href="services/">View all services</a><a class="btn-ghost" href="request-appointment.html">Request an evaluation</a></div>
-</section>
-
-<section class="wrap" id="conditions">
-<h2>What we treat</h2>
-<div class="grid g4"><div class="card"><h3>Back Pain</h3><p>Low back pain is the single most common reason people come to physical therapy — and one of the most treatable.</p><p style="margin-top:8px"><a class="more" href="conditions/back-pain.html">Treatment details</a></p></div><div class="card"><h3>Neck Pain & Whiplash</h3><p>From desk-posture stiffness to post-collision whiplash, neck pain responds to skilled, graded treatment — not rest alone.</p><p style="margin-top:8px"><a class="more" href="conditions/neck-pain.html">Treatment details</a></p></div><div class="card"><h3>Sciatica</h3><p>That shooting pain down the leg has a name — and a well-studied path back to normal.</p><p style="margin-top:8px"><a class="more" href="conditions/sciatica.html">Treatment details</a></p></div><div class="card"><h3>Knee Pain</h3><p>Arthritic, post-surgical, or overuse — the knee responds to targeted strengthening better than almost any joint.</p><p style="margin-top:8px"><a class="more" href="conditions/knee-pain.html">Treatment details</a></p></div><div class="card"><h3>Shoulder Pain</h3><p>Rotator cuff, frozen shoulder, or post-op repair — the shoulder rewards patience and precise loading.</p><p style="margin-top:8px"><a class="more" href="conditions/shoulder-pain.html">Treatment details</a></p></div><div class="card"><h3>Post-Surgical Rehab</h3><p>Surgery sets the stage. What you rebuild afterward shapes the result you live with.</p><p style="margin-top:8px"><a class="more" href="conditions/post-surgical-rehab.html">Treatment details</a></p></div><div class="card"><h3>Sports Injury</h3><p>From high-school athletes to weekend warriors — rehab that ends at return-to-play, not just 'pain-free at rest.'</p><p style="margin-top:8px"><a class="more" href="conditions/sports-injury.html">Treatment details</a></p></div><div class="card"><h3>Work Injury Rehab</h3><p>Hurt on the job? Workers' comp rehab with the documentation your claim needs and the conditioning your job demands.</p><p style="margin-top:8px"><a class="more" href="conditions/work-injury.html">Treatment details</a></p></div></div>
-<p style="margin-top:12px"><a class="more" href="conditions/"><b>All 17 conditions we treat</b></a></p>
-<div class="band" style="margin-top:16px"><h2 style="font-size:24px">Injured in a car accident?</h2>
-<p>Michigan no-fault benefits cover physical therapy for accident injuries, regardless of fault — no preset visit limit, and many patients owe nothing out of pocket, depending on their policy's PIP level. We verify your claim before the first appointment and document your recovery with objective testing.</p>
-<a class="cta-btn" href="conditions/auto-accident-injury.html">How no-fault PT coverage works</a></div>
-</section>
-
-<section class="wrap">
-<h2>Programs beyond the plan of care</h2>
-<div class="grid g4"><div class="card"><h3>Recovery & Wellness Lounge</h3><p>Beyond prescriptions and plans of care — a cash-friendly recovery floor priced like a gym, not a hospital.</p><p style="margin-top:8px"><a class="more" href="programs/recovery-wellness.html">Program details</a></p></div><div class="card"><h3>Balance & Fall Prevention</h3><p>One in four adults 65+ falls each year. Almost none of those falls are random — and most are preventable.</p><p style="margin-top:8px"><a class="more" href="programs/balance-fall-prevention.html">Program details</a></p></div><div class="card"><h3>Medicare Maintenance Program</h3><p>For Parkinson's, MS, and progressive conditions: Medicare covers therapy to keep function — not just to restore it. Most people are never told.</p><p style="margin-top:8px"><a class="more" href="programs/senior-maintenance.html">Program details</a></p></div><div class="card"><h3>Return-to-Play & Performance Testing</h3><p>Athletes don't need a guess about readiness. They need numbers.</p><p style="margin-top:8px"><a class="more" href="programs/sports-performance.html">Program details</a></p></div></div>
-<p style="margin-top:12px"><a class="more" href="programs/"><b>All programs, including our Medicare maintenance program</b></a></p>
-</section>
-
+<!-- 6 · COST, COVERAGE & VISITING -->
 <section class="wrap" id="insurance">
-<h2>Insurance &amp; what therapy costs</h2>
+<h2>Cost, coverage &amp; visiting</h2>
 <div class="answer">Straight answer: we're credentialing now with Medicare, Medicare Advantage, BCBSM/BCN, Priority Health, HAP, Aetna, Cigna, UnitedHealthcare, and Michigan Medicaid plans — participation is confirmed and published before opening. Michigan auto no-fault and workers' compensation claims don't require network contracts, and every patient's benefits are verified before the first visit.</div>
 <div class="grid g3" style="margin-top:14px">
 <div class="card"><h3>Before your first visit</h3><p>We verify your exact benefits — deductible, visit limits, referral requirements — and tell you what to expect in writing. No surprise billing.</p></div>
-<div class="card"><h3>Auto accident (no-fault)</h3><p>Reasonably necessary accident care is covered with no preset visit limit; your share depends on your policy's PIP level. We verify the claim first.</p><p><a class="more" href="conditions/auto-accident-injury.html">How PIP coverage works →</a></p></div>
+<div class="card"><h3>Auto accident (no-fault)</h3><p>Reasonably necessary accident care is covered with no cap on the number of visits; what you pay depends on your policy's PIP level and deductible. We verify the claim first.</p><p><a class="more" href="conditions/auto-accident-injury.html">How PIP coverage works →</a></p></div>
 <div class="card"><h3>No insurance / benefits ran out</h3><p>Flat self-pay rates, published before opening — and a plan prioritized around what matters most.</p></div>
 </div>
-<div class="band" style="margin-top:16px"><h2 style="font-size:22px">Who pays for YOUR therapy? Find out in 60 seconds</h2>
-<p>Car accident, work injury, Medicare, commercial plan, or no insurance at all — our free Coverage Checker explains your lane: who generally pays, typical limits, and the next step to verify. It explains possibilities; it doesn't determine eligibility.</p>
-<a class="cta-btn" href="tools/coverage-checker.html">Open the Coverage Checker</a></div>
-<p style="margin-top:10px"><a href="insurance.html">Full coverage details, visit limits by plan, and Michigan direct-access rules</a></p>
-</section>
+<p style="margin-top:12px"><a href="tools/coverage-checker.html">Who pays for your therapy? Check your lane in 60 seconds →</a> &nbsp;·&nbsp; <a href="insurance.html">Full coverage details &amp; visit limits by plan</a></p>
 
-<section class="wrap" id="visit">
-<h2>Where we'll be</h2>
-<div class="grid g3">
-<div class="card"><h3>Address</h3><p>44056 Mound Rd, Suite 103<br>Sterling Heights, MI 48314<br><a class="more" href="https://www.google.com/maps/search/?api=1&amp;query=44056+Mound+Rd+Suite+103+Sterling+Heights+MI+48314" rel="noopener">Directions →</a></p></div>
-<div class="card"><h3>Opening &amp; hours</h3><p>Opening February 2027.<br>Planned hours: Mon–Fri 7:00a–7:00p · Sat 8:00a–1:00p<br><span style="font-size:13px;color:#4E5F82">Final hours published before opening.</span></p></div>
-<div class="card"><h3>Reach us now</h3><p>Call <a href="tel:+15868008488">(586) 800-8488</a> or <a href="sms:+15868008488">text the same number</a> — the line is live today. Email: <a href="mailto:hello@proofphysicaltherapy.com">hello@proofphysicaltherapy.com</a>.<br><a class="more" href="locations/sterling-heights-mi/">Sterling Heights clinic page →</a></p></div>
+<div class="visitgrid">
+<div class="visitinfo">
+<h3>Visiting the clinic</h3>
+<p><b>44056 Mound Rd, Suite 103</b>, Sterling Heights, MI 48314 · <a href="https://www.google.com/maps/search/?api=1&amp;query=44056+Mound+Rd+Suite+103+Sterling+Heights+MI+48314" rel="noopener">Directions</a><br>
+Opening February 2027 · planned hours Mon–Fri 7a–7p, Sat 8a–1p (final hours published before opening)<br>
+Call or text <a href="tel:+15868008488">(586) 800-8488</a> — the line is live today · <a href="mailto:hello@proofphysicaltherapy.com">hello@proofphysicaltherapy.com</a></p>
+<p style="font-size:13px;color:#4E5F82">Serving Sterling Heights and neighboring Shelby Township, Utica, Troy, Warren, and Clinton Township. Facility photos and accessibility details publish as the buildout completes. <a class="more" href="locations/sterling-heights-mi/">Sterling Heights clinic page →</a></p>
 </div>
-<p style="font-size:13px;color:#4E5F82;margin-top:8px">Serving Sterling Heights and neighboring Shelby Township, Utica, Troy, Warren, Clinton Township, and Macomb Township. Facility photos and accessibility details publish as the buildout completes.</p>
+<div class="visitcta">
+<p class="vc-h">Ready when you are</p>
+<a class="cta-btn" href="request-appointment.html">Request an evaluation</a>
+<a class="btn-ghost" href="contact.html" style="margin-top:8px">Join the opening waitlist</a>
+<p style="font-size:12.5px;color:#4E5F82;margin-top:8px">A real person follows up within one business day.</p>
+</div>
+</div>
 </section>
 
+<!-- GUIDES -->
 <section class="wrap" id="resources">
 <h2>Patient guides — straight answers, Michigan-specific</h2>
-<div class="grid g4"><div class="artcard"><span class="k">Oct 2026</span><h3><a href="guides/michigan-no-fault-physical-therapy-guide.html" style="color:var(--ink);text-decoration:none">The Michigan No-Fault Physical Therapy Guide</a></h3><p>Every rule that matters — visit caps, who pays, the one-year-back rule, and your rights — explained in plain English.</p></div><div class="artcard"><span class="k">Oct 2026</span><h3><a href="guides/physical-therapy-without-referral-michigan.html" style="color:var(--ink);text-decoration:none">Do You Need a Referral for Physical Therapy in Michigan?</a></h3><p>Usually not — Michigan direct access explained: the 10-visit/21-day rule, the insurance catch, and what starting early changes.</p></div><div class="artcard"><span class="k">Oct 2026</span><h3><a href="guides/whiplash-symptoms-days-after-accident.html" style="color:var(--ink);text-decoration:none">Why Whiplash Shows Up Days After the Accident</a></h3><p>Feeling fine at the scene means almost nothing — the biology of delayed symptoms, what to watch for, and when to get evaluated.</p></div><div class="artcard"><span class="k">Oct 2026</span><h3><a href="guides/insurance-visits-reset-january.html" style="color:var(--ink);text-decoration:none">Your Therapy Benefits Reset January 1 — Use Them Right</a></h3><p>Most commercial plans cap therapy visits per calendar year. Here's how the reset works and how to plan care around it.</p></div></div>
+<div class="grid g4"><div class="artcard"><span class="k">Oct 2026</span><h3><a href="guides/michigan-no-fault-physical-therapy-guide.html" style="color:var(--ink);text-decoration:none">The Michigan No-Fault Physical Therapy Guide</a></h3><p>Every rule that matters — visit caps, who pays, the one-year-back rule, and your rights — in plain English.</p></div><div class="artcard"><span class="k">Oct 2026</span><h3><a href="guides/physical-therapy-without-referral-michigan.html" style="color:var(--ink);text-decoration:none">Do You Need a Referral for PT in Michigan?</a></h3><p>Usually not — direct access explained: the 10-visit/21-day rule, the insurance catch, and what starting early changes.</p></div><div class="artcard"><span class="k">Oct 2026</span><h3><a href="guides/return-to-work-after-injury-fce.html" style="color:var(--ink);text-decoration:none">What an FCE Measures for a Safe Return to Work</a></h3><p>What a functional capacity evaluation tests, who orders one, and how to walk in prepared.</p></div><div class="artcard"><span class="k">Oct 2026</span><h3><a href="guides/whiplash-symptoms-days-after-accident.html" style="color:var(--ink);text-decoration:none">Why Whiplash Shows Up Days After a Crash</a></h3><p>Feeling fine at the scene means little — the biology of delayed symptoms and when to get evaluated.</p></div></div>
+<p style="margin-top:12px"><a class="more" href="guides/"><b>All patient guides &amp; tools →</b></a></p>
 </section>
 
-<section class="wrap">
+<!-- REFERRERS -->
+<section class="wrap" id="referrers">
 <div class="b2b"><h2 style="font-size:22px">For the professionals who send us patients</h2>
 <p style="color:#35477A">Fast access, objective documentation, and reports that arrive without being requested. No payment for referrals, ever — in either direction.</p>
 <div class="grid g3">
@@ -390,12 +432,6 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <div class="card"><h3>Attorneys</h3><p>Instrumented injury documentation, one-year-back billing discipline, prompt records.</p><p style="margin-top:8px"><a class="more" href="programs/for-attorneys.html">Documentation standards</a></p></div>
 <div class="card"><h3>Employers</h3><p>Work-comp rehab, FCEs, post-offer testing, and on-site ergonomics and prevention.</p><p style="margin-top:8px"><a class="more" href="programs/for-employers.html">Occupational services</a></p></div>
 </div></div>
-</section>
-
-<section class="wrap">
-<div class="mintband"><h2 style="font-size:22px">Opening February 2027 — the waitlist is open now</h2>
-<p style="color:#35477A">Waitlist members get first pick of opening-week evaluation slots, a free movement screen during preview days, and priority scheduling for post-surgical plans once booking opens.</p>
-<a class="cta-btn" href="contact.html" style="display:inline-block;margin-top:6px">Join the waitlist</a></div>
 </section>
 
 </main>
