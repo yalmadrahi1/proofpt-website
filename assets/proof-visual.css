@@ -43,6 +43,25 @@
 .photoslot>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .photoslot .ps-note{position:relative;max-width:30ch}
 
+/* ---- Mobile nav cleanup (loads after each page's inline nav CSS, so these win) ---- */
+@media(max-width:719px){
+  /* utility bar: drop the Insurance/phone group (both live in the menu + bottom bar), center the status line */
+  .prelaunch .wrap>span:last-child{display:none}
+  .prelaunch .wrap{justify-content:center;text-align:center}
+}
+@media(max-width:1119px){
+  /* tighter top-level rows */
+  #sitenav>a,#sitenav .navbtn{min-height:44px;padding:11px 10px;font-size:16px}
+  /* compact submenus so Services doesn't become a marathon scroll */
+  #sitenav .mega{padding:2px 0 8px 12px}
+  #sitenav .megacols{gap:6px}
+  #sitenav .megahead{margin:8px 0 2px;font-size:11.5px}
+  #sitenav .megalinks a{min-height:38px;padding:7px 8px;font-size:14.5px}
+  /* Request an Evaluation reads as a real button in the mobile menu */
+  #sitenav a.navcta{background:var(--blue);color:#fff;border-radius:999px;text-align:center;margin-top:14px;min-height:46px;display:flex;align-items:center;justify-content:center}
+  #sitenav a.navcta:hover,#sitenav a.navcta:focus{background:var(--blue-deep);color:#fff}
+}
+
 /* small "at a glance" fact list */
 .factlist{display:grid;gap:10px;margin:10px 0}
 .factlist .f{display:flex;gap:11px;align-items:flex-start;font-size:14.5px}
