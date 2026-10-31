@@ -67,3 +67,39 @@
 .factlist .f{display:flex;gap:11px;align-items:flex-start;font-size:14.5px}
 .factlist .f svg{width:19px;height:19px;flex:0 0 auto;margin-top:2px}
 .factlist .f b{color:var(--navy)}
+
+/* ===== Enjoyment pass — interior reading layout + micro-polish (loads last, overrides inline base) ===== */
+
+/* two-column body: content + sticky action sidebar (fills the empty right column) */
+.bodywrap{display:block}
+@media(min-width:920px){.bodywrap{display:grid;grid-template-columns:minmax(0,1fr) 304px;gap:46px;align-items:start}}
+.bodymain{min-width:0}
+.bodymain>h2:first-child{margin-top:0}
+.bodymain h2{margin-top:32px}
+.bodymain h2::before{content:"";display:block;width:26px;height:3px;border-radius:3px;background:var(--gold);margin-bottom:12px}
+.bodymain p{margin-bottom:14px}
+.bodyaside{margin-top:30px}
+@media(min-width:920px){.bodyaside{position:sticky;top:86px;margin-top:4px}}
+.ba-card{background:linear-gradient(165deg,var(--ice),var(--sky));border:1px solid var(--line);border-radius:18px;padding:22px 22px 20px}
+.ba-k{font-family:var(--disp);font-weight:800;font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--blue-deep);margin:0 0 13px}
+.ba-checks{margin:0 0 16px!important}
+.ba-checks li{font-size:14.5px}
+.ba-card .cta-btn{display:block;text-align:center;padding:13px 20px}
+.ba-note{font-size:12.5px;color:var(--mut);margin:12px 0 0;line-height:1.5}
+
+/* check lists + FAQ polish */
+ul.checks li{line-height:1.5}
+details{transition:border-color .15s,box-shadow .15s}
+details[open]{box-shadow:0 10px 30px -20px rgba(12,36,87,.3)}
+
+/* micro-interactions (reduced-motion safe) */
+.sg-media img,.photoslot>img{transition:transform .4s ease}
+@media(prefers-reduced-motion:no-preference){
+  .splitgrid:hover .sg-media img{transform:scale(1.02)}
+  .card{transition:transform .16s ease,border-color .15s,box-shadow .15s}
+  .card:hover{transform:translateY(-2px)}
+  .cta-btn{transition:background .15s ease,transform .15s ease,box-shadow .15s ease}
+  .cta-btn:hover{transform:translateY(-1px);box-shadow:0 10px 22px -12px rgba(25,72,227,.6)}
+  .artcard{transition:transform .16s ease,border-color .15s}
+  .artcard:hover{transform:translateY(-2px)}
+}
