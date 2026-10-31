@@ -128,3 +128,16 @@ details[open]{box-shadow:0 10px 30px -20px rgba(12,36,87,.3)}
   .ba-card{padding:16px 18px;background:#fff;border:1px solid var(--line)}
   .bodyaside{margin-top:22px}
 }
+
+/* "Refer" secondary CTA — paired beside the primary "Request an appointment"
+   button, mirroring its desktop (hdrcta) / mobile-menu (navcta) visibility.
+   Outlined pill so the primary request CTA stays dominant. */
+.refercta{background:transparent;color:var(--navy);border:1.6px solid var(--blue)}
+.refercta:hover{background:var(--sky);color:var(--navy)}
+header.site .refercta-hdr{display:inline-block;margin-right:8px}
+#sitenav .refercta-nav{display:none}
+@media(max-width:1119px){
+  header.site .refercta-hdr{display:none}
+  #sitenav .refercta-nav{display:block;text-align:center;margin-top:10px;background:transparent;color:var(--navy);border:1.6px solid var(--blue)}
+  #sitenav .refercta-nav:hover{background:var(--sky);color:var(--navy)}
+}
