@@ -3,7 +3,7 @@
   "private": true,
   "description": "Regression tests for the Proof PT intake handlers (static site; tests only).",
   "scripts": {
-    "test": "node test/intake.test.mjs"
+    "test": "node test/intake.test.mjs && node test/refer.test.mjs"
   },
   "devDependencies": {
     "jsdom": "^25.0.1"
