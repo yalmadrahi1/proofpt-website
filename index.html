@@ -254,31 +254,6 @@ header.site .hwrap .logo{flex-shrink:0}
  #sitenav .navcta{display:block;text-align:center;margin-top:12px}
 }
 </style>
-<style>
-/* ---- Visual upgrade (Oct 30 eve): honest brand graphics, no fabricated photos ---- */
-.hero{position:relative;overflow:hidden}
-.hero::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(12,36,87,.06) 1.1px,transparent 1.2px);background-size:22px 22px;pointer-events:none;z-index:0}
-.hero .wrap{position:relative;z-index:1}
-.heromotif{position:absolute;top:-70px;right:-70px;width:360px;height:360px;opacity:.55;pointer-events:none;z-index:0}
-@media(max-width:860px){.heromotif{width:220px;height:220px;top:-50px;right:-60px;opacity:.4}}
-/* card icon tiles */
-.cico{width:46px;height:46px;border-radius:13px;background:var(--ice);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:13px}
-.cico svg{width:25px;height:25px;display:block}
-.card:hover .cico{border-color:#B9CBF2}
-/* measured-care arc visual */
-.arcviz{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:16px}
-.arcviz svg{width:100%;height:auto;display:block}
-.arcviz .arclabels{display:flex;justify-content:space-between;font-size:11.5px;color:var(--mut);margin-top:6px;font-weight:600}
-/* location map (click-to-load facade keeps third parties off until opt-in) */
-.mapwrap{margin-top:18px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--ice)}
-.mapfacade{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:230px;text-align:center;padding:26px 20px;background-image:linear-gradient(rgba(12,36,87,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(12,36,87,.045) 1px,transparent 1px);background-size:26px 26px}
-.mapfacade .pin{width:40px;height:40px}
-.mapfacade .mf-a{font-size:14px;color:var(--ink);font-weight:600;max-width:34ch}
-.maploadbtn{background:var(--navy);color:#fff;border:none;font:inherit;font-weight:700;font-size:14px;border-radius:999px;padding:10px 20px;cursor:pointer}
-.maploadbtn:hover{background:var(--blue-deep)}
-.mapwrap iframe{display:block;width:100%;height:320px;border:0}
-.mapnote{font-size:12px;color:var(--mut);margin-top:6px}
-</style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3KG2Y4Z9V"></script>
 <script>
@@ -287,6 +262,7 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-D3KG2Y4Z9V');
 </script>
+<link rel="stylesheet" href="assets/proof-visual.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -481,20 +457,6 @@ Call or text <a href="tel:+15868008488">(586) 800-8488</a> — the line is live 
 </div></footer><div class="mcta"><a class="p" href="request-appointment.html">Talk With Our Team</a><a class="c" href="tel:+15868008488" aria-label="Call (586) 800-8488"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></a><a class="s" href="conditions/auto-accident-injury.html">Car Accident?</a></div>
 <script>
 (function(){
- var btn=document.getElementById('maploadbtn');
- if(!btn) return;
- btn.addEventListener('click',function(){
-  var f=document.getElementById('mapfacade');
-  var ifr=document.createElement('iframe');
-  ifr.src='https://www.google.com/maps?q=44056%20Mound%20Rd%20Suite%20103%2C%20Sterling%20Heights%2C%20MI%2048314&output=embed';
-  ifr.title='Map of Proof Physical Therapy, 44056 Mound Rd Suite 103, Sterling Heights, MI';
-  ifr.loading='lazy'; ifr.referrerPolicy='no-referrer-when-downgrade';
-  f.replaceWith(ifr);
- });
-})();
-</script>
-<script>
-(function(){
  var toggle=document.querySelector('.navtoggle'),nav=document.getElementById('sitenav');
  function closeAll(except){document.querySelectorAll('.navbtn[aria-expanded="true"]').forEach(function(b){if(b!==except){b.setAttribute('aria-expanded','false');var p=document.getElementById(b.getAttribute('aria-controls'));if(p)p.hidden=true;}});}
  document.querySelectorAll('.navbtn').forEach(function(btn){
@@ -547,5 +509,6 @@ Call or text <a href="tel:+15868008488">(586) 800-8488</a> — the line is live 
  }, true);
 })();
 </script>
-<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6add6ed6912bacec159e1d21"></script></body>
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6add6ed6912bacec159e1d21"></script><script defer src="assets/proof-visual.js"></script>
+</body>
 </html>

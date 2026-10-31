@@ -1,0 +1,50 @@
+/* Proof Physical Therapy — shared visual components (linked site-wide).
+   Honest brand graphics only: icons, maps, arcs, texture, image/photo slots.
+   Tokens (--navy/--blue/--ice/--line/--mut/--gold…) come from each page's base <style>. */
+
+/* hero / interior-hero texture + measurement motif */
+.hero,.phero{position:relative;overflow:hidden}
+.hero::after,.phero::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(12,36,87,.06) 1.1px,transparent 1.2px);background-size:22px 22px;pointer-events:none;z-index:0}
+.hero .wrap,.phero .wrap{position:relative;z-index:1}
+.heromotif{position:absolute;top:-70px;right:-70px;width:360px;height:360px;opacity:.5;pointer-events:none;z-index:0}
+.phero .heromotif{width:300px;height:300px;top:-60px;right:-50px;opacity:.42}
+@media(max-width:860px){.heromotif{width:210px;height:210px;top:-48px;right:-56px;opacity:.36}}
+
+/* card icon tiles */
+.cico{width:46px;height:46px;border-radius:13px;background:var(--ice);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:13px;flex:0 0 auto}
+.cico svg{width:25px;height:25px;display:block}
+.card:hover .cico{border-color:#B9CBF2}
+.cico-row{display:flex;align-items:center;gap:13px}
+.cico-row .cico{margin-bottom:0}
+
+/* measured-care arc */
+.arcviz{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:16px}
+.arcviz svg{width:100%;height:auto;display:block}
+.arcviz .arclabels{display:flex;justify-content:space-between;font-size:11.5px;color:var(--mut);margin-top:6px;font-weight:600}
+
+/* location map — click-to-load facade (no third-party request until opt-in) */
+.mapwrap{margin-top:18px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--ice)}
+.mapfacade{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:230px;text-align:center;padding:26px 20px;background-image:linear-gradient(rgba(12,36,87,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(12,36,87,.045) 1px,transparent 1px);background-size:26px 26px}
+.mapfacade .pin{width:40px;height:40px}
+.mapfacade .mf-a{font-size:14px;color:var(--ink);font-weight:600;max-width:36ch}
+.maploadbtn{background:var(--navy);color:#fff;border:none;font:inherit;font-weight:700;font-size:14px;border-radius:999px;padding:10px 20px;cursor:pointer}
+.maploadbtn:hover{background:var(--blue-deep)}
+.mapwrap iframe{display:block;width:100%;height:320px;border:0}
+.mapnote{font-size:12px;color:var(--mut);margin-top:6px}
+
+/* image + copy split (editorial section) */
+.splitgrid{display:grid;gap:26px;align-items:center}
+@media(min-width:820px){.splitgrid{grid-template-columns:1.05fr .95fr}.splitgrid.rev>.sg-media{order:2}}
+.sg-media{border-radius:18px;overflow:hidden}
+
+/* photo slot — used only where a real/licensed image is wired in; never left empty on a live page.
+   Until a file is set, render an intentional styled panel, not a broken box. */
+.photoslot{position:relative;border:1px solid var(--line);border-radius:18px;background:linear-gradient(160deg,var(--ice),var(--sky));min-height:220px;display:flex;align-items:center;justify-content:center;text-align:center;padding:22px;color:var(--mut);font-size:13px;overflow:hidden}
+.photoslot>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.photoslot .ps-note{position:relative;max-width:30ch}
+
+/* small "at a glance" fact list */
+.factlist{display:grid;gap:10px;margin:10px 0}
+.factlist .f{display:flex;gap:11px;align-items:flex-start;font-size:14.5px}
+.factlist .f svg{width:19px;height:19px;flex:0 0 auto;margin-top:2px}
+.factlist .f b{color:var(--navy)}
