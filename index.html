@@ -210,6 +210,13 @@ a.pill:hover{background:#D7E3FB}
 .rc-table td b{color:var(--blue)}
 .rc-note{font-size:12.5px;color:var(--mut);margin:12px 0 10px;line-height:1.5}
 .rc-link{font-size:13.5px;font-weight:700;color:var(--blue);text-decoration:none}
+.rc-measure{margin:4px 0 14px}
+.rc-mlabel{font-size:13px;color:var(--mut);margin:0 0 4px;font-weight:600}
+.rc-mprog{display:flex;align-items:baseline;gap:11px;margin:0;font-family:var(--disp);font-weight:800;letter-spacing:-.02em}
+.rc-from{font-size:26px;color:var(--mut)}
+.rc-arrow{font-size:20px;color:var(--gold);font-weight:700;transform:translateY(-2px)}
+.rc-to{font-size:40px;color:var(--blue);line-height:1}
+.rc-mnote{font-size:12px;color:var(--mut);margin:7px 0 0}
 .referrer-line{margin-top:16px;font-size:14.5px;color:#35477A;background:var(--ice);border-left:4px solid var(--sky);border-radius:0 12px 12px 0;padding:12px 16px}
 .referrer-line a{font-weight:700}
 .measuredgrid{display:grid;gap:26px;align-items:start}
@@ -345,13 +352,12 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <figure class="reportcard" aria-labelledby="rc-h">
 <div class="rc-top"><span class="rc-tag">Illustrative example · not patient data</span></div>
 <p id="rc-h" class="rc-title">What "measured care" looks like</p>
-<table class="rc-table"><thead><tr><th scope="col">Measure</th><th scope="col">Baseline</th><th scope="col">Goal</th><th scope="col">Re-test</th></tr></thead>
-<tbody>
-<tr><th scope="row">Floor-to-waist lift</th><td>15 lb</td><td>50 lb</td><td><b>45 lb</b></td></tr>
-<tr><th scope="row">Low-back disability (Oswestry)</th><td>42%</td><td>&le;20%</td><td><b>16%</b></td></tr>
-<tr><th scope="row">Pain with lifting (0–10)</th><td>7</td><td>&le;3</td><td><b>2</b></td></tr>
-</tbody></table>
-<a class="rc-link" href="guides/physical-therapy-progress-report-example.html">See the full worked example →</a>
+<div class="rc-measure">
+<p class="rc-mlabel">Floor-to-waist lift</p>
+<p class="rc-mprog"><span class="rc-from">15 lb</span><span class="rc-arrow" aria-hidden="true">&rarr;</span><span class="rc-to">45 lb</span></p>
+<p class="rc-mnote">Day-one baseline to re-test, from one worked example.</p>
+</div>
+<a class="rc-link" href="guides/physical-therapy-progress-report-example.html">See the full worked example, with every measure</a>
 </figure>
 </div>
 </div></div>

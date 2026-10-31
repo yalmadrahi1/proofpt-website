@@ -353,8 +353,12 @@ gtag('config', 'G-D3KG2Y4Z9V');
 /* Intake: PRIMARY delivery + success signal = Web3Forms -> hello@ (BAA'd Google inbox).
    OPERATIONAL mirror = LeadConnector/GHL webhook, fired only AFTER primary acceptance; it is
    fire-and-forget (sendBeacon / no-cors) so its delivery is NOT confirmable in the browser —
-   visitor-facing success is tied to the Web3Forms acceptance only. A request_id is sent to both
-   so the CRM can deduplicate server-side (a client flag alone is not durable dedup). */
+   visitor-facing success is tied to the Web3Forms acceptance only. request_id is a per-session
+   correlation id included in both payloads for manual matching ONLY — neither Web3Forms nor the
+   current GHL "Website Lead Intake" workflow maps or deduplicates on it. Duplicate prevention in
+   practice: the in-session `sent` flag stops double-submit after a confirmed success; GHL merges
+   the same person's CONTACT by email/phone; duplicate requests are reconciled by staff (match
+   phone/email, per the measurement framework). It does not survive a page reload. */
 (function(){
 var f=document.getElementById('appt');if(!f)return;
 var btn=f.querySelector('button[type=submit],button');
@@ -363,7 +367,7 @@ function say(t,c){var m=document.getElementById('amsg');m.hidden=false;m.textCon
 function v(id){var el=document.getElementById(id);return el?el.value.trim():'';}
 function uuid(){try{return crypto.randomUUID();}catch(e){return 'r-'+Date.now()+'-'+Math.random().toString(36).slice(2,10);}}
 function validEmail(s){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);}
-function validPhone(s){var d=s.replace(/[^0-9]/g,'');return d.length>=10&&d.length<=11;}
+function validPhone(s){if(!/^[0-9()+.\s-]+$/.test(s))return false;var d=s.replace(/[^0-9]/g,'');return d.length>=10&&d.length<=11;}
 function mark(rowId,elId,bad){var row=document.getElementById(rowId),el=document.getElementById(elId);if(row)row.classList.toggle('invalid',bad);if(el){if(bad)el.setAttribute('aria-invalid','true');else el.removeAttribute('aria-invalid');}}
 f.addEventListener('submit',function(e){
   e.preventDefault();
@@ -384,7 +388,7 @@ f.addEventListener('submit',function(e){
   if(!rid)rid=uuid();
   btn.disabled=true;var old=btn.textContent;btn.textContent='Sending…';say('Sending your request…','');
 
-  var ctrl=new AbortController();var timedout=false;var tm=setTimeout(function(){timedout=true;ctrl.abort();},15000);
+  var ctrl=new AbortController();var tm=setTimeout(function(){ctrl.abort();},15000);
   fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},signal:ctrl.signal,
     body:JSON.stringify({access_key:'897f8f52-d2f5-40ad-978b-d091e9fc8290',subject:'Appointment request — proofphysicaltherapy.com',from_page:location.pathname,request_id:rid,name:nm,contact:ct,location:v('aloc'),need:v('aneed')})})
   .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d};});})
@@ -401,12 +405,18 @@ f.addEventListener('submit',function(e){
       f.reset();
       document.dispatchEvent(new CustomEvent('proof:accepted',{detail:{form:'appt'}}));
       say('Your request has been sent. A real person from Proof will follow up within one business day using the details you provided to talk through next steps. Proof opens February 2027, so this is not a confirmed appointment yet. Need us sooner? Call (586) 800-8488.','confirm');
-    } else { throw new Error('rejected'); }
+      return;
+    }
+    if(res.ok&&res.d&&res.d.success===false){ /* explicit, readable rejection from the provider */
+      btn.disabled=false;btn.textContent=old;
+      say("Your request wasn't accepted — please check your details and send again, or call (586) 800-8488.",'');
+      return;
+    }
+    throw new Error('ambiguous'); /* non-ok HTTP or unreadable body: outcome unknown */
   })
-  .catch(function(){
+  .catch(function(){ /* timeout, network error, or dropped/unreadable response — delivery could not be confirmed (it may have been received) */
     clearTimeout(tm);btn.disabled=false;btn.textContent=old;
-    if(timedout){ say("We couldn't confirm your request went through — your details are still here. You can send it again, or call (586) 800-8488. If it did reach us, a real person will follow up within one business day.",''); }
-    else { say("That didn't go through — your details are still here in the form. Please try again in a moment, or call (586) 800-8488.",''); }
+    say("We couldn't confirm your request was delivered — your details are still here. If you don't hear from a real person within one business day, please call (586) 800-8488.",'');
   });
 });
 })();

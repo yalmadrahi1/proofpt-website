@@ -314,7 +314,8 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <script>
 /* Contact: same model as the request page — PRIMARY delivery + success = Web3Forms -> hello@;
    CRM mirror fires only AFTER primary acceptance (fire-and-forget, not confirmable here).
-   Constrained topic only; no free-text narrative enters the non-BAA relay. request_id enables server dedup. */
+   Constrained topic only; no free-text narrative enters the non-BAA relay. request_id is a per-session
+   correlation id for manual matching only — no system deduplicates on it (see request page notes). */
 (function(){
 var f=document.getElementById('contact');if(!f)return;
 var btn=f.querySelector('button[type=submit],button');
@@ -323,7 +324,7 @@ function say(t,c){var m=document.getElementById('wmsg');m.hidden=false;m.textCon
 function v(id){var el=document.getElementById(id);return el?el.value.trim():'';}
 function uuid(){try{return crypto.randomUUID();}catch(e){return 'r-'+Date.now()+'-'+Math.random().toString(36).slice(2,10);}}
 function validEmail(s){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);}
-function validPhone(s){var d=s.replace(/[^0-9]/g,'');return d.length>=10&&d.length<=11;}
+function validPhone(s){if(!/^[0-9()+.\s-]+$/.test(s))return false;var d=s.replace(/[^0-9]/g,'');return d.length>=10&&d.length<=11;}
 function mark(elId,bad){var el=document.getElementById(elId);if(el){el.setAttribute('aria-invalid',bad?'true':'false');el.style.borderColor=bad?'#B3261E':'';}}
 f.addEventListener('submit',function(e){
   e.preventDefault();
@@ -341,7 +342,7 @@ f.addEventListener('submit',function(e){
   if(sent){say('Your message was already sent — no need to send again. Prefer to talk? Call (586) 800-8488.','confirm');return;}
   if(!rid)rid=uuid();
   btn.disabled=true;var old=btn.textContent;btn.textContent='Sending…';say('Sending your message…','');
-  var ctrl=new AbortController();var timedout=false;var tm=setTimeout(function(){timedout=true;ctrl.abort();},15000);
+  var ctrl=new AbortController();var tm=setTimeout(function(){ctrl.abort();},15000);
   fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},signal:ctrl.signal,
     body:JSON.stringify({access_key:'897f8f52-d2f5-40ad-978b-d091e9fc8290',subject:'Website message — proofphysicaltherapy.com',from_page:location.pathname,request_id:rid,name:nm,contact:ct,topic:v('wtopic')})})
   .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d};});})
@@ -358,12 +359,18 @@ f.addEventListener('submit',function(e){
       f.reset();
       document.dispatchEvent(new CustomEvent('proof:accepted',{detail:{form:'contact'}}));
       say("Thanks — your message has been sent. A real person replies within one business day using the details you provided. Prefer to talk now? Call (586) 800-8488.",'confirm');
-    } else { throw new Error('rejected'); }
+      return;
+    }
+    if(res.ok&&res.d&&res.d.success===false){ /* explicit, readable rejection */
+      btn.disabled=false;btn.textContent=old;
+      say("Your message wasn't accepted — please check your details and send again, or call (586) 800-8488.",'');
+      return;
+    }
+    throw new Error('ambiguous');
   })
-  .catch(function(){
+  .catch(function(){ /* timeout, network, or dropped/unreadable response — delivery could not be confirmed */
     clearTimeout(tm);btn.disabled=false;btn.textContent=old;
-    if(timedout){ say("We couldn't confirm your message went through — your details are still here. You can send it again, or call (586) 800-8488.",''); }
-    else { say("That didn't go through — your details are still here. Please try again in a moment, or call (586) 800-8488.",''); }
+    say("We couldn't confirm your message was delivered — your details are still here. If you don't hear from a real person within one business day, please call (586) 800-8488.",'');
   });
 });
 })();
