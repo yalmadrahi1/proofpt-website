@@ -129,6 +129,18 @@ a.pill:hover{background:#D7E3FB}
 .herogrid{display:grid;gap:36px;align-items:center}
 @media(min-width:860px){.herogrid{grid-template-columns:1.2fr 1fr}}
 .herosvg{max-width:430px;justify-self:center;width:100%;filter:drop-shadow(0 18px 36px rgba(12,36,87,.14))}
+/* hero visual: warm care photo + floating measured-care proof card */
+.herovisual{position:relative}
+.hero-photo{margin:0;position:relative;border-radius:20px;overflow:hidden;box-shadow:0 26px 60px -30px rgba(12,36,87,.5);aspect-ratio:4/5;background:var(--ice)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 26%;display:block}
+.hp-illus{position:absolute;top:12px;left:12px;background:rgba(12,36,87,.74);color:#fff;font-size:11px;font-weight:700;letter-spacing:.02em;border-radius:999px;padding:4px 11px}
+.herovisual .reportcard{margin-top:16px}
+@media(max-width:859px){.herovisual{max-width:440px;margin-inline:auto}}
+@media(min-width:860px){
+ .herovisual{padding-bottom:30px}
+ .hero-photo{aspect-ratio:5/6}
+ .herovisual .reportcard{position:absolute;left:20px;right:20px;bottom:-22px;margin:0;z-index:2}
+}
 .statsband{background:#fff;border-bottom:1px solid var(--line)}
 .statsband .wrap{display:grid;gap:14px;padding-block:28px;grid-template-columns:repeat(2,1fr)}
 @media(min-width:760px){.statsband .wrap{grid-template-columns:repeat(4,1fr)}}
@@ -317,18 +329,20 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <p>A real person replies within one business day. A request now isn't a booked appointment yet — Proof opens February 2027. <b>Hurt in a car accident?</b> <a href="conditions/auto-accident-injury.html">Start here</a>. <b>Need care today?</b> <a href="tel:+15868008488">Call (586) 800-8488</a>.</p>
 </div>
 </div>
+<div class="herovisual">
+<figure class="hero-photo"><img src="assets/img/care-hands-on.jpg" alt="A physical therapist guiding a patient through a hands-on shoulder and arm mobility assessment" width="1092" height="1624" fetchpriority="high"><span class="hp-illus">Illustrative photo</span></figure>
 <figure class="reportcard" aria-labelledby="rc-h">
 <div class="rc-top"><span class="rc-tag">Illustrative example · not patient data</span></div>
-<p id="rc-h" class="rc-title">What "measured care" means here</p>
+<p id="rc-h" class="rc-title">What "measured care" looks like</p>
 <table class="rc-table"><thead><tr><th scope="col">Measure</th><th scope="col">Baseline</th><th scope="col">Goal</th><th scope="col">Re-test</th></tr></thead>
 <tbody>
 <tr><th scope="row">Floor-to-waist lift</th><td>15 lb</td><td>50 lb</td><td><b>45 lb</b></td></tr>
 <tr><th scope="row">Low-back disability (Oswestry)</th><td>42%</td><td>&le;20%</td><td><b>16%</b></td></tr>
 <tr><th scope="row">Pain with lifting (0–10)</th><td>7</td><td>&le;3</td><td><b>2</b></td></tr>
 </tbody></table>
-<p class="rc-note">Every row has a day-one baseline and a goal tied to real life — here, returning to a warehouse job after a low-back strain. Re-tests show what changed, and the discharge decision weighs those numbers alongside clinical judgment.</p>
 <a class="rc-link" href="guides/physical-therapy-progress-report-example.html">See the full worked example →</a>
 </figure>
+</div>
 </div></div>
 
 <section class="wrap" id="difference" style="padding-block:44px 8px">
@@ -345,7 +359,7 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <section class="wrap" id="care-human">
 <div class="splitgrid">
 <figure class="sg-media" style="margin:0">
-<div class="photoslot" data-slot="home-care" style="min-height:340px"><img src="assets/img/care-hands-on.jpg" alt="A physical therapist examining a patient’s arm during a hands-on evaluation" loading="lazy"></div>
+<div class="photoslot" data-slot="home-care" style="min-height:340px"><img src="assets/img/care-shoulder.jpg" alt="A physical therapist guiding a patient through a shoulder and arm mobility assessment" loading="lazy"></div>
 </figure>
 <div>
 <h2>Care that's hands-on — and measured</h2>
