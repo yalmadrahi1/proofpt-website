@@ -141,3 +141,17 @@ header.site .refercta-hdr{display:inline-block;margin-right:8px}
   #sitenav .refercta-nav{display:block;text-align:center;margin-top:10px;background:transparent;color:var(--navy);border:1.6px solid var(--blue)}
   #sitenav .refercta-nav:hover{background:var(--sky);color:var(--navy)}
 }
+
+/* Services mega: full-width "More disciplines" strip (adds the non-core PT
+   disciplines + June expansion without a 5th column or new top-level item). */
+#sitenav .megamore{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+#sitenav .megamore .megahead{margin:0 0 8px}
+#sitenav .megamore-links{display:flex;flex-wrap:wrap;gap:4px 18px}
+#sitenav .megamore-links a{padding:6px 8px;border-radius:8px;font-size:14px;color:var(--navy);text-decoration:none;font-weight:600;display:inline-block}
+#sitenav .megamore-links a:hover{background:var(--wash,#EEF2FA)}
+#sitenav .megamore-links .j{color:var(--blue-deep);font-weight:700}
+@media(max-width:1119px){#sitenav .megamore-links{flex-direction:column;gap:0}}
+
+/* June expansion status chip (prominent future-date label) */
+.st-june{background:var(--sky);color:var(--blue-deep);border:1px solid #CDDCFB}
+.datetag{display:inline-block;font-weight:700;font-size:12.5px;color:var(--blue-deep);background:var(--sky);border:1px solid #CDDCFB;border-radius:999px;padding:2px 10px;margin-left:6px;vertical-align:middle;white-space:nowrap}

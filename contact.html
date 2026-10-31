@@ -293,13 +293,15 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <option>Scheduling &amp; when I can be seen</option>
 <option>Billing &amp; payment</option>
 <option>Careers</option>
+<option>Occupational therapy — coming June 2027</option>
+<option>Nonsurgical spinal decompression — coming June 2027</option>
 <option>Something else</option>
 </select>
 <button class="cta-btn" type="submit" style="border:none;cursor:pointer;font:inherit;font-weight:700">Send message</button>
 <div class="hp" aria-hidden="true" style="position:absolute;left:-9999px"><label for="wwebsite">Leave this field empty</label><input id="wwebsite" name="website" tabindex="-1" autocomplete="off"></div>
 <p id="wmsg" role="status" aria-live="polite" hidden style="margin-top:10px;font-weight:600"></p>
 </form>
-<p style="font-size:12px;color:var(--mut);margin-top:10px">Please keep medical details out of this form — we'll follow up directly to talk specifics. Not for urgent needs; in an emergency, call 911.</p>
+<p style="font-size:12px;color:var(--mut);margin-top:10px">No medical history is needed to ask about a service. Please keep medical details out of this form — we'll follow up directly to talk specifics. Not for urgent needs; in an emergency, call 911.</p>
 </div>
 <div class="card">
 <h3>Clinic details</h3>
@@ -440,6 +442,17 @@ f.addEventListener('submit',function(e){
   if (a) gtag('event', 'tel_click');
  }, true);
 })();
+</script>
+<script>
+/* June-service deep-link prefill: selects the matching contact topic from ?svc=
+   (whitelist only). No storage, no analytics, no effect on delivery/dedup/consent. */
+(function(){try{
+ var m={ot:'Occupational therapy',decompression:'Nonsurgical spinal decompression'};
+ var svc=new URLSearchParams(location.search).get('svc');
+ if(!svc||!m[svc])return;
+ var sel=document.getElementById('wtopic');if(!sel)return;
+ for(var i=0;i<sel.options.length;i++){if(sel.options[i].text.indexOf(m[svc])>-1){sel.selectedIndex=i;break;}}
+}catch(e){}})();
 </script>
 <script defer src="assets/proof-visual.js"></script>
 </body>
