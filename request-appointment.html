@@ -243,7 +243,7 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-D3KG2Y4Z9V');
 </script>
-<link rel="stylesheet" href="assets/proof-visual.css?v=3">
+<link rel="stylesheet" href="assets/proof-visual.css?v=4">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -350,54 +350,63 @@ gtag('config', 'G-D3KG2Y4Z9V');
 </div>
 </section>
 <script>
+/* Intake: PRIMARY delivery + success signal = Web3Forms -> hello@ (BAA'd Google inbox).
+   OPERATIONAL mirror = LeadConnector/GHL webhook, fired only AFTER primary acceptance; it is
+   fire-and-forget (sendBeacon / no-cors) so its delivery is NOT confirmable in the browser —
+   visitor-facing success is tied to the Web3Forms acceptance only. A request_id is sent to both
+   so the CRM can deduplicate server-side (a client flag alone is not durable dedup). */
 (function(){
 var f=document.getElementById('appt');if(!f)return;
 var btn=f.querySelector('button[type=submit],button');
-var t0=Date.now(),sent=false;
+var sent=false, rid=null;
 function say(t,c){var m=document.getElementById('amsg');m.hidden=false;m.textContent=t;m.className=c||'';}
 function v(id){var el=document.getElementById(id);return el?el.value.trim():'';}
+function uuid(){try{return crypto.randomUUID();}catch(e){return 'r-'+Date.now()+'-'+Math.random().toString(36).slice(2,10);}}
+function validEmail(s){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);}
+function validPhone(s){var d=s.replace(/[^0-9]/g,'');return d.length>=10&&d.length<=11;}
+function mark(rowId,elId,bad){var row=document.getElementById(rowId),el=document.getElementById(elId);if(row)row.classList.toggle('invalid',bad);if(el){if(bad)el.setAttribute('aria-invalid','true');else el.removeAttribute('aria-invalid');}}
 f.addEventListener('submit',function(e){
   e.preventDefault();
   var hp=f.querySelector('.hp input, input[name=website]');
-  if(hp&&hp.value)return; /* honeypot */
-  if(Date.now()-t0<3000){say('That was quick — please take a second to review your details, then submit again.','');return;}
+  if(hp&&hp.value)return; /* honeypot — approved spam control */
 
-  var ok=true;
-  [['aname', 'row-name'], ['acontact', 'row-contact']].forEach(function(p){
-    var el=document.getElementById(p[0]);
-    var row=p[1]?document.getElementById(p[1]):null;
-    var bad=!el.value.trim();
-    if(row){row.classList.toggle('invalid',bad);}
-    if(bad){el.setAttribute('aria-invalid','true');ok=false;}
-    else{el.removeAttribute('aria-invalid');}
-  });
-  if(!ok){say('Please fill in the highlighted fields above, then submit again.','');return;}
-  if(sent){say('Your request was already received — no need to submit again. Questions? Call (586) 800-8488.','confirm');return;}
+  var nm=v('aname'), ct=v('acontact'), errEl=document.getElementById('err-contact');
+  var nameBad=!nm, isEmail=ct.indexOf('@')>-1;
+  var contactBad=!ct || (isEmail? !validEmail(ct) : !validPhone(ct));
+  mark('row-name','aname',nameBad); mark('row-contact','acontact',contactBad);
+  if(errEl){errEl.textContent = !ct ? 'Please enter a phone number or email so we can reach you.' : 'Please enter a valid phone number or email address so we can reach you.';}
+  if(nameBad||contactBad){ /* invalid: no outbound lead, no accepted event */
+    say('Please fix the highlighted field above, then send again.','');
+    (nameBad?document.getElementById('aname'):document.getElementById('acontact')).focus();
+    return;
+  }
+  if(sent){say('Your request was already received — no need to send again. Questions? Call (586) 800-8488.','confirm');return;}
+  if(!rid)rid=uuid();
   btn.disabled=true;var old=btn.textContent;btn.textContent='Sending…';say('Sending your request…','');
-  try{
-    var _nm=v('aname'),_ct=v('acontact');
-    var _fn=_nm.split(/\s+/)[0]||'',_ln=_nm.split(/\s+/).slice(1).join(' ');
-    var _p=new URLSearchParams({first_name:_fn,last_name:_ln,source:'website',page:location.pathname});
-    if(_ct.indexOf('@')>-1){_p.set('email',_ct);}else{_p.set('phone',_ct);}
-    if(!(navigator.sendBeacon&&navigator.sendBeacon('https://services.leadconnectorhq.com/hooks/1UjCy0u9VFEbplbOC7Un/webhook-trigger/77b832e4-9c3a-4cae-8613-0f12d5a6cba1',_p))){
-      fetch('https://services.leadconnectorhq.com/hooks/1UjCy0u9VFEbplbOC7Un/webhook-trigger/77b832e4-9c3a-4cae-8613-0f12d5a6cba1',{method:'POST',mode:'no-cors',body:_p,keepalive:true}).catch(function(){});
-    }
-  }catch(_e){}
 
-  var ctrl=new AbortController();var tm=setTimeout(function(){ctrl.abort();},15000);
+  var ctrl=new AbortController();var timedout=false;var tm=setTimeout(function(){timedout=true;ctrl.abort();},15000);
   fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},signal:ctrl.signal,
-    body:JSON.stringify({access_key:'897f8f52-d2f5-40ad-978b-d091e9fc8290',subject:'Evaluation request — proofphysicaltherapy.com',from_page:location.pathname,name: v('aname'), contact: v('acontact'), location: v('aloc'), note: v('aneed')})})
+    body:JSON.stringify({access_key:'897f8f52-d2f5-40ad-978b-d091e9fc8290',subject:'Appointment request — proofphysicaltherapy.com',from_page:location.pathname,request_id:rid,name:nm,contact:ct,location:v('aloc'),need:v('aneed')})})
   .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d};});})
   .then(function(res){
     clearTimeout(tm);
-    if(res.ok&&res.d&&res.d.success){sent=true;f.reset();btn.textContent=old;btn.disabled=true;
+    if(res.ok&&res.d&&res.d.success){
+      sent=true;btn.textContent=old;btn.disabled=true;
+      try{ /* operational CRM mirror — only now that the primary provider has accepted */
+        var p=new URLSearchParams({request_id:rid,first_name:(nm.split(/\s+/)[0]||''),last_name:nm.split(/\s+/).slice(1).join(' '),source:'website',page:location.pathname});
+        if(isEmail)p.set('email',ct);else p.set('phone',ct);
+        var url='https://services.leadconnectorhq.com/hooks/1UjCy0u9VFEbplbOC7Un/webhook-trigger/77b832e4-9c3a-4cae-8613-0f12d5a6cba1';
+        if(!(navigator.sendBeacon&&navigator.sendBeacon(url,p))){fetch(url,{method:'POST',mode:'no-cors',body:p,keepalive:true}).catch(function(){});}
+      }catch(_e){}
+      f.reset();
       document.dispatchEvent(new CustomEvent('proof:accepted',{detail:{form:'appt'}}));
-      say('Your request has been sent. A real person from Proof will follow up within one business day using the details you provided to talk through next steps. Proof opens February 2027, so this is not a confirmed appointment yet. Need us sooner? Call (586) 800-8488.','confirm');}
-    else{throw new Error('rejected');}
+      say('Your request has been sent. A real person from Proof will follow up within one business day using the details you provided to talk through next steps. Proof opens February 2027, so this is not a confirmed appointment yet. Need us sooner? Call (586) 800-8488.','confirm');
+    } else { throw new Error('rejected'); }
   })
   .catch(function(){
     clearTimeout(tm);btn.disabled=false;btn.textContent=old;
-    say("That didn't go through — nothing was lost, and your details are still here in the form. Please try again in a moment, or call (586) 800-8488.",'');
+    if(timedout){ say("We couldn't confirm your request went through — your details are still here. You can send it again, or call (586) 800-8488. If it did reach us, a real person will follow up within one business day.",''); }
+    else { say("That didn't go through — your details are still here in the form. Please try again in a moment, or call (586) 800-8488.",''); }
   });
 });
 })();

@@ -224,7 +224,7 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-D3KG2Y4Z9V');
 </script>
-<link rel="stylesheet" href="assets/proof-visual.css?v=3">
+<link rel="stylesheet" href="assets/proof-visual.css?v=4">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -278,20 +278,28 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <section class="wrap" style="padding-top:20px">
 <div class="grid g2">
 <div class="card">
-<h3>Ask a question</h3>
-<p style="margin-bottom:10px">Leave your question and the best way to reach you — a real person replies within one business day. Prefer to talk now? Call <a href="tel:+15868008488">(586) 800-8488</a>.</p>
+<h3>Get in touch</h3>
+<p style="margin-bottom:10px">Tell us what it's about and leave the best way to reach you — a real person replies within one business day. Prefer to talk now? Call <a href="tel:+15868008488">(586) 800-8488</a>.</p>
 <aside role="note" style="background:#FDF6E3;border:1px solid #E8D9A8;border-radius:10px;padding:12px 16px;margin:0 0 14px;font-size:13.5px;line-height:1.5"><strong>Online messages are open</strong> — a real person replies within one business day.</aside><form id="contact" autocomplete="on">
 <label for="wname" style="font-weight:700;font-size:13.5px">Name</label>
 <input id="wname" name="name" required style="width:100%;padding:10px;border:1px solid var(--line);border-radius:7px;margin:4px 0 12px;font:inherit" aria-required="true">
 <label for="wphone" style="font-weight:700;font-size:13.5px">Phone or email</label>
 <input id="wphone" name="contact" required style="width:100%;padding:10px;border:1px solid var(--line);border-radius:7px;margin:4px 0 0;font:inherit" aria-required="true"><p id="sms-consent-w" style="font-size:12px;color:var(--mut);margin:4px 0 12px">If you provide a phone number, you agree we may call or text you about your request (frequency varies; msg &amp; data rates may apply; STOP to opt out, HELP for help). We never share your number for marketing — <a href="privacy.html">privacy notice</a>.</p>
-<label for="wq" style="font-weight:700;font-size:13.5px">Your question <span style="color:var(--mut);font-weight:400">(optional)</span></label>
-<textarea id="wq" name="question" rows="3" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:7px;margin:4px 0 14px;font:inherit;background:#fff" placeholder="e.g. Do you take my insurance? When can I be seen?"></textarea>
-<button class="cta-btn" type="submit" style="border:none;cursor:pointer;font:inherit;font-weight:700">Send your question</button>
+<label for="wtopic" style="font-weight:700;font-size:13.5px">What's this about? <span style="color:var(--mut);font-weight:400">(optional)</span></label>
+<select id="wtopic" name="topic" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:7px;margin:4px 0 14px;font:inherit;background:#fff">
+<option value="">Choose one (optional)</option>
+<option>Insurance &amp; coverage</option>
+<option>Hours &amp; location</option>
+<option>Scheduling &amp; when I can be seen</option>
+<option>Billing &amp; payment</option>
+<option>Careers</option>
+<option>Something else</option>
+</select>
+<button class="cta-btn" type="submit" style="border:none;cursor:pointer;font:inherit;font-weight:700">Send message</button>
 <div class="hp" aria-hidden="true" style="position:absolute;left:-9999px"><label for="wwebsite">Leave this field empty</label><input id="wwebsite" name="website" tabindex="-1" autocomplete="off"></div>
 <p id="wmsg" role="status" aria-live="polite" hidden style="margin-top:10px;font-weight:600"></p>
 </form>
-<p style="font-size:12px;color:var(--mut);margin-top:10px">Please don't include medical details beyond a few words — this form isn't for urgent needs. Emergencies: call 911.</p>
+<p style="font-size:12px;color:var(--mut);margin-top:10px">Please keep medical details out of this form — we'll follow up directly to talk specifics. Not for urgent needs; in an emergency, call 911.</p>
 </div>
 <div class="card">
 <h3>Clinic details</h3>
@@ -304,54 +312,58 @@ gtag('config', 'G-D3KG2Y4Z9V');
 </div>
 </section>
 <script>
+/* Contact: same model as the request page — PRIMARY delivery + success = Web3Forms -> hello@;
+   CRM mirror fires only AFTER primary acceptance (fire-and-forget, not confirmable here).
+   Constrained topic only; no free-text narrative enters the non-BAA relay. request_id enables server dedup. */
 (function(){
 var f=document.getElementById('contact');if(!f)return;
 var btn=f.querySelector('button[type=submit],button');
-var t0=Date.now(),sent=false;
+var sent=false, rid=null;
 function say(t,c){var m=document.getElementById('wmsg');m.hidden=false;m.textContent=t;m.className=c||'';}
 function v(id){var el=document.getElementById(id);return el?el.value.trim():'';}
+function uuid(){try{return crypto.randomUUID();}catch(e){return 'r-'+Date.now()+'-'+Math.random().toString(36).slice(2,10);}}
+function validEmail(s){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);}
+function validPhone(s){var d=s.replace(/[^0-9]/g,'');return d.length>=10&&d.length<=11;}
+function mark(elId,bad){var el=document.getElementById(elId);if(el){el.setAttribute('aria-invalid',bad?'true':'false');el.style.borderColor=bad?'#B3261E':'';}}
 f.addEventListener('submit',function(e){
   e.preventDefault();
   var hp=f.querySelector('.hp input, input[name=website]');
-  if(hp&&hp.value)return; /* honeypot */
-  if(Date.now()-t0<3000){say('That was quick — please take a second to review your details, then submit again.','');return;}
-
-  var ok=true;
-  [['wname', 'row-wname'], ['wphone', 'row-wphone']].forEach(function(p){
-    var el=document.getElementById(p[0]);
-    var row=p[1]?document.getElementById(p[1]):null;
-    var bad=!el.value.trim();
-    if(row){row.classList.toggle('invalid',bad);}
-    if(bad){el.setAttribute('aria-invalid','true');ok=false;}
-    else{el.removeAttribute('aria-invalid');}
-  });
-  if(!ok){say('Please fill in the highlighted fields above, then submit again.','');return;}
-  if(sent){say('Your question was already sent — no need to submit again. Prefer to talk? Call (586) 800-8488.','confirm');return;}
-  btn.disabled=true;var old=btn.textContent;btn.textContent='Sending…';say('Sending your request…','');
-  try{
-    var _nm=v('wname'),_ct=v('wphone');
-    var _fn=_nm.split(/\s+/)[0]||'',_ln=_nm.split(/\s+/).slice(1).join(' ');
-    var _p=new URLSearchParams({first_name:_fn,last_name:_ln,source:'website',page:location.pathname});
-    if(_ct.indexOf('@')>-1){_p.set('email',_ct);}else{_p.set('phone',_ct);}
-    if(!(navigator.sendBeacon&&navigator.sendBeacon('https://services.leadconnectorhq.com/hooks/1UjCy0u9VFEbplbOC7Un/webhook-trigger/77b832e4-9c3a-4cae-8613-0f12d5a6cba1',_p))){
-      fetch('https://services.leadconnectorhq.com/hooks/1UjCy0u9VFEbplbOC7Un/webhook-trigger/77b832e4-9c3a-4cae-8613-0f12d5a6cba1',{method:'POST',mode:'no-cors',body:_p,keepalive:true}).catch(function(){});
-    }
-  }catch(_e){}
-
-  var ctrl=new AbortController();var tm=setTimeout(function(){ctrl.abort();},15000);
+  if(hp&&hp.value)return; /* honeypot — approved spam control */
+  var nm=v('wname'), ct=v('wphone');
+  var nameBad=!nm, isEmail=ct.indexOf('@')>-1;
+  var contactBad=!ct || (isEmail? !validEmail(ct) : !validPhone(ct));
+  mark('wname',nameBad); mark('wphone',contactBad);
+  if(nameBad||contactBad){
+    say(!nm&&!ct ? 'Please add your name and a phone number or email so we can reach you.' : (contactBad ? 'Please enter a valid phone number or email address so we can reach you.' : 'Please enter your name.'),'');
+    (nameBad?document.getElementById('wname'):document.getElementById('wphone')).focus();
+    return;
+  }
+  if(sent){say('Your message was already sent — no need to send again. Prefer to talk? Call (586) 800-8488.','confirm');return;}
+  if(!rid)rid=uuid();
+  btn.disabled=true;var old=btn.textContent;btn.textContent='Sending…';say('Sending your message…','');
+  var ctrl=new AbortController();var timedout=false;var tm=setTimeout(function(){timedout=true;ctrl.abort();},15000);
   fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},signal:ctrl.signal,
-    body:JSON.stringify({access_key:'897f8f52-d2f5-40ad-978b-d091e9fc8290',subject:'Website question — proofphysicaltherapy.com',from_page:location.pathname,name: v('wname'), contact: v('wphone'), question: v('wq')})})
+    body:JSON.stringify({access_key:'897f8f52-d2f5-40ad-978b-d091e9fc8290',subject:'Website message — proofphysicaltherapy.com',from_page:location.pathname,request_id:rid,name:nm,contact:ct,topic:v('wtopic')})})
   .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d};});})
   .then(function(res){
     clearTimeout(tm);
-    if(res.ok&&res.d&&res.d.success){sent=true;f.reset();btn.textContent=old;btn.disabled=true;
+    if(res.ok&&res.d&&res.d.success){
+      sent=true;btn.textContent=old;btn.disabled=true;
+      try{
+        var p=new URLSearchParams({request_id:rid,first_name:(nm.split(/\s+/)[0]||''),last_name:nm.split(/\s+/).slice(1).join(' '),source:'website-contact',page:location.pathname});
+        if(isEmail)p.set('email',ct);else p.set('phone',ct);
+        var url='https://services.leadconnectorhq.com/hooks/1UjCy0u9VFEbplbOC7Un/webhook-trigger/77b832e4-9c3a-4cae-8613-0f12d5a6cba1';
+        if(!(navigator.sendBeacon&&navigator.sendBeacon(url,p))){fetch(url,{method:'POST',mode:'no-cors',body:p,keepalive:true}).catch(function(){});}
+      }catch(_e){}
+      f.reset();
       document.dispatchEvent(new CustomEvent('proof:accepted',{detail:{form:'contact'}}));
-      say("Thanks — your question has been sent. A real person replies within one business day using the details you provided. Prefer to talk now? Call (586) 800-8488.",'confirm');}
-    else{throw new Error('rejected');}
+      say("Thanks — your message has been sent. A real person replies within one business day using the details you provided. Prefer to talk now? Call (586) 800-8488.",'confirm');
+    } else { throw new Error('rejected'); }
   })
   .catch(function(){
     clearTimeout(tm);btn.disabled=false;btn.textContent=old;
-    say("That didn't go through — nothing was lost, your details are still in the form. Please try again in a moment, or call or text (586) 800-8488.",'');
+    if(timedout){ say("We couldn't confirm your message went through — your details are still here. You can send it again, or call (586) 800-8488.",''); }
+    else { say("That didn't go through — your details are still here. Please try again in a moment, or call (586) 800-8488.",''); }
   });
 });
 })();
