@@ -237,6 +237,68 @@ a.pill:hover{background:#D7E3FB}
 .visitcta .vc-h{font-family:var(--disp);font-weight:800;color:#fff;font-size:17px;margin:0 0 12px}
 .visitcta .cta-btn{display:block;background:var(--gold);color:var(--navy)}
 .visitcta .btn-ghost{display:block;border-color:#4C6AAE;color:#fff}
+
+/* ===== interactive modules + motion (Nov 1) ===== */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none}}
+.sectlabel{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-deep);background:var(--sky);border-radius:999px;padding:5px 13px;margin-bottom:12px}
+/* body map */
+.hurtwrap{display:grid;gap:34px;align-items:center;margin-top:8px}
+@media(min-width:800px){.hurtwrap{grid-template-columns:300px 1fr}}
+.bodymap{position:relative;width:100%;max-width:260px;margin:0 auto}
+.bodymap>svg{width:100%;height:auto;display:block}
+.bm-dot{position:absolute;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;background:var(--gold);border:3px solid #fff;box-shadow:0 5px 16px -5px rgba(12,36,87,.55);cursor:pointer;text-decoration:none;display:block;transition:transform .16s ease,background .16s ease}
+.bm-dot::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--gold);opacity:.55;animation:bmpulse 2.4s ease-out infinite}
+.bm-dot:hover,.bm-dot:focus-visible{transform:translate(-50%,-50%) scale(1.2);background:var(--blue);outline:none}
+.bm-dot:hover::after,.bm-dot:focus-visible::after{border-color:var(--blue)}
+.bm-lbl{position:absolute;left:50%;bottom:calc(100% + 9px);transform:translateX(-50%) translateY(4px);background:var(--navy);color:#fff;font-size:12.5px;font-weight:700;white-space:nowrap;padding:5px 11px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .16s ease,transform .16s ease}
+.bm-dot:hover .bm-lbl,.bm-dot:focus-visible .bm-lbl{opacity:1;transform:translateX(-50%) translateY(0)}
+@keyframes bmpulse{0%{transform:scale(1);opacity:.55}70%{transform:scale(1.55);opacity:0}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.bm-dot::after{animation:none}}
+.hurtcopy h3{font-size:20px;margin-bottom:6px}
+.hurtcopy .pillrow{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.hurtcopy .pillrow a{background:var(--ice);border:1.5px solid var(--line);border-radius:999px;padding:9px 15px;font-size:14px;font-weight:700;color:var(--navy);text-decoration:none;transition:border-color .15s,background .15s,transform .12s}
+.hurtcopy .pillrow a:hover{border-color:var(--blue);background:#fff;transform:translateY(-1px)}
+/* quiz */
+.quiz{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px 24px;box-shadow:0 20px 48px -30px rgba(12,36,87,.33);max-width:660px;margin-top:6px}
+.quiz .qq{font-family:var(--disp);font-weight:800;font-size:21px;color:var(--navy);margin:0 0 4px}
+.quiz .qsub{font-size:14px;color:var(--mut);margin:0 0 16px}
+.quiz .opts{display:grid;gap:10px}
+@media(min-width:600px){.quiz .opts{grid-template-columns:1fr 1fr}}
+.quiz .opt{text-align:left;background:var(--ice);border:1.5px solid var(--line);border-radius:14px;padding:15px 16px;font:inherit;font-size:15.5px;font-weight:700;color:var(--navy);cursor:pointer;transition:border-color .15s,background .15s,transform .12s,box-shadow .15s}
+.quiz .opt:hover{border-color:var(--blue);background:#fff;transform:translateY(-2px);box-shadow:0 10px 24px -16px rgba(18,58,170,.5)}
+.quiz .opt small{display:block;font-weight:600;color:var(--mut);font-size:12.5px;margin-top:3px}
+.quiz .result{display:none;animation:qfade .4s ease}
+.quiz.answered .opts,.quiz.answered .qsub{display:none}
+.quiz.answered .result{display:block}
+.quiz .result .rlane{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#7A5200;background:var(--sand);border-radius:999px;padding:4px 12px;margin-bottom:10px}
+.quiz .result p{font-size:16px;color:var(--ink);margin:0 0 14px;max-width:60ch}
+.quiz .result .cta-btn{display:inline-block}
+.quiz .again{background:none;border:none;color:var(--blue);font:inherit;font-weight:700;font-size:14px;cursor:pointer;margin-left:14px;padding:6px 4px}
+.quiz .again:hover{text-decoration:underline}
+@keyframes qfade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* recovery explorer */
+.rex{background:linear-gradient(160deg,var(--ice),var(--sky));border:1px solid var(--line);border-radius:22px;padding:28px 26px;margin-top:8px}
+.rex .procs{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:22px}
+.rex .proc{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:9px 17px;font:inherit;font-size:14.5px;font-weight:700;color:var(--navy);cursor:pointer;transition:all .15s}
+.rex .proc:hover{border-color:var(--blue)}
+.rex .proc[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.rex .slab{display:flex;justify-content:space-between;font-size:11.5px;font-weight:700;color:var(--mut);margin-bottom:6px;gap:6px}
+.rex .slab span{flex:1;text-align:center;transition:color .15s}
+.rex .slab span:first-child{text-align:left}.rex .slab span:last-child{text-align:right}
+.rex .slab span.on{color:var(--blue)}
+.rex input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:999px;background:#D6E0F5;outline:none;margin:2px 0 4px}
+.rex input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:26px;height:26px;border-radius:50%;background:var(--gold);border:4px solid #fff;box-shadow:0 4px 12px -3px rgba(12,36,87,.5);cursor:pointer}
+.rex input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--gold);border:4px solid #fff;cursor:pointer}
+.rex input[type=range]:focus-visible{outline:2.5px solid var(--blue);outline-offset:4px}
+.rex .phasecard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;margin-top:18px;min-height:150px}
+.rex .phasecard .pt{font-size:12.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--blue)}
+.rex .phasecard h3{font-size:21px;margin:4px 0 8px}
+.rex .phasecard p{font-size:15.5px;color:var(--mut);margin:0;max-width:62ch}
+.rex .rexfoot{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;justify-content:space-between;margin-top:16px}
+.rex .rexnote{font-size:12.5px;color:var(--mut);margin:0;max-width:52ch}
+.rex .rexlink{font-size:14px;font-weight:700;color:var(--blue);text-decoration:none;white-space:nowrap}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "MedicalClinic", "name": "Proof Physical Therapy", "url": "https://www.proofphysicaltherapy.com", "email": "hello@proofphysicaltherapy.com", "telephone": "+1-586-800-8488", "description": "Independent outpatient physical therapy clinic in Sterling Heights, Michigan — auto no-fault specialists, same-week evaluations, objective functional testing. Opening February 2027.", "address": {"@type": "PostalAddress", "streetAddress": "44056 Mound Rd, Suite 103", "addressLocality": "Sterling Heights", "addressRegion": "MI", "postalCode": "48314", "addressCountry": "US"}, "areaServed": [{"@type": "AdministrativeArea", "name": "Macomb County, MI"}, {"@type": "AdministrativeArea", "name": "Oakland County, MI"}], "medicalSpecialty": "Physiotherapy", "image": "https://www.proofphysicaltherapy.com/assets/og-card.png", "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Physical therapy services", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Orthopedic Physical Therapy", "url": "https://www.proofphysicaltherapy.com/services/orthopedic-physical-therapy.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Functional Capacity Evaluations (FCE)", "url": "https://www.proofphysicaltherapy.com/services/functional-capacity-evaluation.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Work Injury Rehabilitation", "url": "https://www.proofphysicaltherapy.com/services/work-injury-rehabilitation.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Auto Accident (No-Fault) Rehabilitation", "url": "https://www.proofphysicaltherapy.com/conditions/auto-accident-injury.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Post-Surgical Rehabilitation", "url": "https://www.proofphysicaltherapy.com/services/post-surgical-rehabilitation.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Shockwave Therapy (ESWT)", "url": "https://www.proofphysicaltherapy.com/services/shockwave-therapy.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Sports Injury Rehabilitation", "url": "https://www.proofphysicaltherapy.com/services/sports-injury-rehabilitation.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Balance & Fall Prevention", "url": "https://www.proofphysicaltherapy.com/services/balance-fall-prevention-therapy.html"}}]}, "geo": {"@type": "GeoCoordinates", "latitude": 42.6172148, "longitude": -83.0520611}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "07:00", "closes": "19:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "13:00"}]}, {"@type": "WebSite", "name": "Proof Physical Therapy", "alternateName": "Proof PT", "url": "https://www.proofphysicaltherapy.com/"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "When does Proof Physical Therapy open?", "acceptedAnswer": {"@type": "Answer", "text": "Proof opens February 2027 at 44056 Mound Rd, Suite 103, Sterling Heights, MI. You can request an appointment now and a real person follows up within one business day — it isn't a booked appointment yet."}}, {"@type": "Question", "name": "Do I need a referral to start physical therapy in Michigan?", "acceptedAnswer": {"@type": "Answer", "text": "Usually not to start. Michigan direct access allows up to 10 visits or 21 days of treatment without a physician referral; some insurance plans still require one for payment, so we verify your coverage first."}}, {"@type": "Question", "name": "What will physical therapy cost, and do you take my insurance?", "acceptedAnswer": {"@type": "Answer", "text": "Cost depends on your plan and the care you need. Proof is credentialing with major plans (confirmed before opening), and Michigan no-fault and workers' comp follow their own rules. We verify your specific benefits before your first visit."}}, {"@type": "Question", "name": "Do you have more than one location?", "acceptedAnswer": {"@type": "Answer", "text": "No — Proof is one independent clinic in Sterling Heights, serving nearby Metro Detroit communities. We don't operate other branches."}}, {"@type": "Question", "name": "What happens at a first visit?", "acceptedAnswer": {"@type": "Answer", "text": "A real evaluation with objective baseline measurements, your questions answered, and a plan built around your goal."}}]}]}</script>
 <style>
@@ -388,8 +450,27 @@ gtag('config', 'G-D3KG2Y4Z9V');
 
 <!-- 2 · CLEAR PATHS (patients + referrers) -->
 <section class="wrap" id="pathways">
-<h2>Start where you are</h2>
-<p style="max-width:62ch">Each path explains what to expect, what we measure, and what happens next.</p>
+<span class="sectlabel">Find your path</span>
+<h2>Where does it hurt?</h2>
+<p style="max-width:62ch">Tap where it’s bothering you — we’ll take you to how we help with it. Or browse the paths below.</p>
+<div class="hurtwrap">
+<div class="bodymap" role="group" aria-label="Interactive body map — choose the area that hurts">
+<svg viewBox="0 0 200 420" aria-hidden="true"><g fill="#E6EDFD" stroke="#9FB6E8" stroke-width="2" stroke-linejoin="round"><circle cx="100" cy="42" r="26"/><path d="M86 66 h28 v10 c18 4 30 16 32 40 l6 56 -16 4 -6 -40 -2 70 h-8 l-6 92 -14 0 -6 -92 -6 92 -14 0 -6 -92 -2 -70 -6 40 -16 -4 6 -56 c2 -24 14 -36 32 -40 z"/></g></svg>
+<a class="bm-dot" style="top:16.5%;left:50%" href="conditions/neck-pain.html" aria-label="Neck pain"><span class="bm-lbl">Neck</span></a>
+<a class="bm-dot" style="top:24%;left:30%" href="conditions/shoulder-pain.html" aria-label="Shoulder pain"><span class="bm-lbl">Shoulder</span></a>
+<a class="bm-dot" style="top:24%;left:70%" href="conditions/shoulder-pain.html" aria-label="Shoulder pain"><span class="bm-lbl">Shoulder</span></a>
+<a class="bm-dot" style="top:43%;left:50%" href="conditions/back-pain.html" aria-label="Back pain"><span class="bm-lbl">Back</span></a>
+<a class="bm-dot" style="top:70%;left:41%" href="conditions/knee-pain.html" aria-label="Knee pain"><span class="bm-lbl">Knee</span></a>
+<a class="bm-dot" style="top:70%;left:59%" href="conditions/knee-pain.html" aria-label="Knee pain"><span class="bm-lbl">Knee</span></a>
+</div>
+<div class="hurtcopy">
+<h3>Not sure, or it’s somewhere else?</h3>
+<p style="max-width:52ch">Pain that shoots down a leg is often <a href="conditions/sciatica.html">sciatica</a>. Hurt in a crash or at work? Those have their own path. Pick whatever fits:</p>
+<div class="pillrow">
+<a href="conditions/back-pain.html">Back</a><a href="conditions/neck-pain.html">Neck &amp; whiplash</a><a href="conditions/shoulder-pain.html">Shoulder</a><a href="conditions/knee-pain.html">Knee</a><a href="conditions/sciatica.html">Sciatica</a><a href="conditions/auto-accident-injury.html">Car accident</a><a href="conditions/work-injury.html">Work injury</a><a href="conditions/">See all →</a>
+</div>
+</div>
+</div>
 <div class="grid g3">
 <div class="card"><span class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="#0C2457" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.6" r="2.1"/><path d="M12 6.7v6.8M8 10.5c0-2 1.6-3 4-3s4 1 4 3M9 20l3-6.5 3 6.5"/><circle cx="12" cy="11" r="1.1" fill="#F7B32B" stroke="none"/></svg></span><h3><a href="conditions/" style="color:var(--navy);text-decoration:none">Everyday pain</a></h3><p>Back, neck, shoulder, knee — pain that's changing how you move or sleep.</p><p><a class="more" href="conditions/">Find your condition →</a></p></div>
 <div class="card"><span class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="#0C2457" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13l1.4-4.2A2 2 0 0 1 7.3 7.4h9.4a2 2 0 0 1 1.9 1.4L20 13v4.5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V17H7v.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M4 13h16"/><circle cx="7.5" cy="15.2" r="1" fill="#F7B32B" stroke="none"/><circle cx="16.5" cy="15.2" r="1" fill="#F7B32B" stroke="none"/></svg></span><h3><a href="conditions/auto-accident-injury.html" style="color:var(--navy);text-decoration:none">Car accident injury</a></h3><p>Michigan no-fault rehabilitation with claim verification and the documentation your case file needs.</p><p><a class="more" href="conditions/auto-accident-injury.html">Auto injury program →</a></p></div>
@@ -415,6 +496,27 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <div style="margin-top:20px;background:var(--sky);border:1px solid #CDDCFB;border-radius:16px;padding:18px 20px"><p style="margin:0;font-weight:700;color:var(--navy)">Expanding June 2027</p><p style="margin:6px 0 0;font-size:15px;color:var(--mut)">The clinic opens February 2027. <a href="services/occupational-therapy.html">Occupational Therapy</a> and <a href="services/spinal-decompression.html">Nonsurgical Spinal Decompression</a> are planned to follow in <b>June 2027</b> — described honestly now, and not bookable yet. Chiropractic care is a planned <a href="services/chiropractic-care.html">February 2027 addition</a>.</p></div>
 </section>
 
+<!-- INTERACTIVE · RECOVERY EXPLORER -->
+<section class="wrap" id="recovery">
+<span class="sectlabel">Know what’s ahead</span>
+<h2>Recovery, week by week</h2>
+<p style="max-width:62ch">Facing surgery, or just had one? Slide through what a typical recovery looks like — so there are no surprises.</p>
+<div class="rex" id="rex">
+<div class="procs" role="tablist" aria-label="Choose a procedure">
+<button type="button" class="proc" data-proc="knee" aria-pressed="true">Knee replacement</button>
+<button type="button" class="proc" data-proc="rotator" aria-pressed="false">Rotator cuff repair</button>
+<button type="button" class="proc" data-proc="acl" aria-pressed="false">ACL reconstruction</button>
+</div>
+<div class="slab" id="rex-labels"></div>
+<input type="range" id="rex-range" min="0" max="3" step="1" value="0" aria-label="Recovery stage">
+<div class="phasecard"><p class="pt" id="rex-t"> </p><h3 id="rex-h"> </h3><p id="rex-b"> </p></div>
+<div class="rexfoot">
+<p class="rexnote">Averages, not promises — your surgeon’s protocol and your own re-tests set the real pace.</p>
+<a class="rexlink" id="rex-link" href="guides/knee-replacement-recovery-timeline.html">Full timeline &rarr;</a>
+</div>
+</div>
+</section>
+
 <!-- 5 · PEOPLE / ACCOUNTABILITY -->
 <section class="wrap" id="who">
 <div class="band">
@@ -438,7 +540,23 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <section class="wrap" id="insurance">
 <h2>Cost, coverage &amp; visiting</h2>
 <div class="answer">The short version: we’ll be in-network with the major plans (confirmed before we open), and Michigan auto no-fault and workers’ comp are welcome too. Whatever you have, we check your exact benefits before your first visit — so there are no surprises.</div>
-<div class="grid g3" style="margin-top:14px">
+<div class="quiz" id="payquiz" role="group" aria-label="Who pays for your care? quick check">
+<p class="qq">Not sure who pays? Let’s find out.</p>
+<p class="qsub">One tap — what brought you in?</p>
+<div class="opts">
+<button type="button" class="opt" data-lane="nofault">A car accident<small>Michigan no-fault (PIP)</small></button>
+<button type="button" class="opt" data-lane="workers">An injury at work<small>Workers’ compensation</small></button>
+<button type="button" class="opt" data-lane="commercial">Everyday pain, no single cause<small>Health insurance or self-pay</small></button>
+<button type="button" class="opt" data-lane="notsure">I’m honestly not sure<small>We’ll help you sort it</small></button>
+</div>
+<div class="result" aria-live="polite">
+<span class="rlane" id="q-lane"></span>
+<p id="q-text"></p>
+<a class="cta-btn" id="q-cta" href="#">Learn more</a>
+<button type="button" class="again" id="q-again">Start over</button>
+</div>
+</div>
+<div class="grid g3" style="margin-top:18px">
 <div class="card"><h3>Before your first visit</h3><p>We verify your exact benefits — deductible, visit limits, referral requirements — and tell you what to expect in writing. No surprise billing.</p></div>
 <div class="card"><h3>Auto accident (no-fault)</h3><p>Reasonably necessary accident care is covered with no cap on the number of visits; what you pay depends on your policy's PIP level and deductible. We verify the claim first.</p><p><a class="more" href="conditions/auto-accident-injury.html">How PIP coverage works →</a></p></div>
 <div class="card"><h3>No insurance / benefits ran out</h3><p>Flat self-pay rates, published before opening — and a plan prioritized around what matters most.</p></div>
@@ -560,6 +678,92 @@ Call or text <a href="tel:+15868008488">(586) 800-8488</a> — the line is live 
  }, true);
 })();
 </script>
-<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6add6ed6912bacec159e1d21"></script><script defer src="assets/proof-visual.js"></script>
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6add6ed6912bacec159e1d21"></script><script>
+/* Interactive homepage modules + scroll reveal (progressive enhancement) */
+(function(){
+ var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+ /* --- scroll reveal: only hide below-fold blocks, so no flash above the fold --- */
+ if ('IntersectionObserver' in window && !reduce) {
+  var io = new IntersectionObserver(function(es){
+   es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
+  document.querySelectorAll('main > section').forEach(function(el){
+   var r = el.getBoundingClientRect();
+   if (r.top > window.innerHeight * 0.9) { el.classList.add('reveal'); io.observe(el); }
+  });
+ }
+
+ /* --- who-pays quiz --- */
+ var quiz = document.getElementById('payquiz');
+ if (quiz) {
+  var LANES = {
+   nofault:   {tag:'Michigan no-fault (PIP)', text:'Michigan no-fault usually pays for reasonably necessary accident care — often $0 out of pocket, regardless of fault. We verify your claim before your first visit.', cta:'How no-fault coverage works', href:'conditions/auto-accident-injury.html'},
+   workers:   {tag:'Workers’ compensation', text:'A work injury is generally covered by workers’ comp. Who picks the clinic and the 28-day rule matter — here’s how to keep your claim and your recovery on track.', cta:'Your workers’ comp rights', href:'guides/workers-comp-physical-therapy-michigan.html'},
+   commercial:{tag:'Health insurance or self-pay', text:'Your health plan applies — we verify your copay, deductible, and visit limit before visit one, and publish flat self-pay rates if benefits run out. No surprise bills.', cta:'See costs & coverage', href:'insurance.html'},
+   notsure:   {tag:'Let’s figure it out', text:'No problem — our 60-second coverage checker walks you through a few questions and points you to the right lane.', cta:'Open the coverage checker', href:'tools/coverage-checker.html'}
+  };
+  quiz.querySelectorAll('.opt').forEach(function(btn){
+   btn.addEventListener('click', function(){
+    var L = LANES[btn.getAttribute('data-lane')]; if(!L) return;
+    quiz.querySelector('#q-lane').textContent = L.tag;
+    quiz.querySelector('#q-text').textContent = L.text;
+    var c = quiz.querySelector('#q-cta'); c.textContent = L.cta; c.setAttribute('href', L.href);
+    quiz.classList.add('answered');
+   });
+  });
+  quiz.querySelector('#q-again').addEventListener('click', function(){ quiz.classList.remove('answered'); });
+ }
+
+ /* --- recovery explorer --- */
+ var rex = document.getElementById('rex');
+ if (rex) {
+  var DATA = {
+   knee: {link:'guides/knee-replacement-recovery-timeline.html', phases:[
+    {t:'Weeks 0–2', h:'Protect, move, straighten', b:'Walking short distances with support, managing swelling, and working hard on getting the knee fully straight. Therapy usually starts within days, 2–3× a week.'},
+    {t:'Weeks 2–6', h:'Bend and walk normally', b:'Bending climbs toward 110–120°, the walker gives way to a cane and then nothing, and driving usually returns around weeks 4–6.'},
+    {t:'Weeks 6–12', h:'Build the engine', b:'Stairs step-over-step, longer walks, and real strength work. Some night aching and stiffness after sitting are still normal here.'},
+    {t:'Months 3–12', h:'The payoff', b:'By month 3 most daily life is back, and strength and confidence keep compounding out to a year.'}
+   ]},
+   rotator: {link:'guides/rotator-cuff-surgery-vs-therapy.html', phases:[
+    {t:'Weeks 0–6', h:'Protect the repair', b:'The tendon is healing to bone, so the arm stays in a sling with gentle passive motion only — no active lifting yet.'},
+    {t:'Weeks 6–12', h:'Motion returns', b:'Active-assisted and then active range of motion begins, and the sling comes off on your surgeon’s schedule.'},
+    {t:'Months 3–4', h:'Strength begins', b:'Light resistance starts once motion and healing allow — slow and steady protects the repair.'},
+    {t:'Months 4–9+', h:'Back to activity', b:'Progressive strengthening toward work and sport. Full recovery often takes 6–12 months — patience pays here.'}
+   ]},
+   acl: {link:'services/sports-injury-rehabilitation.html', phases:[
+    {t:'Weeks 0–2', h:'Calm it down', b:'Reduce swelling, get the knee fully straight, and wake the quad back up — the foundation everything builds on.'},
+    {t:'Weeks 2–6', h:'Walk and bend', b:'Normal walking without crutches, stationary bike, and steady return of control and motion.'},
+    {t:'Months 2–4', h:'Strength and control', b:'Progressive strengthening and single-leg control, with light jogging only when your protocol clears it.'},
+    {t:'Months 9–12', h:'Return to sport', b:'Only after strength and hop testing clear you. Rushing this stage is the biggest driver of re-tears.'}
+   ]}
+  };
+  var cur = 'knee';
+  var range = rex.querySelector('#rex-range');
+  var labs = rex.querySelector('#rex-labels');
+  function render(){
+   var ph = DATA[cur].phases, i = +range.value;
+   rex.querySelector('#rex-t').textContent = ph[i].t;
+   rex.querySelector('#rex-h').textContent = ph[i].h;
+   rex.querySelector('#rex-b').textContent = ph[i].b;
+   rex.querySelector('#rex-link').setAttribute('href', DATA[cur].link);
+   labs.querySelectorAll('span').forEach(function(s,idx){ s.classList.toggle('on', idx === i); });
+  }
+  function buildLabels(){
+   labs.innerHTML = DATA[cur].phases.map(function(ph){ return '<span>'+ph.t+'</span>'; }).join('');
+  }
+  rex.querySelectorAll('.proc').forEach(function(b){
+   b.addEventListener('click', function(){
+    cur = b.getAttribute('data-proc');
+    rex.querySelectorAll('.proc').forEach(function(x){ x.setAttribute('aria-pressed', x===b ? 'true':'false'); });
+    range.value = 0; buildLabels(); render();
+   });
+  });
+  range.addEventListener('input', render);
+  buildLabels(); render();
+ }
+})();
+</script>
+<script defer src="assets/proof-visual.js"></script>
 </body>
 </html>
