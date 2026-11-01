@@ -393,6 +393,30 @@ gtag('config', 'G-D3KG2Y4Z9V');
  }, true);
 })();
 </script>
-<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6add6ed6912bacec159e1d21"></script><script defer src="../assets/proof-visual.js"></script>
+<script>
+/* Quiet, user-invoked chat launcher. The LeadConnector widget loads only on click —
+   no unsolicited teaser, no auto-open over content, and not on the appointment form.
+   Same widget id / GHL config as before; the CRM form mirror is separate and untouched. */
+(function(){
+ if(/(^|\/)request-appointment\.html$/.test(location.pathname)) return;
+ var W='6add6ed6912bacec159e1d21', loaded=false;
+ function load(){ if(loaded) return; loaded=true;
+  var s=document.createElement('script');
+  s.src='https://widgets.leadconnectorhq.com/loader.js';
+  s.setAttribute('data-resources-url','https://widgets.leadconnectorhq.com/chat-widget/loader.js');
+  s.setAttribute('data-widget-id',W);
+  document.body.appendChild(s);
+ }
+ var st=document.createElement('style');
+ st.textContent='#proofchat{position:fixed;right:20px;bottom:20px;z-index:65;display:inline-flex;align-items:center;gap:8px;background:#0C2457;color:#fff;border:none;border-radius:999px;padding:12px 18px;font:600 14.5px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;box-shadow:0 10px 28px -10px rgba(12,36,87,.55);cursor:pointer;transition:background .15s ease}#proofchat:hover{background:#1948E3}#proofchat:focus-visible{outline:2.5px solid #1948E3;outline-offset:3px}#proofchat svg{width:18px;height:18px;flex:0 0 auto}@media(max-width:719px){#proofchat{right:14px;bottom:calc(72px + env(safe-area-inset-bottom,0px))}}@media(prefers-reduced-motion:reduce){#proofchat{transition:none}}';
+ document.head.appendChild(st);
+ var b=document.createElement('button');
+ b.type='button'; b.id='proofchat'; b.setAttribute('aria-label','Open chat to ask Proof a question');
+ b.innerHTML='<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v11H9l-4 3v-3H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Questions?</span>';
+ b.addEventListener('click', function(){ load(); b.style.display='none'; });
+ function add(){ if(document.body) document.body.appendChild(b); }
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', add); else add();
+})();
+</script><script defer src="../assets/proof-visual.js"></script>
 </body>
 </html>

@@ -287,9 +287,9 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <details><summary>How soon after a sprain should treatment start?</summary><div class="a"><p>Within the first week. Early protected movement beats immobilization for nearly all sprains — and early guidance prevents the stiffness and guarding that stretch recovery out.</p></div></details><details><summary>What does &#x27;return-to-play testing&#x27; mean?</summary><div class="a"><p>Objective criteria — strength within 90% of the other side, pain-free sport movements, hop/agility benchmarks — instead of a calendar guess. We share the numbers with athletes, parents, and coaches.</p></div></details><details><summary>Do you work with high school athletes?</summary><div class="a"><p>Yes — including evening hours that fit practice schedules, communication with athletic trainers, and documentation schools require.</p></div></details>
 </section>
 <section class="wrap" style="padding-top:0">
-<div class="band"><h2 style="font-size:22px">Opening February 2027 — evaluations bookable now</h2>
+<div class="band"><h2 style="font-size:22px">Opening February 2027 — request an appointment</h2>
 <p>Request an appointment and a real person follows up within one business day to talk through your sports injury and set up your first visit.</p>
-<a class="cta-btn" href="../contact.html">Request an appointment</a></div>
+<a class="cta-btn" href="../request-appointment.html">Request an appointment</a></div>
 <p style="margin-top:16px;font-size:13px"><b>Related:</b></p><div><a class="pill" href="back-pain.html" style="text-decoration:none">Back Pain</a><a class="pill" href="neck-pain.html" style="text-decoration:none">Neck Pain & Whiplash</a><a class="pill" href="sciatica.html" style="text-decoration:none">Sciatica</a><a class="pill" href="knee-pain.html" style="text-decoration:none">Knee Pain</a><a class="pill" href="shoulder-pain.html" style="text-decoration:none">Shoulder Pain</a><a class="pill" href="post-surgical-rehab.html" style="text-decoration:none">Post-Surgical Rehab</a><a class="pill" href="work-injury.html" style="text-decoration:none">Work Injury Rehab</a><a class="pill" href="hip-pain.html" style="text-decoration:none">Hip Pain</a><a class="pill" href="foot-ankle-pain.html" style="text-decoration:none">Foot & Ankle Pain</a><a class="pill" href="elbow-wrist-hand-pain.html" style="text-decoration:none">Elbow, Wrist & Hand Pain</a><a class="pill" href="headaches-migraines.html" style="text-decoration:none">Headaches & Neck-Related Migraines</a><a class="pill" href="dizziness-vertigo.html" style="text-decoration:none">Dizziness & Vertigo</a><a class="pill" href="arthritis-joint-pain.html" style="text-decoration:none">Arthritis & Joint Pain</a><a class="pill" href="herniated-disc.html" style="text-decoration:none">Herniated Disc</a><a class="pill" href="chronic-pain.html" style="text-decoration:none">Chronic Pain Rehab</a></div>
 </section>
 </main>
@@ -358,6 +358,30 @@ gtag('config', 'G-D3KG2Y4Z9V');
  }, true);
 })();
 </script>
-<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6add6ed6912bacec159e1d21"></script><script defer src="../assets/proof-visual.js"></script>
+<script>
+/* Quiet, user-invoked chat launcher. The LeadConnector widget loads only on click —
+   no unsolicited teaser, no auto-open over content, and not on the appointment form.
+   Same widget id / GHL config as before; the CRM form mirror is separate and untouched. */
+(function(){
+ if(/(^|\/)request-appointment\.html$/.test(location.pathname)) return;
+ var W='6add6ed6912bacec159e1d21', loaded=false;
+ function load(){ if(loaded) return; loaded=true;
+  var s=document.createElement('script');
+  s.src='https://widgets.leadconnectorhq.com/loader.js';
+  s.setAttribute('data-resources-url','https://widgets.leadconnectorhq.com/chat-widget/loader.js');
+  s.setAttribute('data-widget-id',W);
+  document.body.appendChild(s);
+ }
+ var st=document.createElement('style');
+ st.textContent='#proofchat{position:fixed;right:20px;bottom:20px;z-index:65;display:inline-flex;align-items:center;gap:8px;background:#0C2457;color:#fff;border:none;border-radius:999px;padding:12px 18px;font:600 14.5px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;box-shadow:0 10px 28px -10px rgba(12,36,87,.55);cursor:pointer;transition:background .15s ease}#proofchat:hover{background:#1948E3}#proofchat:focus-visible{outline:2.5px solid #1948E3;outline-offset:3px}#proofchat svg{width:18px;height:18px;flex:0 0 auto}@media(max-width:719px){#proofchat{right:14px;bottom:calc(72px + env(safe-area-inset-bottom,0px))}}@media(prefers-reduced-motion:reduce){#proofchat{transition:none}}';
+ document.head.appendChild(st);
+ var b=document.createElement('button');
+ b.type='button'; b.id='proofchat'; b.setAttribute('aria-label','Open chat to ask Proof a question');
+ b.innerHTML='<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v11H9l-4 3v-3H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Questions?</span>';
+ b.addEventListener('click', function(){ load(); b.style.display='none'; });
+ function add(){ if(document.body) document.body.appendChild(b); }
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', add); else add();
+})();
+</script><script defer src="../assets/proof-visual.js"></script>
 </body>
 </html>
