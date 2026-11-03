@@ -299,6 +299,31 @@ a.pill:hover{background:#D7E3FB}
 .rex .rexfoot{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;justify-content:space-between;margin-top:16px}
 .rex .rexnote{font-size:12.5px;color:var(--mut);margin:0;max-width:52ch}
 .rex .rexlink{font-size:14px;font-weight:700;color:var(--blue);text-decoration:none;white-space:nowrap}
+
+/* therapeutic "moment of relief" module */
+.relief{background:linear-gradient(160deg,#fff,var(--ice));border:1px solid var(--line);border-radius:22px;padding:26px 22px;margin-top:8px}
+.relief .rpills{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:20px}
+.relief .rpill{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:10px 16px;font:inherit;font-size:14.5px;font-weight:700;color:var(--navy);cursor:pointer;transition:all .15s}
+.relief .rpill:hover{border-color:var(--blue)}
+.relief .rpill[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.relief .rstage{display:grid;gap:22px;align-items:center}
+@media(min-width:720px){.relief .rstage{grid-template-columns:230px 1fr}}
+.relief .rvis{position:relative;width:200px;height:200px;margin:0 auto;display:grid;place-items:center}
+.relief .ring{position:absolute;inset:0;margin:auto;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 50% 38%,#3a63ee,#0C2457);box-shadow:0 18px 44px -18px rgba(12,36,87,.6);transform:scale(.85);transition:transform 4s ease-in-out}
+.relief .rnum{position:relative;z-index:2;color:#fff;font-family:var(--disp);font-weight:800;font-size:38px;letter-spacing:-.02em;text-shadow:0 2px 10px rgba(0,0,0,.3);min-height:46px;display:flex;align-items:center}
+.relief .rbody h3{font-size:22px;margin:0 0 4px}
+.relief .rphase{font-size:17px;color:var(--navy);font-weight:700;min-height:24px;margin:2px 0}
+.relief .rcue{font-size:15px;color:var(--mut);min-height:40px;margin:0 0 8px;max-width:48ch}
+.relief .rprog{font-size:12.5px;color:var(--mut);margin:0 0 14px;min-height:16px}
+.relief .rstart{background:var(--gold);color:var(--navy);border:none;border-radius:999px;font:inherit;font-weight:800;font-size:15.5px;padding:13px 28px;cursor:pointer;transition:background .15s;min-width:120px}
+.relief .rstart:hover{background:var(--gold-soft)}
+.relief .rstart:focus-visible{outline:2.5px solid var(--blue);outline-offset:3px}
+.relief .rbook{margin-top:22px;background:var(--navy);border-radius:16px;padding:20px 22px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between}
+.relief .rbook p{color:#C6D4F2;margin:0;font-size:14.5px;max-width:48ch}
+.relief .rbook .cta-btn{background:var(--gold);color:var(--navy);white-space:nowrap}
+.relief .rbook .cta-btn:hover{background:var(--gold-soft)}
+.relief .rnote{font-size:12.5px;color:var(--mut);margin:14px 2px 0}
+@media(prefers-reduced-motion:reduce){.relief .ring{transition:none!important}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "MedicalClinic", "name": "Proof Physical Therapy", "url": "https://www.proofphysicaltherapy.com", "email": "hello@proofphysicaltherapy.com", "telephone": "+1-586-800-8488", "description": "Independent outpatient physical therapy clinic in Sterling Heights, Michigan — auto no-fault specialists, same-week evaluations, objective functional testing. Opening February 2027.", "address": {"@type": "PostalAddress", "streetAddress": "44056 Mound Rd, Suite 103", "addressLocality": "Sterling Heights", "addressRegion": "MI", "postalCode": "48314", "addressCountry": "US"}, "areaServed": [{"@type": "AdministrativeArea", "name": "Macomb County, MI"}, {"@type": "AdministrativeArea", "name": "Oakland County, MI"}], "medicalSpecialty": "Physiotherapy", "image": "https://www.proofphysicaltherapy.com/assets/og-card.png", "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Physical therapy services", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Orthopedic Physical Therapy", "url": "https://www.proofphysicaltherapy.com/services/orthopedic-physical-therapy.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Functional Capacity Evaluations (FCE)", "url": "https://www.proofphysicaltherapy.com/services/functional-capacity-evaluation.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Work Injury Rehabilitation", "url": "https://www.proofphysicaltherapy.com/services/work-injury-rehabilitation.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Auto Accident (No-Fault) Rehabilitation", "url": "https://www.proofphysicaltherapy.com/conditions/auto-accident-injury.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Post-Surgical Rehabilitation", "url": "https://www.proofphysicaltherapy.com/services/post-surgical-rehabilitation.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Shockwave Therapy (ESWT)", "url": "https://www.proofphysicaltherapy.com/services/shockwave-therapy.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Sports Injury Rehabilitation", "url": "https://www.proofphysicaltherapy.com/services/sports-injury-rehabilitation.html"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Balance & Fall Prevention", "url": "https://www.proofphysicaltherapy.com/services/balance-fall-prevention-therapy.html"}}]}, "geo": {"@type": "GeoCoordinates", "latitude": 42.6172148, "longitude": -83.0520611}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "07:00", "closes": "19:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "13:00"}]}, {"@type": "WebSite", "name": "Proof Physical Therapy", "alternateName": "Proof PT", "url": "https://www.proofphysicaltherapy.com/"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "When does Proof Physical Therapy open?", "acceptedAnswer": {"@type": "Answer", "text": "Proof opens February 2027 at 44056 Mound Rd, Suite 103, Sterling Heights, MI. You can request an appointment now and a real person follows up within one business day — it isn't a booked appointment yet."}}, {"@type": "Question", "name": "Do I need a referral to start physical therapy in Michigan?", "acceptedAnswer": {"@type": "Answer", "text": "Usually not to start. Michigan direct access allows up to 10 visits or 21 days of treatment without a physician referral; some insurance plans still require one for payment, so we verify your coverage first."}}, {"@type": "Question", "name": "What will physical therapy cost, and do you take my insurance?", "acceptedAnswer": {"@type": "Answer", "text": "Cost depends on your plan and the care you need. Proof is in-network with Medicare, BCBSM/BCN, Priority Health, HAP, Aetna, Cigna, UnitedHealthcare, and Michigan Medicaid; Michigan no-fault and workers' comp follow their own rules. We verify your specific benefits before your first visit."}}, {"@type": "Question", "name": "Do you have more than one location?", "acceptedAnswer": {"@type": "Answer", "text": "No — Proof is one independent clinic in Sterling Heights, serving nearby Metro Detroit communities. We don't operate other branches."}}, {"@type": "Question", "name": "What happens at a first visit?", "acceptedAnswer": {"@type": "Answer", "text": "A real evaluation with objective baseline measurements, your questions answered, and a plan built around your goal."}}]}]}</script>
 <style>
@@ -480,6 +505,36 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <div class="card"><span class="cico"><svg viewBox="0 0 24 24" fill="none" stroke="#0C2457" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.6" r="2"/><path d="M12 6.8v6M7 10h10M9 20l3-7 3 7"/><path d="M4.5 10.2h2.2M17.3 10.2h2.2" stroke="#F7B32B"/></svg></span><h3><a href="programs/balance-fall-prevention.html" style="color:var(--navy);text-decoration:none">Balance &amp; mobility</a></h3><p>Standardized fall-risk assessment and training that moves the number — for you or a parent.</p><p><a class="more" href="programs/balance-fall-prevention.html">Balance program →</a></p></div>
 </div>
 <p class="referrer-line"><b>Sending us a patient?</b> Our planned referral workflow gives physicians, attorneys, and employers prompt access, your protocol on file, and milestone progress reports to your office. <a href="#referrers">Jump to referrer details →</a></p>
+</section>
+
+<!-- INTERACTIVE · MOMENT OF RELIEF -->
+<section class="wrap" id="relief-sec">
+<span class="sectlabel">A moment of relief</span>
+<h2>Try a little relief — right now</h2>
+<p style="max-width:62ch">Four therapist-style resets you can do anywhere in under a minute — for a body that’s tight and a mind that’s wound up. Press start and we’ll guide the timing.</p>
+<div class="relief" id="relief">
+<div class="rpills" role="tablist" aria-label="Choose a reset">
+<button type="button" class="rpill" data-act="breathe" aria-pressed="true">Breathe</button>
+<button type="button" class="rpill" data-act="neck" aria-pressed="false">Neck &amp; shoulders</button>
+<button type="button" class="rpill" data-act="posture" aria-pressed="false">Posture reset</button>
+<button type="button" class="rpill" data-act="tension" aria-pressed="false">Soften tension</button>
+</div>
+<div class="rstage">
+<div class="rvis"><div class="ring" id="rring"></div><div class="rnum" id="rnum"></div></div>
+<div class="rbody">
+<h3 id="rtitle">Box breathing</h3>
+<p class="rphase" id="rphase" aria-live="polite">Ready when you are</p>
+<p class="rcue" id="rcue">A simple 4-count breath to settle your nervous system. Follow the circle.</p>
+<p class="rprog" id="rprog"></p>
+<button type="button" class="rstart" id="rstart">Start</button>
+</div>
+</div>
+<div class="rbook">
+<p id="rbookmsg">Felt even a little better? That’s a taste of care built around <em>you</em> — measured, gentle, repeatable.</p>
+<a class="cta-btn" href="request-appointment.html">Request an appointment</a>
+</div>
+<p class="rnote">General wellness, not medical advice or treatment. Move gently and ease off if anything hurts. A real person follows up within one business day.</p>
+</div>
 </section>
 
 <!-- 4 · PRIORITY CARE -->
@@ -676,6 +731,68 @@ Call or text <a href="tel:+15868008488">(586) 800-8488</a> — the line is live 
   var a = e.target && e.target.closest && e.target.closest('a[href^="tel:"]');
   if (a) gtag('event', 'tel_click');
  }, true);
+})();
+</script>
+<script>
+/* Moment-of-relief guided micro-resets (progressive enhancement) */
+(function(){
+ var R=document.getElementById('relief'); if(!R) return;
+ var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+ var ring=R.querySelector('#rring'), num=R.querySelector('#rnum'), title=R.querySelector('#rtitle'),
+     phase=R.querySelector('#rphase'), cue=R.querySelector('#rcue'), prog=R.querySelector('#rprog'),
+     start=R.querySelector('#rstart');
+ var ACTS={
+  breathe:{title:'Box breathing',kind:'breath',cue:'A simple 4-count breath to settle your nervous system. Follow the circle.',
+    cycles:3,phases:[['Breathe in',4,'grow'],['Hold',4,'hold'],['Breathe out',4,'shrink'],['Hold',4,'hold']]},
+  neck:{title:'Neck & shoulders',kind:'steps',steps:[
+    ['Slow chin tucks',15,'Gently draw your chin straight back, like making a soft double chin. Easy, slow reps.'],
+    ['Ear toward shoulder',18,'Tilt your head toward one shoulder, then the other. No force — just a gentle stretch.'],
+    ['Shoulder rolls',15,'Roll your shoulders backward, slow and full, breathing as you go.'],
+    ['Let them drop',8,'Exhale and let your shoulders fall away from your ears.']]},
+  posture:{title:'Posture reset',kind:'steps',steps:[
+    ['Stand tall',10,'Feet hip-width, weight even, crown of your head floating up.'],
+    ['Reach overhead',15,'Reach both arms up and breathe in through your nose.'],
+    ['Open the chest',12,'Hands on hips, gently open the chest and look slightly up.'],
+    ['Stack up slowly',15,'Roll down toward the floor, then restack one vertebra at a time.']]},
+  tension:{title:'Soften tension',kind:'steps',steps:[
+    ['Unclench your jaw',8,'Let your teeth part and your tongue soften off the roof of your mouth.'],
+    ['Drop your shoulders',8,'Notice where you’re bracing — and let it go.'],
+    ['Open your hands',8,'Release your grip and spread your fingers wide.'],
+    ['One long breath out',8,'Slow exhale. Nothing to fix right now.']]}
+ };
+ var cur='breathe', running=false, t=null, cdiv=null;
+ function clearTimers(){ if(t){clearTimeout(t);t=null;} if(cdiv){clearInterval(cdiv);cdiv=null;} }
+ function countdown(secs){ var n=secs; num.textContent=n; if(cdiv)clearInterval(cdiv);
+   cdiv=setInterval(function(){ n--; if(n<=0){clearInterval(cdiv);cdiv=null;} else num.textContent=n; },1000); }
+ function setAct(k){ running=false; clearTimers(); start.textContent='Start'; cur=k;
+   R.querySelectorAll('.rpill').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-act')===k?'true':'false'); });
+   var a=ACTS[k]; title.textContent=a.title; phase.textContent='Ready when you are';
+   cue.textContent = a.kind==='breath' ? a.cue : 'Four gentle steps — we’ll time each one.';
+   num.textContent=''; prog.textContent='';
+   ring.style.transition = reduce?'none':'transform .4s ease'; ring.style.transform = a.kind==='breath'?'scale(.85)':'scale(1)';
+ }
+ function finish(){ running=false; clearTimers(); start.textContent='Again';
+   phase.textContent='Nice work.'; cue.textContent='That’s the idea — small, measured, repeatable. Now imagine a plan built around what your body actually needs.';
+   num.textContent=''; prog.textContent=''; ring.style.transition='transform .5s ease'; ring.style.transform='scale(.92)'; }
+ function runBreath(a){ var cyc=0, pi=0;
+   (function step(){ if(!running) return;
+     if(pi>=a.phases.length){ pi=0; cyc++; if(cyc>=a.cycles){ finish(); return; } }
+     var p=a.phases[pi]; phase.textContent=p[0]; cue.textContent=''; prog.textContent='Cycle '+(cyc+1)+' of '+a.cycles;
+     if(!reduce){ if(p[2]==='grow'){ ring.style.transition='transform '+p[1]+'s ease-in-out'; ring.style.transform='scale(1.25)'; }
+       else if(p[2]==='shrink'){ ring.style.transition='transform '+p[1]+'s ease-in-out'; ring.style.transform='scale(.8)'; } }
+     countdown(p[1]); pi++; t=setTimeout(step, p[1]*1000);
+   })();
+ }
+ function runSteps(a){ var i=0;
+   (function step(){ if(!running) return; if(i>=a.steps.length){ finish(); return; }
+     var s=a.steps[i]; phase.textContent=s[0]; cue.textContent=s[2]; prog.textContent='Step '+(i+1)+' of '+a.steps.length;
+     countdown(s[1]); i++; t=setTimeout(step, s[1]*1000);
+   })();
+ }
+ start.addEventListener('click', function(){ if(running){ setAct(cur); return; }
+   running=true; start.textContent='Stop'; var a=ACTS[cur]; if(a.kind==='breath') runBreath(a); else runSteps(a); });
+ R.querySelectorAll('.rpill').forEach(function(b){ b.addEventListener('click', function(){ setAct(b.getAttribute('data-act')); }); });
+ setAct('breathe');
 })();
 </script>
 <script>
