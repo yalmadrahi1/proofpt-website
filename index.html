@@ -478,7 +478,7 @@ gtag('config', 'G-D3KG2Y4Z9V');
 <p class="rcue" id="rcue">A simple 4-count breath to settle your nervous system. Follow the circle.</p>
 <p class="rprog" id="rprog"></p>
 <button type="button" class="rstart" id="rstart">Start</button>
-<div class="rfin" id="rfin" hidden><a class="cta-btn" href="request-appointment.html">Book your first visit &rarr;</a> <span class="rfinsub">A real person replies within one business day.</span></div>
+<div class="rfin" id="rfin" hidden><a class="cta-btn" href="request-appointment.html">Request your first visit &rarr;</a> <span class="rfinsub">A real person replies within one business day.</span></div>
 </div>
 </div>
 <div class="rbook">
@@ -785,12 +785,13 @@ Call or text <a href="tel:+15868008488">(586) 800-8488</a> — the line is live 
  }
  function finish(){ running=false; clearTimers(); done++;
    start.textContent='Try another';
-   phase.textContent='Nice work — that’s '+done+(done===1?' reset done.':' resets done.');
-   cue.textContent='Small, measured, repeatable — that’s exactly how real recovery works.';
+   var hd=['Nice — one down.','Two down — your body’s thanking you.','You’re on a roll.'];
+   phase.textContent = hd[Math.min(done,3)-1];
+   cue.textContent='That little shift is what good PT does — aimed at exactly what’s holding you back.';
    num.textContent='✓'; prog.textContent='';
    ring.style.transition='transform .5s ease'; ring.style.transform='scale(.95)';
    if(rfin) rfin.hidden=false;
-   if(bookmsg) bookmsg.innerHTML='You just gave yourself a minute of care. Imagine that <em>every</em> visit — a plan built around you.';
+   if(bookmsg) bookmsg.innerHTML='That felt good because it was made for a body, not a spreadsheet. Your first visit works the same way — built around you.';
    if(rbook){ rbook.classList.remove('pulse'); void rbook.offsetWidth; rbook.classList.add('pulse'); }
    try{ R.querySelector('#rfin .cta-btn').focus({preventScroll:true}); }catch(e){} }
  function runBreath(a){ var cyc=0, pi=0;
