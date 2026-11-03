@@ -741,6 +741,19 @@ Call or text <a href="tel:+15868008488">(586) 800-8488</a> — the line is live 
   var a = e.target && e.target.closest && e.target.closest('a[href^="tel:"]');
   if (a) gtag('event', 'tel_click');
  }, true);
+ /* interactive-module engagement — names only, never personal data */
+ document.addEventListener('proof:engage', function(e){
+  if (e.detail && e.detail.name) gtag('event', e.detail.name, e.detail.params || {});
+ });
+ document.addEventListener('click', function(e){
+  if (!e.target || !e.target.closest) return;
+  var dot = e.target.closest('.bm-dot');
+  if (dot) { gtag('event','bodymap_select',{area:(dot.getAttribute('aria-label')||'').replace(/ pain$/,'')}); return; }
+  var opt = e.target.closest('#payquiz .opt');
+  if (opt) { gtag('event','coverage_quiz',{lane:opt.getAttribute('data-lane')}); return; }
+  var proc = e.target.closest('#rex .proc');
+  if (proc) { gtag('event','recovery_explore',{procedure:proc.getAttribute('data-proc')}); return; }
+ }, true);
 })();
 </script>
 <script>
@@ -784,6 +797,7 @@ Call or text <a href="tel:+15868008488">(586) 800-8488</a> — the line is live 
    if(rfin) rfin.hidden=true; if(rbook) rbook.classList.remove('pulse'); if(bookmsg) bookmsg.innerHTML=bookOrig;
  }
  function finish(){ running=false; clearTimers(); done++;
+   try{document.dispatchEvent(new CustomEvent('proof:engage',{detail:{name:'relief_complete',params:{activity:cur}}}));}catch(_){}
    start.textContent='Try another';
    var hd=['Nice — one down.','Two down — your body’s thanking you.','You’re on a roll.'];
    phase.textContent = hd[Math.min(done,3)-1];
@@ -810,7 +824,7 @@ Call or text <a href="tel:+15868008488">(586) 800-8488</a> — the line is live 
    })();
  }
  start.addEventListener('click', function(){ if(running){ setAct(cur); return; }
-   running=true; start.textContent='Stop'; var a=ACTS[cur]; if(a.kind==='breath') runBreath(a); else runSteps(a); });
+   running=true; start.textContent='Stop'; try{document.dispatchEvent(new CustomEvent('proof:engage',{detail:{name:'relief_start',params:{activity:cur}}}));}catch(_){} var a=ACTS[cur]; if(a.kind==='breath') runBreath(a); else runSteps(a); });
  R.querySelectorAll('.rpill').forEach(function(b){ b.addEventListener('click', function(){ setAct(b.getAttribute('data-act')); }); });
  setAct('breathe');
 })();

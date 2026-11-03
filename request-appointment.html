@@ -404,7 +404,14 @@ f.addEventListener('submit',function(e){
       }catch(_e){}
       f.reset();
       document.dispatchEvent(new CustomEvent('proof:accepted',{detail:{form:'appt'}}));
-      say('Your request has been sent. A real person from Proof will follow up within one business day using the details you provided to talk through next steps. Proof opens February 2027, so this is not a confirmed appointment yet. Need us sooner? Call (586) 800-8488.','confirm');
+      (function(){ var m=document.getElementById('amsg'); if(!m){say('Your request has been sent.','confirm');return;}
+        m.hidden=false; m.className='confirm';
+        m.innerHTML='<strong style="display:block;font-size:17px;color:var(--navy);margin-bottom:6px">Your request is in ✓</strong>'
+         +'<p style="margin:0 0 10px">A real person from Proof follows up <b>within one business day</b> — using the details you gave — to talk through next steps.</p>'
+         +'<div style="font-size:14px;margin:0 0 10px"><b>What happens next</b><ol style="margin:6px 0 0 18px;padding:0;display:grid;gap:5px"><li>We reach out to hear what’s going on and answer your questions.</li><li>We check your benefits, so you know your cost before anything is scheduled.</li><li>When Proof opens in February 2027, we line up your first visit — an evaluation with a baseline you can see.</li></ol></div>'
+         +'<p style="margin:0 0 4px"><a href="guides/first-visit-checklist.html">Get ready: the first-visit checklist →</a></p>'
+         +'<p style="font-size:13px;color:var(--mut);margin:8px 0 0">Prefer to talk now? Call <a href="tel:+15868008488">(586) 800-8488</a>. This isn’t a confirmed appointment yet — Proof opens February 2027. Emergency? Call 911.</p>';
+        try{ m.setAttribute('tabindex','-1'); m.focus(); m.scrollIntoView({behavior:'smooth',block:'center'}); }catch(_e){} })();
       return;
     }
     if(res.ok&&res.d&&res.d.success===false){ /* explicit, readable rejection from the provider */
