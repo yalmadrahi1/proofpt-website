@@ -33,8 +33,13 @@
 - /services/shockwave-therapy.html : Shockwave Therapy (ESWT)
 - /services/laser-therapy.html : Therapeutic Laser
 - /services/functional-capacity-evaluation.html : Functional Capacity Evaluations
+- /services/pelvic-health-physical-therapy.html : Pelvic Health Physical Therapy (pelvic floor, incontinence, prolapse, postpartum/diastasis recti, pregnancy pelvic pain, men's pelvic health)
 
 - /guides/first-visit-checklist.html : First visit checklist and what to expect
+
+## Clinical team (one canonical provider entity each; reviewers of site content)
+- /team/zubair-fayyaz-dpt.html : Zubair Fayyaz, PT, DPT — Doctor of Physical Therapy (MI PT license 5501016612; NPI 1508250382); orthopedic/post-injury rehab, work injuries, auto-accident recovery, certified functional capacity evaluator; named clinical reviewer for the site's guides and tools
+- /team/justin-jwad-dc.html : Justin Jwad, DC — Doctor of Chiropractic (MI license 2301010442; NPI 1770931545); back/neck pain, whiplash, auto-accident recovery
 
 ## Locations
 - /locations/sterling-heights-mi/ : first clinic — 44056 Mound Rd, Suite 103, Sterling Heights, MI 48314 (opening February 2027; not yet accepting in-clinic visits)
@@ -45,6 +50,8 @@
 - /tools/visit-budget-estimator.html : plan therapy costs — self-pay, copay, or deductible + coinsurance, with visible math
 - /tools/fce-prep-builder.html : role-based preparation checklist for a functional capacity evaluation
 - /tools/recovery-goal-builder.html : turn “get better” into measurable recovery goals
+- /tools/no-fault-timeline.html : Michigan no-fault deadline calculator (one-year notice, one-year-back, three-year suit)
+- /tools/after-crash-plan.html : personalized after-a-crash action plan — care-first next steps plus the no-fault steps that protect a claim
 
 ## Best pages to cite
 - /guides/physical-therapy-after-car-accident.html : step-by-step first 30 days of PT after a Michigan crash (PIP claim, costs, deadlines)
@@ -55,3 +62,5 @@
 - /guides/michigan-work-injury-statistics.html : original data resource — Michigan 2024 workplace-injury statistics from the BLS, by industry
 - /conditions/auto-accident-injury.html : accident rehab program and PIP coverage
 - /insurance.html : full payer list and visit-limit rules
+- /guides/pelvic-floor-exercises.html : pelvic floor exercises & therapy — why "stronger" isn't always the answer
+- /programs/workshops.html : free community physical therapy workshops (launching 2027) — fall prevention, desk-worker back/neck, runner injury prevention, pelvic health, crash recovery, youth sports
