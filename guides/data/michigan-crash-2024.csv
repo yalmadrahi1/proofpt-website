@@ -1,0 +1,15 @@
+metric,geography,year,value,source
+Total traffic crashes,Michigan,2024,288880,Michigan Traffic Crash Facts
+People injured,Michigan,2024,71316,Michigan Traffic Crash Facts
+Injury crashes,Michigan,2024,51202,Michigan Traffic Crash Facts
+Property-damage-only crashes,Michigan,2024,236666,Michigan Traffic Crash Facts
+Fatalities,Michigan,2024,1099,Michigan Traffic Crash Facts
+Distracted-driving crashes,Michigan,2024,14439,Michigan State Police
+Fatalities,Southeast Michigan,2024,402,SEMCOG
+Serious injuries,Southeast Michigan,2024,2211,SEMCOG
+Rear-end share of crashes,Southeast Michigan,2024,31.0%,SEMCOG
+Angle or head-on-left-turn share,Southeast Michigan,2024,21.1%,SEMCOG
+Sideswipe share,Southeast Michigan,2024,20.8%,SEMCOG
+Single-vehicle share,Southeast Michigan,2024,18.4%,SEMCOG
+Head-on share,Southeast Michigan,2024,1.3%,SEMCOG
+Other or unknown share,Southeast Michigan,2024,7.3%,SEMCOG
