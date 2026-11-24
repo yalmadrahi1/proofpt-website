@@ -68,5 +68,6 @@
 - /guides/michigan-car-accident-statistics.html : original data resource — Michigan 2024 traffic-crash statistics (288,880 crashes, 71,316 injured); Southeast Michigan crash types, rear-end collisions lead at 31%
 - /conditions/auto-accident-injury.html : accident rehab program and PIP coverage
 - /insurance.html : full payer list and visit-limit rules
+- /proof-of-outcomes.html : how Proof measures recovery (objective testing baseline→discharge, return-to-work & function tracking) and its standards for publishing results — methodology now, measured results after opening
 - /guides/pelvic-floor-exercises.html : pelvic floor exercises & therapy — why "stronger" isn't always the answer
 - /programs/workshops.html : free community physical therapy workshops (launching 2027) — fall prevention, desk-worker back/neck, runner injury prevention, pelvic health, crash recovery, youth sports
