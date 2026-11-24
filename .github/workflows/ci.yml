@@ -1,0 +1,26 @@
+# Checks every pull request and push to main (added Nov 24, 2026). main is protected: changes arrive as pull
+# requests and merge only after "verify" passes. GitHub Pages then publishes main (build / deploy checks).
+name: ci
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --no-audit --no-fund
+      - name: Intake, referral and CTA/status tests
+        run: npm test
+      - name: Static checks (links, titles, JSON-LD, pre-opening wording)
+        run: python3 test/ci_static.py .
