@@ -45,3 +45,20 @@ Google advises waiting ~1 week after the rollout completes before comparing Sear
 ## 5. Owner / access-gated
 - Search Console checks (manual actions, security, indexing, the before/after pull) need the owner GSC account — not accessible this session.
 - No disavow change: toxic-link spam is ignored by Google absent a manual action (none present).
+
+## 6. Spam-policy (SpamBrain) audit — 2026-11-24
+SpamBrain is Google's ML spam-detection system; it enforces the published spam policies rather than a separate rulebook, so the site was audited against each policy.
+
+| Spam policy | Result |
+|---|---|
+| Hidden text / links | **clean** (0 — body markup scanned with CSS/JS excluded; no hidden or off-screen keyword text, no stuffed `sr-only`) |
+| Cloaking / crawler sniffing | **clean** (0 — no user-agent/Googlebot detection) |
+| Sneaky redirects (meta-refresh / JS) | **clean** (0) |
+| Keyword stuffing | **clean** — flagged terms are topical ("dry needling" on the dry-needling guide), navigational, or date chips; city pages name their city across title/meta/schema/body as expected, not stuffed |
+| Doorway / scaled-content abuse | low similarity (conditions 0.24, services 0.12); one near-duplicate city pair `eastpointe`/`roseville` (0.73) — already in the §4 deferred queue with the decision rule |
+| Misleading functionality | **clean** — "open now" refers accurately to referrals/requests being accepted pre-opening, not the clinic being open |
+| AI-answer manipulation (2026 policy) | **clean** — llms.txt and pages contain no injected/hidden instructions; AEO is accurate, honest content |
+| Link spam | the `rankvance.com` PBN was disavowed (Nov 21); no new unnatural links; SpamBrain neutralizes residual spam algorithmically |
+| Expired-domain / site-reputation / parasite / thin-affiliate / UGC spam | **not applicable** (fresh single domain; no third-party, affiliate, or user-generated content) |
+
+**Verdict: no spam-policy violations — no fixes required.** The only spam-adjacent item (the one near-duplicate city pair) is handled by the existing deferred decision rule and the Dec 1 re-check.
