@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm ci --no-audit --no-fund
+      - run: npm install --no-audit --no-fund
       - name: Intake, referral and CTA/status tests
         run: npm test
       - name: Static checks (links, titles, JSON-LD, pre-opening wording)
