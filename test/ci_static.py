@@ -33,6 +33,30 @@ def exists(path):
     return any(os.path.isfile(c) for c in (f, f + ".html", os.path.join(f, "index.html")))
 
 
+BUSINESS_TYPES = {"MedicalClinic", "LocalBusiness", "MedicalBusiness", "PhysicalTherapy"}
+
+
+def schema_problems(rel, node):
+    """Schema checks added Nov 26, 2026 after Semrush Site Audit markup errors:
+    reviewedBy/lastReviewed are WebPage properties (not Article), and a LocalBusiness-type node needs an address."""
+    if isinstance(node, list):
+        for n in node:
+            schema_problems(rel, n)
+        return
+    if not isinstance(node, dict):
+        return
+    types = node.get("@type")
+    types = set(types) if isinstance(types, list) else {types}
+    if "Article" in types and not (types & {"WebPage", "MedicalWebPage"}):
+        for prop in ("reviewedBy", "lastReviewed"):
+            if prop in node:
+                problems.append(f"{rel}: {prop} on an Article node (belongs on the WebPage)")
+    if types & BUSINESS_TYPES and "address" not in node:
+        problems.append(f"{rel}: {sorted(types & BUSINESS_TYPES)[0]} node without address")
+    for v in node.values():
+        schema_problems(rel, v)
+
+
 pages = 0
 for dirpath, dirs, files in os.walk(root):
     dirs[:] = [d for d in dirs if d not in ("node_modules", "test", ".git", ".github")]
@@ -53,6 +77,8 @@ for dirpath, dirs, files in os.walk(root):
                 json.loads(block)
             except ValueError as e:
                 problems.append(f"{rel}: invalid JSON-LD ({e})")
+                continue
+            schema_problems(rel, json.loads(block))
         if re.search(r"bookable now", html, re.I):
             problems.append(f"{rel}: claims bookable now (Proof opens Feb 2027)")
         if re.search(r"DEMO-|Staging build", html):
