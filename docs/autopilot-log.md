@@ -8,7 +8,8 @@ Newest run first. Keep the last 20 runs.
 
 ## Approved
 
-(none)
+- **2026-11-25 — 42 clinical pages, dated reviewed-by (PR #9).** Zubair Fayyaz, PT, DPT and Justin Jwad, DC reviewed and approved all 42 queued pages on 2026-11-25 (relayed by Yousef; mapping confirmed). Reviewer of record: Justin Jwad, DC on the 34 musculoskeletal pages; Zubair Fayyaz, PT, DPT on the 8 PT-scope pages. 41 stamped with "Reviewed by <name> on November 25, 2026" + `reviewedBy`/`lastReviewed` schema. Full record: docs/clinical-review-queue.md.
+- **Held:** /services/functional-capacity-evaluation.html — approved by Zubair 2026-11-25 but frozen for the rank experiment; stamp its reviewed-by byline (Zubair, 2026-11-25) when the freeze lifts.
 
 ## Runs
 
