@@ -13,6 +13,28 @@ Newest run first. Keep the last 20 runs.
 
 ## Runs
 
+### 2026-11-26 — scheduled autopilot (Thanksgiving)
+
+**Google guidance checked (2026-11-26):** Search Status Dashboard — November 2026 core update started Nov 10, listed duration 13 days 20 h (≈ complete Nov 24); no spam or other ranking incidents in November. Dashboard also shows a "December 2026 core update" entry dated Nov 24 marked "Information" (announcement only — re-check its status next run). Impact: per the core-update protocol, no impact analysis until ≥1 full week after completion (earliest Dec 1); the Dec 1 re-check in docs/core-update-compliance-2026-11.md has **not** recorded a decision yet, so eastpointe/roseville + the 8 short condition pages stay frozen. Search Console / GA4 / GBP / generative-AI setting: not accessible to this session (owner-gated) — unchanged gap.
+
+**Data used:** Semrush connector — Position Tracking 31708634_5685808 (desktop, Sterling Heights), dates Oct 28 → Nov 25; visibility (estimate) **0.17% (Nov 18) → 1.46% (Nov 25)**. Per-keyword pull done this run (weekly-rank doc not reachable from this session): only 2 of 19 keywords rank — "functional capacity evaluation near me" **#59 → #7** and "workers compensation physical therapy near me" **#82 → #12**, both now ranking via **/areas-served/macomb-township-mi/** (frozen) rather than the FCE / work-injury service pages; 10 keywords were added to the campaign Nov 26 and have no reads yet (incl. "physical therapy sterling heights", ~110/mo est.). Site Audit snapshot 6b080d40 (crawl finished Nov 26, 10:45 UTC): 195 errors — 164 "broken internal links" + 1 5xx + 1 sitemap item all = one transient **503 on /services/neuromuscular-reeducation.html** (file present, unchanged; GitHub Pages blip); **29 structured-data errors**. Units used ≈ 2,700 (left 33,100). Weekly-rank / baseline / semrush-monthly project docs: not reachable from this session (no Projects tool) — used live connector data instead.
+
+**PR:** #12 (autopilot/2026-11-26-run).
+
+Changes (each pre-approved: structured data / internal links):
+1. **Schema fix — reviewedBy/lastReviewed moved off `Article` onto a `WebPage` node** (20 guides). Semrush: "NOT_RECOGNIZED reviewedBy, lastReviewed" on ARTICLE (they are WebPage properties). Article now has `@id #article` + `mainEntityOfPage`; new WebPage node carries the same reviewer/date already shown on-page (no reviewer or date changed). Acceptance: 0 Article-level reviewedBy; next Site Audit drops those 20 markup errors. Follow-up: next Site Audit crawl (≈Dec 3–4).
+2. **Schema fix — `MedicalClinic` stubs on team/index, team/zubair-fayyaz-dpt, team/justin-jwad-dc** got the address + phone already published on the home page. Semrush: LOCAL_BUSINESS "REQUIRED address". Acceptance: 3 errors cleared next crawl.
+3. **Internal links to 10 under-linked guides** (Semrush "pages with only one internal link": TMJ, spinal stenosis, snapping hip, shoulder impingement, piriformis, pinched nerve neck, knee bursitis, groin strain, golfer's elbow, Achilles) — "Related reading" links added on conditions/neck-pain, sciatica, back-pain, headaches-migraines, foot-ankle-pain, elbow-wrist-hand-pain and services/sports-injury-rehabilitation, orthopedic-physical-therapy. No clinical text changed. Acceptance: each guide ≥2 inbound internal links; Follow-up: next Site Audit crawl (≈Dec 3–4).
+4. **Test:** test/ci_static.py now fails on reviewedBy/lastReviewed on an Article node and on a LocalBusiness-type node without an address (verified it catches the pre-fix markup).
+
+Skipped / held, and why:
+- **WebApplication markup on the 6 tool pages** (Semrush SOFTWARE_APP "REQUIRED aggregateRating/review"): left as is — Proof has no genuine ratings and will not add self-serving review markup. The error only means no Software-App rich result; noted, not fixed.
+- **FCE cannibalization** (Macomb page ranking for FCE / workers' comp): both pages frozen; internal-link changes toward the FCE page are allowed but deferred one week so the 4th weekly read (Dec 2) of the Nov 7 rank experiment stays clean. FCE reviewed-by byline (Zubair, 2026-11-25) stays held until the freeze lifts.
+- Eastpointe/Roseville + 8 short condition pages (core-update deferral), long titles on 7 pages (cosmetic), HSTS (GitHub Pages host setting — not ours to change).
+- No new pages; no clinical claims created or changed → nothing added to the clinical review queue.
+
+Measure next run: Dec 2 position read (does FCE #7 hold; which URL ranks; first reads for the 10 new keywords incl. "physical therapy sterling heights"); next Site Audit — errors should fall from 195 to ≲6 (the tool-page SOFTWARE_APP items); after Dec 2 read completes the freeze window, consider pointing FCE-intent anchors on work-injury pages at /services/functional-capacity-evaluation.html.
+
 ### 2026-11-25 — manual run (Yousef: "ensure the site meets UI/UX + further enhance AI and SEO visibility")
 
 Operator: Claude (interactive, not the scheduled autopilot). Data used: local render/audit of all 164 pages (Playwright + static scans); Semrush not pulled this run.
