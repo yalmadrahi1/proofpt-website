@@ -173,10 +173,7 @@ CARDS=[
   "big":"Tell us","callout":"Better sleep supports recovery. Tell us how you are sleeping — it shapes your plan.",
   "sources":"Sleep and chronic spinal pain, J Clin Med 2021;10:3836 (systematic review) · Sleep deprivation and pain, Sleep Med Rev 2022;66:101695"},
 ]
-# Justin Jwad, DC signed off on his three cards on 2026-11-28 (relayed by Yousef). Zubair's HEP + the new drafts remain pending.
-for _c in CARDS:
-    if _c["code"] in {"P01","P02","P04"}:
-        _c["reviewed_by"]="Justin Jwad, DC"; _c["reviewed_date"]="November 28, 2026"
+# Clinician sign-offs (relayed by Yousef). Dated the day the finals were produced/reviewed; never back-dated.
 
 HEPS=[
  {"code":"H01","slug":"low-back","h1":"Low back pain: try at home","lead":"Most low back pain eases with movement and time. These gentle exercises keep your back moving while it settles.",
@@ -232,6 +229,18 @@ HEPS=[
   "expect":"Most people notice less pain and easier walking after 6 to 8 weeks of regular exercise.",
   "sources":"ACR/Arthritis Foundation osteoarthritis guideline, 2019 · Messier et al., Arthritis Rheum 2005"},
 ]
+
+# Reviewer of record per asset, all reviewed 2026-11-28 (relayed by Yousef). Dated the day the finals were produced.
+REVIEWED={
+ "P01":"Justin Jwad, DC","P02":"Justin Jwad, DC","P04":"Justin Jwad, DC",
+ "P06":"Justin Jwad, DC","P07":"Justin Jwad, DC",
+ "P05":"Zubair Fayyaz, PT, DPT",
+ "H01":"Zubair Fayyaz, PT, DPT","H02":"Zubair Fayyaz, PT, DPT",
+ "H03":"Zubair Fayyaz, PT, DPT","H04":"Zubair Fayyaz, PT, DPT",
+}
+for _a in CARDS+HEPS:
+    if _a["code"] in REVIEWED:
+        _a["reviewed_by"]=REVIEWED[_a["code"]]; _a["reviewed_date"]="November 28, 2026"
 
 made=[]
 for c in CARDS: made.append(card(c))
