@@ -4,7 +4,7 @@ Created 2026-11-28. These are Proof-branded patient-education **print handouts**
 (see `docs/clinical-content-system-playbook.md`), re-centered for a pure PT practice: active care + same-scale
 measurement, not injections/procedures.
 
-**Status (2026-11-28): all 10 reviewed and stamped.** Zubair Fayyaz, PT, DPT and Justin Jwad, DC approved the
+**Status (2026-11-28): 10 reviewed + live as downloads; 6 new drafts pending.** Zubair Fayyaz, PT, DPT and Justin Jwad, DC approved the
 direction on Fri 2026-11-27, and reviewed the finals on 2026-11-28 (relayed by Yousef). Each asset carries its
 allocated reviewer's dated byline (cards → Justin, except work-injury → Zubair; all home-exercise pamphlets → Zubair).
 Dated the day the finals were produced — never back-dated. **Stored durably in this repo via the generator: run
@@ -36,6 +36,12 @@ pamphlets → Zubair Fayyaz, PT, DPT. A reviewed card shows a green "Reviewed by
 | H02 | Leg nerve pain (sciatica) — try at home | Home-exercise pamphlet | Zubair Fayyaz, PT, DPT | ✅ 2026-11-28 | Am Fam Physician 2008; JOSPT LBP+leg 2021 |
 | H03 | Neck pain & whiplash — try at home | Home-exercise pamphlet | Zubair Fayyaz, PT, DPT | ✅ 2026-11-28 | JOSPT neck CPG 2017; Spine 2007;32:618 |
 | H04 | Knee arthritis — try at home | Home-exercise pamphlet | Zubair Fayyaz, PT, DPT | ✅ 2026-11-28 | ACR/AF OA 2019; Messier 2005 |
+| P03 | Warning signs — some symptoms can't wait | Education card (urgent) | Justin Jwad, DC | ☐ pending | NICE NG59 red flags; JOSPT red-flag screening |
+| P08 | Shoulder pain — improves with loading | Education card | Justin Jwad, DC | ☐ pending | JOSPT shoulder/RC CPG; Cochrane RC exercise |
+| P09 | Hip pain — strong hips hurt less | Education card | Justin Jwad, DC | ☐ pending | JOSPT hip CPG; ACR/AF OA 2019 |
+| P10 | After surgery — follow surgeon's protocol | Education card | Zubair Fayyaz, PT, DPT | ☐ pending | Procedure-specific protocols; JOSPT post-op CPG |
+| H05 | Shoulder pain — try at home | Home-exercise pamphlet | Zubair Fayyaz, PT, DPT | ☐ pending | JOSPT shoulder/RC CPG |
+| H06 | Hip pain — try at home | Home-exercise pamphlet | Zubair Fayyaz, PT, DPT | ☐ pending | JOSPT hip CPG; ACR/AF OA 2019 |
 
 ## Reviewer checklist (per handout)
 - Clinical accuracy of the "plan," red flags, and dosage against current PT practice.
