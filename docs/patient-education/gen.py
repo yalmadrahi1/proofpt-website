@@ -23,7 +23,8 @@ h1{{font-family:"Bricolage Grotesque",serif;font-weight:800;color:var(--navy);fo
 .col{{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px}}
 .col h2{{display:flex;align-items:center;gap:10px;font-size:19px;color:var(--navy);margin:0 0 12px;font-family:"Bricolage Grotesque",serif;font-weight:700}}
 .badge{{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto}}
-.badge svg{{width:16px;height:16px}}.b-ok{{background:var(--blue)}}.b-warn{{background:#F3E2C4}}
+.badge svg{{width:16px;height:16px}}.b-ok{{background:var(--blue)}}.b-warn{{background:#F3E2C4}}.b-er{{background:var(--red)}}
+.col.er li::before{{background:var(--red)}}
 ul{{margin:0;padding:0;list-style:none}}
 li{{position:relative;padding-left:19px;margin-bottom:10px;font-size:15px;line-height:1.4;color:var(--ink)}}
 li::before{{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--blue)}}
@@ -63,6 +64,7 @@ li::before{{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;bor
 FOOT = """</body></html>"""
 CHECK='<svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 BANG='<svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5" stroke="#9A6A12" stroke-width="2.6" stroke-linecap="round"/><circle cx="12" cy="16.5" r="1.4" fill="#9A6A12"/></svg>'
+BANGW='<svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><circle cx="12" cy="16.5" r="1.4" fill="#fff"/></svg>'
 
 def li(items): return "".join(f"<li>{x}</li>" for x in items)
 
@@ -79,13 +81,20 @@ def card(c):
     note = f'<div class="note">{c["note"]}</div>' if c.get("note") else ""
     red = f'<div class="redline"><b>{c["redflag_lead"]}</b> {c["redflag"]}</div>' if c.get("redflag") else ""
     stamp, srcsuf = stamp_and_src(c)
+    if c.get("urgent"):
+        colsblock = (f'<div class="cols">'
+          f'<div class="col er"><h2><span class="badge b-er">{BANGW}</span>{c["er_title"]}</h2><ul>{li(c["er"])}</ul></div>'
+          f'<div class="col warn"><h2><span class="badge b-warn">{BANG}</span>{c["sameday_title"]}</h2><ul>{li(c["sameday"])}</ul></div>'
+          f'</div>{note}')
+    else:
+        colsblock = (f'<div class="cols">'
+          f'<div class="col"><h2><span class="badge b-ok">{CHECK}</span>{c["plan_title"]}</h2><ul>{li(c["plan"])}</ul></div>'
+          f'<div class="col warn"><h2><span class="badge b-warn">{BANG}</span>{c["warn_title"]}</h2><ul>{li(c["warn"])}</ul>{red}</div>'
+          f'</div>{note}')
     htmlout = HEAD.format(title="Proof Education Card") + f"""
 <div class="sheet">{stamp}
 <p class="eyebrow">{c['eyebrow']}</p><h1>{c['h1']}</h1><p class="lead">{c['lead']}</p>
-<div class="cols">
- <div class="col"><h2><span class="badge b-ok">{CHECK}</span>{c['plan_title']}</h2><ul>{li(c['plan'])}</ul></div>
- <div class="col warn"><h2><span class="badge b-warn">{BANG}</span>{c['warn_title']}</h2><ul>{li(c['warn'])}</ul>{red}</div>
-</div>{note}
+{colsblock}
 <div class="callout"><div class="big">{c['big']}</div><p>{c['callout']}</p></div>
 <div class="foot"><div class="brand">Proof Physical Therapy<small>Recovery, proven.</small></div>
 <div class="disc">Educational only, not medical advice. Your therapist's plan comes first.<br>Sterling Heights, MI · (586) 800-8488</div></div>
@@ -172,6 +181,36 @@ CARDS=[
   "note":"<b>Loud snoring, stopping breathing at night, or poor sleep most nights can be treated.</b> Mention it at your next visit.",
   "big":"Tell us","callout":"Better sleep supports recovery. Tell us how you are sleeping — it shapes your plan.",
   "sources":"Sleep and chronic spinal pain, J Clin Med 2021;10:3836 (systematic review) · Sleep deprivation and pain, Sleep Med Rev 2022;66:101695"},
+ {"code":"P03","slug":"warning-signs","eyebrow":"Warning signs","h1":"Some symptoms can’t wait.",
+  "lead":"These are uncommon, but they need care right away. Keep this card where you can see it.","urgent":True,
+  "er_title":"Go to the ER or call 911","er":["Losing control of your bladder or bowels, or you can’t pee","Numbness in the groin or inner thighs","Sudden or fast-worsening leg or arm weakness","Chest pain, or trouble breathing","Severe pain right after a fall or crash"],
+  "sameday_title":"Call us the same day","sameday":["New numbness or tingling that is spreading","Pain that wakes you every night","A hot, swollen joint, or a fever with pain","Clumsy hands or trouble with balance"],
+  "note":None,"big":"911","callout":"If you are not sure, get care now. Tell the ER you are a Proof patient, and call us afterward.",
+  "sources":"Low back pain red flags, NICE NG59 · JOSPT clinical practice guidelines, red-flag screening"},
+ {"code":"P08","slug":"shoulder-pain","eyebrow":"Shoulder pain","h1":"Most shoulder pain improves with the right loading.",
+  "lead":"Most shoulder pain — from the rotator cuff, tendons, or stiffness — improves with graded exercise and movement. Rest alone usually makes a stiff shoulder worse.",
+  "plan_title":"Your plan at Proof","plan":["Graded rotator-cuff and shoulder-blade strengthening","Movement to keep the shoulder from stiffening","Hands-on therapy for mobility and pain","Activity changes while it settles",SAME_SCORE_PLAN],
+  "warn_title":"Call us the same day if","warn":["You can’t lift or use the arm after an injury","Sudden weakness, numbness or tingling down the arm","A hot, swollen or deformed shoulder, or fever"],
+  "redflag_lead":None,"redflag":None,
+  "note":"Most shoulder pain improves over weeks to a few months with a steady, progressive program.",
+  "big":"Load it","callout":"Shoulders respond to the right amount of load, re-tested over time — not to rest. We measure your range and strength so progress is visible.",
+  "sources":"JOSPT shoulder pain / rotator cuff clinical practice guidelines · Cochrane review, exercise for rotator cuff disease"},
+ {"code":"P09","slug":"hip-pain","eyebrow":"Hip pain","h1":"Strong hips move better and hurt less.",
+  "lead":"Most hip pain — from the joint, tendons, or surrounding muscles — improves with strengthening and movement. Staying active within comfort usually helps more than resting.",
+  "plan_title":"Your plan at Proof","plan":["Strengthening for the hip and core muscles","Low-impact activity — walking, cycling or swimming","Hands-on therapy and movement to ease stiffness","Guidance on load, stairs and pacing",SAME_SCORE_PLAN],
+  "warn_title":"Call us the same day if","warn":["You can’t bear weight after a fall or injury","A hot, swollen hip, or fever","Sudden numbness, tingling or weakness in the leg"],
+  "redflag_lead":None,"redflag":None,
+  "note":"Most hip pain improves over weeks with a steady, progressive program.",
+  "big":"Weeks","callout":"Most hip pain eases over weeks with strengthening. We re-test so you and your therapist can see it working.",
+  "sources":"JOSPT hip pain clinical practice guidelines · ACR/Arthritis Foundation osteoarthritis guideline, 2019"},
+ {"code":"P10","slug":"after-surgery","eyebrow":"After surgery","h1":"Recovery after surgery follows your surgeon’s plan.",
+  "lead":"After orthopedic surgery, the safest recovery follows the protocol your surgeon sets — the right movements at the right time. We work within that protocol to rebuild your strength and function.",
+  "plan_title":"Your plan at Proof","plan":["A plan matched to your surgeon’s protocol and timeline","Protecting the repair while you regain motion","Graded strengthening as you are cleared for it","Getting back to daily activities step by step",SAME_SCORE_PLAN],
+  "warn_title":"Call us or your surgeon the same day if","warn":["Increasing redness, warmth, swelling or drainage at the incision","Fever, or a calf that is red, swollen or painful","A sudden increase in pain, or a ‘pop’ with new weakness"],
+  "redflag_lead":"Go to the ER or call 911","redflag":"for chest pain, trouble breathing, or a sudden swollen, painful calf.",
+  "note":"<b>Your surgeon’s protocol comes first.</b> We never push past the limits your surgeon has set.",
+  "big":"On time","callout":"The right exercise at the right stage protects the repair and speeds recovery. We measure your progress against your plan.",
+  "sources":"Procedure-specific post-operative rehabilitation protocols · JOSPT post-operative clinical practice guidelines (by procedure)"},
 ]
 # Clinician sign-offs (relayed by Yousef). Dated the day the finals were produced/reviewed; never back-dated.
 
@@ -228,6 +267,32 @@ HEPS=[
   "stop":["Sharp or rapidly increasing pain","A hot, red, swollen knee, or fever","The knee locking or giving way","Sudden inability to bear weight"],
   "expect":"Most people notice less pain and easier walking after 6 to 8 weeks of regular exercise.",
   "sources":"ACR/Arthritis Foundation osteoarthritis guideline, 2019 · Messier et al., Arthritis Rheum 2005"},
+ {"code":"H05","slug":"shoulder","h1":"Shoulder pain: try at home","lead":"Gentle movement and light strengthening help most shoulder pain. Keep within a comfortable range.",
+  "start":[
+   {"name":"Pendulum","steps":["Lean forward with your good hand resting on a table.","Let the sore arm hang and gently swing it in small circles."],"dose":"1 minute each direction · 2–3× a day"},
+   {"name":"Shoulder blade squeeze","steps":["Sit tall, arms relaxed.","Squeeze your shoulder blades back and down.","Hold, then relax."],"dose":"Hold 5 seconds · 10 times · 3× a day"},
+   {"name":"Wall walk","steps":["Face a wall, fingers resting on it.","Walk your fingers up the wall as far as is comfortable, then back down."],"dose":"5 times · 2× a day"},
+   {"name":"External rotation (with a towel)","steps":["Hold a rolled towel under your elbow against your side.","Keeping the elbow in, rotate your forearm outward.","Return slowly."],"dose":"10 times · 2 sets · once a day"},
+  ],
+  "add":[{"name":"Band row","steps":["Anchor a light band at waist height.","Pull your elbow back, squeezing the shoulder blade.","Return slowly."],"dose":"10 times · 2 sets · once a day"}],
+  "every":["Move the shoulder a little often","Keep good posture at screens and driving","Heat for 10–15 minutes before exercises for stiffness"],
+  "avoid":["Overhead lifting while it is painful","Sleeping directly on the sore shoulder","Complete rest for more than a day or two"],
+  "stop":["Sharp or rapidly increasing pain","Numbness, tingling or weakness down the arm","A hot, swollen shoulder or fever","Inability to lift or use the arm after an injury"],
+  "expect":"Most shoulder pain eases over weeks to a few months. We re-test your range and strength on the same scale at each visit.",
+  "sources":"JOSPT shoulder pain / rotator cuff clinical practice guidelines"},
+ {"code":"H06","slug":"hip","h1":"Hip pain: try at home","lead":"Strengthening the hip and core muscles takes load off the joint. Keep within a comfortable range.",
+  "start":[
+   {"name":"Glute bridge","steps":["Lie on your back, knees bent.","Squeeze your buttocks and lift your hips until your body is straight.","Lower slowly."],"dose":"10 times · 2 sets · once a day"},
+   {"name":"Clamshell","steps":["Lie on your side, knees bent and stacked.","Keeping your feet together, lift the top knee.","Lower slowly."],"dose":"10 each side · 2 sets · once a day"},
+   {"name":"Standing hip abduction","steps":["Hold a counter for balance.","Lift one leg out to the side, keeping it straight.","Lower slowly."],"dose":"10 each side · 2× a day"},
+   {"name":"Sit to stand","steps":["Sit on a firm chair.","Stand up without using your hands if you can.","Sit back down slowly."],"dose":"10 times · once a day"},
+  ],
+  "add":[{"name":"Step-up","steps":["Hold a rail.","Step up onto a low step, then step down slowly."],"dose":"10 each leg · once a day"}],
+  "every":["Walk, cycle or swim most days","Change position often; avoid long sitting","Wear supportive, cushioned shoes"],
+  "avoid":["Deep squats while it is flaring","Crossing your legs for long periods","Complete rest"],
+  "stop":["Sharp or rapidly increasing pain","A hot, swollen hip or fever","Numbness, tingling or weakness in the leg","Inability to bear weight after a fall"],
+  "expect":"Most hip pain eases over weeks with a steady program. We re-test on the same scale at each visit.",
+  "sources":"JOSPT hip pain clinical practice guidelines · ACR/Arthritis Foundation osteoarthritis guideline, 2019"},
 ]
 
 # Reviewer of record per asset, all reviewed 2026-11-28 (relayed by Yousef). Dated the day the finals were produced.
