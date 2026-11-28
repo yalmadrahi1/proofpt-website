@@ -14,6 +14,7 @@ HEAD = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 *{{box-sizing:border-box}}html,body{{margin:0;background:#E7EAF1;color:var(--ink);font-family:"Hanken Grotesk",system-ui,sans-serif}}
 .sheet{{width:8.5in;margin:22px auto;background:var(--paper);padding:0.66in 0.66in 0.52in;position:relative;box-shadow:0 10px 40px -18px rgba(12,36,87,.4)}}
 .draft{{position:absolute;top:0.4in;right:0.66in;font-size:10px;letter-spacing:.03em;color:#9A7B37;background:#FBEFD6;border-radius:999px;padding:4px 11px;font-weight:700}}
+.rev{{position:absolute;top:0.4in;right:0.66in;font-size:10px;letter-spacing:.02em;color:#13624A;background:#DEF2EA;border-radius:999px;padding:4px 11px;font-weight:700}}
 .eyebrow{{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-size:12.5px;margin:0 0 9px}}
 .eyebrow::before{{content:"";width:26px;height:3px;border-radius:2px;background:var(--blue)}}
 h1{{font-family:"Bricolage Grotesque",serif;font-weight:800;color:var(--navy);font-size:42px;line-height:1.03;margin:0 0 12px;letter-spacing:-.01em}}
@@ -65,11 +66,21 @@ BANG='<svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5" stroke="#9A6A12" st
 
 def li(items): return "".join(f"<li>{x}</li>" for x in items)
 
+def stamp_and_src(c):
+    if c.get("reviewed_by"):
+        stamp = f'<div class="rev">✓ Reviewed by {c["reviewed_by"]} · {c["reviewed_date"]}</div>'
+        srcsuf = f'Reviewed by {c["reviewed_by"]} — {c["reviewed_date"]}.'
+    else:
+        stamp = f'<div class="draft">DRAFT · {c["code"]} · for clinical review (Z.F. / J.J.)</div>'
+        srcsuf = 'Draft for clinician review before any patient use.'
+    return stamp, srcsuf
+
 def card(c):
     note = f'<div class="note">{c["note"]}</div>' if c.get("note") else ""
     red = f'<div class="redline"><b>{c["redflag_lead"]}</b> {c["redflag"]}</div>' if c.get("redflag") else ""
+    stamp, srcsuf = stamp_and_src(c)
     htmlout = HEAD.format(title="Proof Education Card") + f"""
-<div class="sheet"><div class="draft">DRAFT · {c['code']} · for clinical review (Z.F. / J.J.)</div>
+<div class="sheet">{stamp}
 <p class="eyebrow">{c['eyebrow']}</p><h1>{c['h1']}</h1><p class="lead">{c['lead']}</p>
 <div class="cols">
  <div class="col"><h2><span class="badge b-ok">{CHECK}</span>{c['plan_title']}</h2><ul>{li(c['plan'])}</ul></div>
@@ -78,7 +89,7 @@ def card(c):
 <div class="callout"><div class="big">{c['big']}</div><p>{c['callout']}</p></div>
 <div class="foot"><div class="brand">Proof Physical Therapy<small>Recovery, proven.</small></div>
 <div class="disc">Educational only, not medical advice. Your therapist's plan comes first.<br>Sterling Heights, MI · (586) 800-8488</div></div>
-<div class="src">Sources: {c['sources']} · Draft for clinician review before any patient use.</div></div>""" + FOOT
+<div class="src">Sources: {c['sources']} · {srcsuf}</div></div>""" + FOOT
     p = os.path.join(OUT, f"card-{c['code'].lower()}-{c['slug']}.html")
     open(p,"w").write(htmlout); return p
 
@@ -91,8 +102,9 @@ def hep(h):
         return out
     h["_start"]=1; start=exs(h["start"])
     h["_start"]=len(h["start"])+1; add=exs(h["add"])
+    stamp, srcsuf = stamp_and_src(h)
     htmlout = HEAD.format(title="Proof Home Exercise Program") + f"""
-<div class="sheet hep"><div class="draft">DRAFT · {h['code']} · for PT review (Z.F. / J.J.)</div>
+<div class="sheet hep">{stamp}
 <p class="eyebrow">Try at home</p><h1>{h['h1']}</h1><p class="lead">{h['lead']}</p>
 <div class="how"><b>How hard?</b> Mild soreness is OK — up to 3 out of 10 during exercise, settling within 24 hours. If pain is higher or lasts into the next day, do fewer reps next time. If your therapist gave you a program, follow theirs instead.</div>
 <div class="seclabel">Start now <span>weeks 1–2</span></div><div class="exg">{start}</div>
@@ -105,7 +117,7 @@ def hep(h):
 <div class="expect"><b>What to expect.</b> {h['expect']}</div>
 <div class="foot"><div class="brand">Proof Physical Therapy<small>Recovery, proven.</small></div>
 <div class="disc">Educational only, not medical advice. Your therapist's plan comes first.<br>Sterling Heights, MI · (586) 800-8488</div></div>
-<div class="src">Sources: {h['sources']} · Draft for clinician review before any patient use.</div></div>""" + FOOT
+<div class="src">Sources: {h['sources']} · {srcsuf}</div></div>""" + FOOT
     p=os.path.join(OUT, f"hep-{h['code'].lower()}-{h['slug']}.html")
     open(p,"w").write(htmlout); return p
 
@@ -136,7 +148,35 @@ CARDS=[
   "note":None,
   "big":"Same&nbsp;score","callout":"We re-check your pain and function on the same scale at every visit, so you and your therapist can see whether the plan is working — and change it if it isn't.",
   "sources":"Lumbar disk herniation, Am Fam Physician 2008;78:835 · JOSPT low back pain with leg pain clinical practice guideline (2021 revision) · ACP low back pain guideline, Ann Intern Med 2017"},
+ {"code":"P05","slug":"work-injury","eyebrow":"After a work injury","h1":"Getting back to work is part of your recovery.",
+  "lead":"For most work injuries, a safe, gradual return to activity — including modified duty where appropriate — rebuilds function better than waiting until you are pain-free. Your plan is built around what your job actually requires.",
+  "plan_title":"Your plan at Proof","plan":["Graded exercise that rebuilds the strength your job needs","Modified or transitional duty where appropriate","Objective testing of range, strength and function","Clear, measured updates to you, your employer and your doctor",SAME_SCORE_PLAN],
+  "warn_title":"Tell us or your doctor if","warn":["New or spreading numbness, tingling or weakness","Pain that is not improving after a few weeks","A task at work keeps setting you back"],
+  "redflag_lead":"Go to the ER or call 911","redflag":"for chest pain, severe shortness of breath, or loss of bladder or bowel control.",
+  "note":"<b>Michigan workers' compensation:</b> bring your claim details — we coordinate objective findings and work status with your employer and treating doctor.",
+  "big":"Function","callout":"We measure what your job requires and re-test it, so return-to-work decisions are based on numbers, not guesswork.",
+  "sources":"ACOEM occupational musculoskeletal practice guidelines · Work conditioning / functional restoration literature · Michigan Workers' Disability Compensation Agency (provider-choice rules)"},
+ {"code":"P06","slug":"knee-arthritis","eyebrow":"Knee arthritis","h1":"Strong muscles take load off an arthritic knee.",
+  "lead":"Exercise is one of the most effective treatments for knee osteoarthritis. Strong thigh and hip muscles take load off the joint, and staying active usually helps more than resting it.",
+  "plan_title":"Your plan at Proof","plan":["Strengthening for the thigh and hip muscles","Low-impact activity — walking, cycling or swimming","Hands-on therapy and movement to ease stiffness","Guidance on load, footwear and pacing",SAME_SCORE_PLAN],
+  "warn_title":"Call us the same day if","warn":["A hot, red, swollen knee, or fever","The knee locks or gives way","Sudden severe pain, or you cannot bear weight"],
+  "redflag_lead":None,"redflag":None,
+  "note":"<b>Losing even a little weight takes load off the knee with every step.</b> Supportive, cushioned shoes help too.",
+  "big":"6–8 wks","callout":"Most people notice less pain and easier walking after 6 to 8 weeks of regular exercise. We track it so you can see the change.",
+  "sources":"ACR/Arthritis Foundation osteoarthritis guideline, 2019 · OARSI guidelines · Messier et al., Arthritis Rheum 2005;52:2026"},
+ {"code":"P07","slug":"sleep-and-pain","eyebrow":"Sleep & pain","h1":"Poor sleep turns up the volume on pain.",
+  "lead":"Pain and sleep feed each other. People with back and neck pain who sleep poorly tend to hurt more, and better sleep goes along with better recovery.",
+  "plan_title":"Try tonight","plan":["Same bedtime and wake-up time every day","A dark, cool, quiet room","Screens off an hour before bed","A pillow that keeps your neck level","A walk or gentle movement earlier in the day"],
+  "warn_title":"Avoid","warn":["Caffeine after noon","Alcohol to fall asleep","Naps longer than 30 minutes","Lying awake in bed — get up for 20 minutes, then try again"],
+  "redflag_lead":None,"redflag":None,
+  "note":"<b>Loud snoring, stopping breathing at night, or poor sleep most nights can be treated.</b> Mention it at your next visit.",
+  "big":"Tell us","callout":"Better sleep supports recovery. Tell us how you are sleeping — it shapes your plan.",
+  "sources":"Sleep and chronic spinal pain, J Clin Med 2021;10:3836 (systematic review) · Sleep deprivation and pain, Sleep Med Rev 2022;66:101695"},
 ]
+# Justin Jwad, DC signed off on his three cards on 2026-11-28 (relayed by Yousef). Zubair's HEP + the new drafts remain pending.
+for _c in CARDS:
+    if _c["code"] in {"P01","P02","P04"}:
+        _c["reviewed_by"]="Justin Jwad, DC"; _c["reviewed_date"]="November 28, 2026"
 
 HEPS=[
  {"code":"H01","slug":"low-back","h1":"Low back pain: try at home","lead":"Most low back pain eases with movement and time. These gentle exercises keep your back moving while it settles.",
@@ -152,6 +192,45 @@ HEPS=[
   "stop":["Sharp or rapidly increasing pain","Numbness, tingling or weakness spreading down a leg","New weakness, or your knee or foot giving way","Back pain with fever, or after a fall","Loss of bladder or bowel control, or numbness in the groin: go to the ER or call 911"],
   "expect":"Many people feel better within a few weeks. If you are not improving after 2 to 4 weeks, tell us so we can adjust the plan.",
   "sources":"ACP low back pain guideline, Ann Intern Med 2017 · JOSPT low back pain clinical practice guideline (2021 revision)"},
+ {"code":"H02","slug":"sciatica","h1":"Leg nerve pain (sciatica): try at home","lead":"An irritated nerve in the lower back can cause pain down the leg. The goal is movement that calms the nerve, not stretching it hard.",
+  "start":[
+   {"name":"Positions of relief","steps":["Lie on your back with your calves resting on a chair seat.","Or lie on your stomach with a pillow under your hips if that eases the leg pain."],"dose":"5 to 10 minutes, as needed"},
+   {"name":"Press-up (only if it eases the leg)","steps":["Lie on your stomach, hands under your shoulders.","Slowly push your upper body up, keeping your hips down.","Stop if leg pain moves further down the leg."],"dose":"10 times · every 2–3 hours if it helps"},
+   {"name":"Nerve glide (slider)","steps":["Sit upright on a chair.","Straighten the sore leg while tipping your head back.","Bend the knee while bringing your chin down. Keep it smooth and gentle."],"dose":"10 slow repeats · 2–3× a day"},
+   {"name":"Walking","steps":["Short, frequent walks on flat ground.","Stop and rest before the leg pain builds."],"dose":"5 minutes, several times a day"},
+  ],
+  "add":[{"name":"Bridge","steps":["Lie on your back, knees bent.","Lift your hips, keeping your back straight.","Lower slowly."],"dose":"Hold 5 seconds · 10 times · once a day"}],
+  "every":["Move a little every hour","Sit with your back supported and hips slightly higher than your knees","Ice or heat, whichever feels better, for 15 to 20 minutes"],
+  "avoid":["Long periods of sitting","Toe-touching stretches","Heavy lifting or twisting"],
+  "stop":["Sharp or rapidly increasing pain","Leg or foot weakness, or your foot dragging","Numbness that spreads","Any change in bladder or bowel control: go to the ER or call 911"],
+  "expect":"Many people feel better within 6 weeks and most within 3 months. We check your pain and function on the same score at each visit.",
+  "sources":"Lumbar disk herniation, Am Fam Physician 2008 · JOSPT low back pain with leg pain clinical practice guideline (2021 revision)"},
+ {"code":"H03","slug":"neck-whiplash","h1":"Neck pain and whiplash: try at home","lead":"Gentle, regular neck movement helps recovery more than resting it or wearing a collar.",
+  "start":[
+   {"name":"Chin tuck","steps":["Sit or stand tall.","Slide your chin straight back, making a double chin.","Hold, then relax."],"dose":"Hold 5 seconds · 10 times · 3× a day"},
+   {"name":"Turning side to side","steps":["Sit tall.","Slowly turn your head to look over one shoulder, then the other.","Go only as far as is comfortable."],"dose":"10 each way · 3× a day"},
+   {"name":"Shoulder blade squeeze","steps":["Sit tall, arms relaxed.","Squeeze your shoulder blades back and down.","Hold, then relax."],"dose":"Hold 5 seconds · 10 times · 3× a day"},
+   {"name":"Upper shoulder stretch","steps":["Sit tall and hold the chair seat with one hand.","Tilt your ear toward the other shoulder until you feel a gentle stretch."],"dose":"Hold 20 seconds · 3 each side · 2× a day"},
+  ],
+  "add":[{"name":"Arms-up wall slide","steps":["Stand with your back to a wall, arms bent like a goalpost.","Slide your arms up the wall and back down slowly."],"dose":"10 times · once a day"}],
+  "every":["Take a posture break every 30 minutes at screens or driving","Keep your phone at eye level","Use a pillow that keeps your neck level with your body","Heat for 15 to 20 minutes for stiffness"],
+  "avoid":["A soft collar unless your provider told you to wear one","Long periods looking down","Sleeping on your stomach"],
+  "stop":["Sharp or rapidly increasing pain","Numbness, tingling or weakness down an arm","New weakness, or clumsy hands","Bad headache, confusion or vomiting after a crash: go to the ER"],
+  "expect":"Most neck pain and whiplash improves over weeks, and most people recover within about 3 months.",
+  "sources":"JOSPT neck pain clinical practice guideline (2017 revision) · Whiplash: activity vs collar, Spine 2007;32:618"},
+ {"code":"H04","slug":"knee-arthritis","h1":"Knee arthritis: try at home","lead":"Strong thigh and hip muscles take load off the knee. Exercise is one of the most effective treatments for knee arthritis.",
+  "start":[
+   {"name":"Thigh tightening (quad set)","steps":["Sit with your leg straight and a rolled towel under the knee.","Press the back of your knee down into the towel.","Hold, then relax."],"dose":"Hold 5 seconds · 10 times · 2× a day"},
+   {"name":"Straight leg raise","steps":["Lie on your back, other knee bent.","Tighten your thigh and lift the straight leg to the height of the other knee.","Lower slowly."],"dose":"10 times · 2 sets · once a day"},
+   {"name":"Heel slide","steps":["Lie on your back.","Slide your heel toward your buttock, bending the knee.","Slide back."],"dose":"10 times · 2× a day"},
+   {"name":"Sit to stand","steps":["Sit on a firm chair.","Stand up without using your hands if you can.","Sit back down slowly."],"dose":"10 times · once a day"},
+  ],
+  "add":[{"name":"Step-up","steps":["Hold a rail.","Step up onto a low step with the sore leg, then step down slowly."],"dose":"10 times · once a day"}],
+  "every":["Walk, cycle or swim most days","Wear supportive, cushioned shoes","Losing even a little weight takes load off your knees with every step"],
+  "avoid":["Deep squats and kneeling for long periods","Running on hard surfaces while it is flaring","Complete rest"],
+  "stop":["Sharp or rapidly increasing pain","A hot, red, swollen knee, or fever","The knee locking or giving way","Sudden inability to bear weight"],
+  "expect":"Most people notice less pain and easier walking after 6 to 8 weeks of regular exercise.",
+  "sources":"ACR/Arthritis Foundation osteoarthritis guideline, 2019 · Messier et al., Arthritis Rheum 2005"},
 ]
 
 made=[]
